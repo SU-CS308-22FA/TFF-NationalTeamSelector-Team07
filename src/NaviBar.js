@@ -18,7 +18,7 @@ function NaviBar() {
                 <Button variant="light" onClick={routeChange}>
                 <Image className='imageStyle' src={Flag}/>
                 <Row style={{marginTop:"10px"}}>
-                <text><b>Turkey Football Federation</b></text>
+                <text><b>Turkish Football Federation</b></text>
                 </Row>
                 <Row>
                 <text>National Team Player Selector</text> 
