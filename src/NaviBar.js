@@ -28,13 +28,22 @@ function NaviBar() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Nav.Link style={{marginLeft:"100px"}} href="/MainMenu">Home</Nav.Link>
-                    <Nav.Link style={{marginLeft:"700px"}} href="/Contact">Contact</Nav.Link>
-                    <Nav.Link style={{marginLeft:"50px"}} href="/Admin">Admin</Nav.Link>
+                    <Nav.Link style={{marginLeft:"20px"}} href="/MainMenu">Home</Nav.Link>
+                    <Nav.Link style={{marginLeft:"20px"}} href="/Contact">Contact</Nav.Link>
+                    <Nav.Link style={{marginLeft:"700px", marginRight:"10px"}} href="/SignIn">Sign In</Nav.Link>
+                    <text style={{marginTop:"7px"}}>/</text> 
+                    <Nav.Link style={{marginLeft:"10px"}} href="/SignUp">Sign Up</Nav.Link>
                 </Nav>
                 </Navbar.Collapse>
         </Container>
     </Navbar>
+    <Container>
+      <Navbar fixed="bottom" expand="lg" variant="light" bg="light">
+        <Container>
+          <Navbar.Brand href="/Admin">Admin Platform</Navbar.Brand>
+        </Container>
+      </Navbar>
+    </Container>
     </div>
     );
 }
