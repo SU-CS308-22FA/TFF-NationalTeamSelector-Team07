@@ -10,7 +10,6 @@ import AdminPage from './pages/AdminPage';
 import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 
-
 ReactDOM.render(
   <Router>
     <Routes>
