@@ -5,7 +5,7 @@ const app = express();
 const mysql = require('mysql');
 
 const db = mysql.createPool({ //db conection'ıyla ilgili
-    host: 'localhost', 
+    host: 'localhost',
     user: 'root',
     password: 'password',
     database: 'cs308', //burası db'nin adı olacak
@@ -36,6 +36,7 @@ app.post('/api/insert', (req,res) => { //iki variable'ı alıp db'ye aktarılaca
     const sqlInsert = "INSERT INTO user_information (name, surname, email, password, username) VALUES (?,?,?,?,?)"
    db.query(sqlInsert, [name, surname, email, password, username], (err,result) => {
     console.log(err);
+    console.log(result);
    })
 });
 
