@@ -1,10 +1,10 @@
-import './Admin.css'
+import './SignIn.css'
 import {Button, Form} from 'react-bootstrap';
 
-function Admin() {
+function SignIn() {
   return (
     <div className='container'>
-      <h4 className='textLayout' style={{marginTop:'100px'}}> Admin Platform</h4>
+      <h4 className='textLayout' style={{marginTop:'100px'}}>User Sign In Platform</h4>
       <Form className='formLayout' style={{marginTop:'50px'}}>
       
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -28,4 +28,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default SignIn;
