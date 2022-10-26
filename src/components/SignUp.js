@@ -1,6 +1,7 @@
 import './SignUp.css'
 import {Form, InputGroup, Button} from 'react-bootstrap';
-import {useState, useEffect, Axios} from 'react'
+import {useState, useEffect} from 'react'
+import Axios from 'axios';
 
 function SignUp() {
   
