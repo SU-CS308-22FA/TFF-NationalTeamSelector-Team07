@@ -127,7 +127,7 @@ function SignUp() {
           aria-describedby="basic-addon2"
         />
       </InputGroup>
-      <Button onClick={submitUser} variant="primary">Submit</Button>
+      <Button variant="primary">Submit</Button>
     </>
     </div>
   );
