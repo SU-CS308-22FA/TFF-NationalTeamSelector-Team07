@@ -4,8 +4,8 @@ import {Button, Form} from 'react-bootstrap';
 function Admin() {
   return (
     <div className='container'>
-      <h4 style={{textAlign:'center',marginTop:'70px', marginLeft:"80px"}}> Admin Login Platform</h4>
-      <Form style={{marginTop:"60px"}}className='formLayout'>
+      <h4 className='textLayout' style={{marginTop:'100px'}}> Admin Platform</h4>
+      <Form className='formLayout' style={{marginTop:'50px'}}>
       
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
