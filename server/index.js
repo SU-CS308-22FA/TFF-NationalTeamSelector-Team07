@@ -40,6 +40,27 @@ app.post('/api/insert', (req,res) => { //iki variable'ı alıp db'ye aktarılaca
    })
 });
 
+app.delete('/api/delete/:username', (req,res) => {
+    const username=req.params.username
+    const sqlDelete = "DELETE FROM user_information WHERE username = ?";
+
+    db.query(sqlDelete), username, (err,result) => {
+        if (err) console.log(err);
+    }
+
+});
+
+app.put('/api/update', (req,res) => {
+    const username=req.body.username // bunun bilgileri değişiecek
+    const name = req.body.name //name'i değişecek
+    const sqlUpdate = "UPDATE user_information SET username = ? WHERE username = ?";
+
+    db.query(sqlUpdate), [username, name], (err,result) => {
+        if (err) console.log(err);
+    }
+
+});
+
 app.listen(3001, () => {
 console.log("running port 3001");  
 });

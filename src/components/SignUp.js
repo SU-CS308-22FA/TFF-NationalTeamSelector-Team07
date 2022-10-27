@@ -10,9 +10,9 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  const [userList, setUserList] = useState([]);
+  const [userList, setUserList] = useState([]); //here adding feature direct adding to list of map. 4-5 minutes
 
-  
+  const [newName, setNewName] = useState("")
   // useEffect(() => { //burası get ile db'den alınacaklar için kullanılıyor. useEffect !!
   //   Axios.get("http://localhost:3001/api/get").then((response) => {
   //     console.log(response.data);
@@ -31,6 +31,21 @@ function SignUp() {
       alert("succesfull insert");
     });
   };
+
+  const deleteUser = (user) => {
+    Axios.delete('http://localhost:3001/api/delete/${user}' )
+  }
+
+  const updateUser = (username) => {
+    Axios.put("http://localhost:3001/api/update", {
+      name: name,  //BURALAR KARIŞTI
+      surname: surname,
+      email: email,
+      password: password,
+      username: username
+    });
+    setNewName("")
+  }
   
   return (
     <div className='container'>
@@ -90,6 +105,29 @@ function SignUp() {
         />
       </InputGroup>
       <Button onClick={submitUser} variant="primary">Submit</Button>
+
+      {userList.map((val) => {
+        return (
+          <div className='card'>
+            <h1>{val.email}</h1>
+            <p>{val.password}</p>
+
+            <button onClick={() => {deleteUser(val.username);
+            }}
+            >
+              Delete
+              </button>
+              <input type="text" id="updateInput" onChange={(e) => {
+                setNewName(e.target.value)
+              }}/>
+            <button onClick={ () => [updateUser(val.username)]}
+            >Update</button>
+
+          </div>
+        );
+      }
+      
+      )}
     </>
     </div>
   );

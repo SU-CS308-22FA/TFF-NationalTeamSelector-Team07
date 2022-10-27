@@ -19,6 +19,7 @@ ReactDOM.render(
       <Route exact path='/Admin' element={<AdminPage/>} />
       <Route exact path='/SignIn' element={<SignInPage/>} />
       <Route exact path='/SignUp' element={<SignUpPage/>} />
+      
     </Routes>
   </Router>,
   document.getElementById('root')
