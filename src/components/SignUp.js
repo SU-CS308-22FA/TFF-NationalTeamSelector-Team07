@@ -5,11 +5,11 @@ import Axios from 'axios';
 
 function SignUp() {
 
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  // const [name, setName] = useState("");
+  // const [surname, setSurname] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [username, setUsername] = useState("");
 
   // const [userList, setUserList] = useState([]); //here adding feature direct adding to list of map. 4-5 minutes
   // const [newName, setNewName] = useState("");
