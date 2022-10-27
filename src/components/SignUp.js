@@ -10,6 +10,7 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+
   // const [userList, setUserList] = useState([]); //here adding feature direct adding to list of map. 4-5 minutes
   // const [newName, setNewName] = useState("");
 
@@ -20,17 +21,17 @@ function SignUp() {
   //   })
   // }, []);
 
-  const submitUser = () => { //db'ye insert etmek için kullanılıyor
-    Axios.post("http://localhost:3001/api/insert", {
-      name: name, 
-      surname: surname,
-      email: email,
-      password: password,
-      username: username
-    }).then(() => {
-      alert("succesfull insert");
-    });
-  };
+  // const submitUser = () => { //db'ye insert etmek için kullanılıyor
+  //   Axios.post("http://localhost:5432/api/insert", {
+  //     name: name, 
+  //     surname: surname,
+  //     email: email,
+  //     password: password,
+  //     username: username
+  //   }).then(() => {
+  //     alert("succesfull insert");
+  //   });
+  // };
 
   // const deleteUser = (user) => {
   //   Axios.delete('http://localhost:3001/api/delete/${user}' )

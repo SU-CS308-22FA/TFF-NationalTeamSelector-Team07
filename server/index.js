@@ -5,10 +5,10 @@ const app = express();
 const mysql = require('mysql');
 
 const db = mysql.createPool({ //db conection'ıyla ilgili
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'cs308', //burası db'nin adı olacak
+    host: 'ec2-63-34-180-86.eu-west-1.compute.amazonaws.com',
+    user: 'nnmyquoxyxjjzp',
+    password: 'e7bcde25ec2062f93a88534835bcfe91ac0abc761209eb9472f7d93f2891565a',
+    database: 'cs308',
 });
 
 app.use(express.json()); //taking api correctly
@@ -61,6 +61,6 @@ app.put('/api/update', (req,res) => {
 
 });
 
-app.listen(3001, () => {
-console.log("running port 3001");  
+app.listen(5432, () => {
+console.log("running port 5432");  
 });
