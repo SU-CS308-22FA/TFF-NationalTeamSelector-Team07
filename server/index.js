@@ -7,7 +7,7 @@ const mysql = require('mysql');
 const db = mysql.createPool({ //db conection'ıyla ilgili
     host: 'localhost',
     user: 'root',
-    password: 'password',
+    password: '',
     database: 'cs308', //burası db'nin adı olacak
 });
 
