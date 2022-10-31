@@ -43,7 +43,6 @@ function SignUp() {
  
    setForm({ name: "", surname: "", email: "", username:"", password:"" });
    navigate("/UserSettings");
-   console.log(form.name,form.email,form.password,form.username, form.surname)
   }
 
   return (

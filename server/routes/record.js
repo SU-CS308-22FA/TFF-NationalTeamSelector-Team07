@@ -11,6 +11,8 @@ const dbo = require("../db/conn");
 // This help convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
  
+
+const navigate = useNavigate();
  
 // // This section will help you get a list of all the records.
 // recordRoutes.route("/record").get(function (req, res) {
@@ -24,17 +26,17 @@ const ObjectId = require("mongodb").ObjectId;
 //    });
 // });
  
-// // This section will help you get a single record by id
-// recordRoutes.route("/record/:id").get(function (req, res) {
-//  let db_connect = dbo.getDb();
-//  let myquery = { _id: ObjectId(req.params.id) };
-//  db_connect
-//    .collection("records")
-//    .findOne(myquery, function (err, result) {
-//      if (err) throw err;
-//      res.json(result);
-//    });
-// });
+// This section will help you get a single record by email and password
+recordRoutes.route("/record/:user").get(function (req, res) {
+ let db_connect = dbo.getDb();
+ let myquery = { email: req.params.email, password: req.params.password};
+ db_connect
+   .collection("user_information")
+   .findOne(myquery, function (err, result) {
+     if (err) throw err;
+     res.json(result);
+   });
+});
  
 // This section will help you create a new record.
 recordRoutes.route("/record/add").post(function (req, response) {
