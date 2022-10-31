@@ -94,7 +94,7 @@ function SignUp() {
       </form>
       <form style={{marginBottom:"30px"}}>
          <input
-           type="text"
+           type="password"
            className="form-control"
            id="password"
            value={form.password}
