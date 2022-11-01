@@ -1,7 +1,6 @@
 import './UserSettings.css'
 import photo from '../images/default-avatar.png'
 import { MDBBtn } from 'mdb-react-ui-kit';
-// import Sonnet from '../../components/Sonnet';
 
 import React from 'react';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
@@ -27,7 +26,6 @@ export default function UserSettings() {
                     <MDBTypography style={{textAlign:'left'}} tag="h3">User Information</MDBTypography>
                     <hr className="mt-0 mb-4" />
                     <MDBRow className="pt-1">
-                      
                       <MDBCol size="6" className="mb-6">
                         <MDBTypography tag="h6">Name</MDBTypography>
                         <MDBCardText style={{marginBottom:'20px'}} className="text-muted">name</MDBCardText>
@@ -37,7 +35,6 @@ export default function UserSettings() {
                         <MDBCardText className="text-muted">name</MDBCardText>
                       </MDBCol>
                       <MDBCol size="6" className="mb-3">
-
                         <MDBTypography tag="h6">Username</MDBTypography>
                         <MDBCardText className="text-muted">insert username</MDBCardText>
                       </MDBCol>
@@ -49,9 +46,6 @@ export default function UserSettings() {
                       <MDBBtn style={{marginBottom:'20px'}} color='danger' className='mx-0'>edit</MDBBtn>
                       </MDBCol>
                     </MDBRow>
-                    
-                  
-
                   </MDBCardBody>
                 </MDBCol>
               </MDBRow>
