@@ -43,7 +43,6 @@ function SignUp() {
  
    setForm({ name: "", surname: "", email: "", username:"", password:"" });
    navigate("/UserSettings");
-   console.log(form.name,form.email,form.password,form.username, form.surname)
   }
 
   return (
@@ -94,7 +93,7 @@ function SignUp() {
       </form>
       <form style={{marginBottom:"30px"}}>
          <input
-           type="text"
+           type="password"
            className="form-control"
            id="password"
            value={form.password}
