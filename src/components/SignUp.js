@@ -55,6 +55,7 @@ function SignUp() {
            type="text"
            className="form-control"
            id="name"
+           required
            value={form.name}
            placeholder="Please enter your name"
            onChange={(e) => updateForm({ name: e.target.value })}
@@ -65,6 +66,7 @@ function SignUp() {
            type="text"
            className="form-control"
            id="surname"
+           required
            value={form.surname}
            placeholder="Please enter your surname"
            onChange={(e) => updateForm({ surname: e.target.value })}
@@ -77,6 +79,7 @@ function SignUp() {
            type="text"
            className="form-control"
            id="email"
+           required
            value={form.email}
            placeholder="Please enter your email"
            onChange={(e) => updateForm({ email: e.target.value })}
@@ -87,6 +90,7 @@ function SignUp() {
            type="text"
            className="form-control"
            id="username"
+           required
            value={form.username}
            placeholder="Please enter your username"
            onChange={(e) => updateForm({ username: e.target.value })}
@@ -94,9 +98,10 @@ function SignUp() {
       </form>
       <form style={{marginBottom:"30px"}}>
          <input
-           type="text"
+           type="password"
            className="form-control"
            id="password"
+           required
            value={form.password}
            placeholder="Please enter your password"
            onChange={(e) => updateForm({ password: e.target.value })}
