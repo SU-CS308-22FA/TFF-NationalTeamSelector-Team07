@@ -1,5 +1,5 @@
 import React from "react";
-import Contact from '../components/Contact';
+// import Contact from '../components/Contact';
 import NaviBar from "../NaviBar";
 
 export default class ContactPage extends React.Component {
@@ -8,7 +8,7 @@ export default class ContactPage extends React.Component {
             <React.StrictMode>
                 <div>
                     <NaviBar/>
-                    <Contact/>
+                    {/* <Contact/> */}
                 </div>
             </React.StrictMode>
         )

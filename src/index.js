@@ -14,7 +14,7 @@ import UserSettingsPage from './pages/UserSettingsPage';
 ReactDOM.render(
   <Router>
     <Routes>
-      <Route exact path='/' element={<MainMenuPage/>} />
+      <Route exact path='/' element={<SignUpPage/>} />
       <Route exact path='/MainMenu' element={<MainMenuPage/>} />
       <Route exact path='/Contact' element={<ContactPage/>} />
       <Route exact path='/Admin' element={<AdminPage/>} />
