@@ -1,19 +1,20 @@
 import './UserSettings.css'
 import {Button} from 'react-bootstrap';
-import {React, useState, useEffect} from 'react';
+import React from 'react';
+// import {useState, useEffect} from 'react';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 
 
 function UserSettings() {
 
-const [items, setItems] = useState([]);
+// const [items, setItems] = useState([]);
 
-useEffect(() => {
-  const items = JSON.parse(localStorage.getItem('items'));
-  if (items) {
-   setItems(items);
-  }
-}, []);
+// // useEffect(() => {
+// //   const items = JSON.parse(localStorage.getItem('items'));
+// //   if (items) {
+// //    setItems(items);
+// //   }
+// // }, []);
 
 
 const handleClick = (e) => {
