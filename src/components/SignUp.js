@@ -2,106 +2,97 @@ import './SignUp.css'
 import {Form, Button} from 'react-bootstrap';
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
 function SignUp() {
 
- const [form, setForm] = useState({
-   name: "",
-   surname: "",
-   email:"",
-   username:"",
-   password:""
- });
- 
- const navigate = useNavigate();
- 
- // These methods will update the state properties.
- function updateForm(value) {
-   return setForm((prev) => {
-     return { ...prev, ...value };
-   });
- }
- 
- // This function will handle the submission.
- async function onSubmit(e) {
-   e.preventDefault();
- 
-   // When a post request is sent to the create url, we'll add a new record to the database.
-   const newPerson = { ...form };
- 
-   await fetch("http://localhost:5500/record/add", {
-     method: "POST",
-     headers: {
-       "Content-Type": "application/json",
-     },
-     body: JSON.stringify(newPerson),
-   })
-   .catch(error => {
-     window.alert(error);
-     return;
-   });
- 
-   setForm({ name: "", surname: "", email: "", username:"", password:"" });
-   navigate("/UserSettings");
-  }
+  const [data, setData] = useState({
+		name: "",
+		surname: "",
+		email: "",
+		password: "",
+		username: "",
+	});
+	const [error, setError] = useState("");
+	const navigate = useNavigate();
+
+	const handleChange = ({ currentTarget: input }) => {
+		setData({ ...data, [input.name]: input.value });
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		try {
+			const url = "http://localhost:8080/api/users";
+			const { data: res } = await axios.post(url, data);
+			navigate("/SignIn");
+			console.log(res.message);
+		} catch (error) {
+			if (
+				error.response &&
+				error.response.status >= 400 &&
+				error.response.status <= 500
+			) {
+				setError(error.response.data.message);
+			}
+		}
+	};
 
   return (
     <div className='container'>
       <h3 className='textLayout' style={{marginTop:"80px"}}>Sign Up</h3>
-      <Form.Label style={{marginTop:"60px"}}>Personal Information</Form.Label>
-      <form style={{marginBottom:"10px"}}>
-         <input
+      <Form.Label style={{marginTop:"100px"}}>Personal Information</Form.Label>
+      <form style={{marginBottom:"10px"}} onSubmit={handleSubmit}>
+         <input style={{marginBottom:"10px"}}
            type="text"
-           className="form-control"
-           id="name"
-           value={form.name}
            placeholder="Please enter your name"
-           onChange={(e) => updateForm({ name: e.target.value })}
-         />
-      </form>
-      <form style={{marginBottom:"30px"}}>
-         <input
-           type="text"
            className="form-control"
-           id="surname"
-           value={form.surname}
-           placeholder="Please enter your surname"
-           onChange={(e) => updateForm({ surname: e.target.value })}
+           name="name"
+           value={data.name}
+           required
+           onChange={handleChange}
          />
-      </form>
+         <input style={{marginBottom:"30px"}}
+           type="text"
+           placeholder="Please enter your surname"
+           className="form-control"
+           name="surname"
+           value={data.surname}
+           required
+           onChange={handleChange}
+         />
 
       <Form.Label>Account Information</Form.Label>
-      <form style={{marginBottom:"10px"}}>
-         <input
-           type="text"
-           className="form-control"
-           id="email"
-           value={form.email}
+      <input style={{marginBottom:"10px"}}
+           type="email"
            placeholder="Please enter your email"
-           onChange={(e) => updateForm({ email: e.target.value })}
+           className="form-control"
+           name="email"
+           value={data.email}
+           required
+           onChange={handleChange}
          />
-      </form>
-      <form style={{marginBottom:"10px"}}>
-         <input
+         <input style={{marginBottom:"10px"}}
            type="text"
-           className="form-control"
-           id="username"
-           value={form.username}
            placeholder="Please enter your username"
-           onChange={(e) => updateForm({ username: e.target.value })}
-         />
-      </form>
-      <form style={{marginBottom:"30px"}}>
-         <input
-           type="password"
            className="form-control"
-           id="password"
-           value={form.password}
-           placeholder="Please enter your password"
-           onChange={(e) => updateForm({ password: e.target.value })}
+           name="username"
+           value={data.username}
+           required
+           onChange={handleChange}
          />
+          <input style={{marginBottom:"30px"}}
+           type="password"
+           placeholder="Please enter your password"
+           className="form-control"
+           name="password"
+           value={data.password}
+           required
+           onChange={handleChange}
+         />
+        {error && <div>{error}</div>}
+				<Button type="submit">Sign Up</Button>
       </form>
-      <Button onClick={onSubmit} variant="primary">Submit</Button>
     </div>
   );
 }

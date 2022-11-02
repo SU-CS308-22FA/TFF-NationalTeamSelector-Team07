@@ -1,15 +1,18 @@
-// import styles from './NaviBar.css';
+import './NaviBar.css';
 import {Container, Navbar, Button, Image, Row, Nav} from 'react-bootstrap';
 // import { useNavigate } from 'react-router-dom';
 import Flag from './images/TRFlag.png'
 
-function NaviBar() {
+function NaviBarSignedIn() {
     // let navigate = useNavigate();
     // const routeChange = () => {
     // let path='/MainMenu';
     // navigate(path);
     // }
-
+    const handleLogout = () => {
+		localStorage.removeItem("token");
+		window.location.reload();
+	};
     return (
     <div>
     <Container fluid>
@@ -29,11 +32,8 @@ function NaviBar() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    {/* <Nav.Link style={{marginLeft:"20px"}} href="/MainMenu">Home</Nav.Link> */}
-                    <Nav.Link style={{marginLeft:"20px"}} href="/Contact">Contact</Nav.Link>
-                    <Nav.Link style={{marginLeft:"700px", marginRight:"10px"}} href="/SignIn">Sign In</Nav.Link>
-                    <text style={{marginTop:"7px"}}>/</text> 
-                    <Nav.Link style={{marginLeft:"10px"}} href="/SignUp">Sign Up</Nav.Link>
+                    <Nav.Link  href="/UserSettings">Profile</Nav.Link>
+                    <Nav.Link onClick={handleLogout} style={{marginLeft:"1000px"}} href="/SignUp">Logout</Nav.Link>
                 </Nav>
                 </Navbar.Collapse>
         </Container>
@@ -51,4 +51,4 @@ function NaviBar() {
     );
 }
 
-export default NaviBar;
+export default NaviBarSignedIn;
