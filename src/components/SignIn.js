@@ -1,70 +1,63 @@
-import './SignIn.css'
-import {Button, Form} from 'react-bootstrap';
+import styles from './SignIn.css'
+import {Button} from 'react-bootstrap';
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import axios from "axios";
 
 function SignIn() {
 
-  const [form, setForm] = useState({
-    email:"",
-    password:""
-  });
-  
-  
-  const navigate = useNavigate();
+  	const [data, setData] = useState({ email: "", password: "" });
+	const [error, setError] = useState("");
 
-  function updateForm(value) {
-    return setForm((prev) => {
-      return { ...prev, ...value };
-    });
-  }
+	const handleChange = ({ currentTarget: input }) => {
+		setData({ ...data, [input.name]: input.value });
+	};
 
-   // This function will handle the submission.
- async function onSubmit(e) {
-  e.preventDefault();
-
-  await fetch("http://localhost:5500/record/:user", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then(response => console.log(response))
-  .catch(error => {
-    window.alert(error);
-    return;
-  });
-
-  // setForm({email: "", password:"" });
-  navigate("/UserSettings");
- }
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		try {
+			const url = "http://localhost:8080/api/auth";
+			const { data: res } = await axios.post(url, data);
+			localStorage.setItem("token", res.data);
+			window.location = "/UserSettings";
+		} catch (error) {
+			if (
+				error.response &&
+				error.response.status >= 400 &&
+				error.response.status <= 500
+			) {
+				setError(error.response.data.message);
+			}
+		}
+	};
 
   return (
-    <div className='container'>
-      <h4 className='textLayout' style={{marginTop:'100px'}}>User Sign In Platform</h4>
-      <Form className='formLayout'>
-      <form style={{marginBottom:"20px"}}>
-         <input
-           type="text"
-           className="form-control"
-           id="email"
-           value={form.email}
-           placeholder="Email"
-           onChange={(e) => updateForm({ email: e.target.value })}
-         />
-      </form>
-      <form style={{marginBottom:"30px"}}>
-         <input
-           type="password"
-           className="form-control"
-           id="password"
-           value={form.password}
-           placeholder="Password"
-           onChange={(e) => updateForm({ password: e.target.value })}
-         />
-      </form>
-      <Button onClick={onSubmit} variant="primary" type="submit">Submit</Button>
-    </Form>
-    </div>
+	<div style={styles.container}>
+		<form onSubmit={handleSubmit}>
+			<h3 style={{marginLeft:"920px"}}>Sign In</h3>
+			<input 
+				type="email"
+				placeholder="Email"
+				name="email"
+				onChange={handleChange}
+				value={data.email}
+				required
+				className="form-control"
+			/>
+			<br/>
+			<input style={{marginBottom:"20px"}}
+				type="password"
+				placeholder="Password"
+				name="password"
+				onChange={handleChange}
+				value={data.password}
+				required
+				className="form-control"
+			/>
+			{error && <div>{error}</div>}
+			<Button type="submit">Sign In</Button>
+		</form>
+	</div>
+
   );
 }
 
