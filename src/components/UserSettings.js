@@ -1,29 +1,32 @@
 import './UserSettings.css'
-import {Button} from 'react-bootstrap';
-import {React, useState, useEffect} from 'react';
-import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
+// import {Button} from 'react-bootstrap';
+import React from 'react';
+// import {useState, useEffect} from 'react';
+// import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 
 
 function UserSettings() {
 
-const [items, setItems] = useState([]);
+// const [items, setItems] = useState([]);
 
-useEffect(() => {
-  const items = JSON.parse(localStorage.getItem('items'));
-  if (items) {
-   setItems(items);
-  }
-}, []);
+// // useEffect(() => {
+// //   const items = JSON.parse(localStorage.getItem('items'));
+// //   if (items) {
+// //    setItems(items);
+// //   }
+// // }, []);
 
 
-const handleClick = (e) => {
-  e.preventDefault();
-  console.log('The link was clicked.');
-}
+// const handleClick = (e) => {
+//   e.preventDefault();
+//   console.log('The link was clicked.');
+// }
 
 
   return (
-    <section className="w-auto p-1" style={{ backgroundColor: '#f4f5f7' }}>
+    <div>
+      User Information
+    {/* <section className="w-auto p-1" style={{ backgroundColor: '#f4f5f7' }}>
       <MDBContainer className="w-auto p-1">
         <MDBRow className="justify-content-center align-items-center h-100">
           <MDBCol lg="10" className="mb-4 mb-lg-4">
@@ -70,7 +73,8 @@ const handleClick = (e) => {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
-    </section>
+    </section> */}
+    </div>
   );
  
 }
