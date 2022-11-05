@@ -24,17 +24,17 @@ const ObjectId = require("mongodb").ObjectId;
 //    });
 // });
  
-// // This section will help you get a single record by id
-// recordRoutes.route("/record/:id").get(function (req, res) {
-//  let db_connect = dbo.getDb();
-//  let myquery = { _id: ObjectId(req.params.id) };
-//  db_connect
-//    .collection("records")
-//    .findOne(myquery, function (err, result) {
-//      if (err) throw err;
-//      res.json(result);
-//    });
-// });
+// This section will help you get a single record by id
+recordRoutes.route("/record/:id").get(function (req, res) {
+ let db_connect = dbo.getDb();
+ let myquery = { _id: ObjectId(req.params.id) };
+ db_connect
+   .collection("records")
+   .findOne(myquery, function (err, result) {
+     if (err) throw err;
+     res.json(result);
+   });
+});
  
 // This section will help you create a new record.
 recordRoutes.route("/record/add").post(function (req, response) {
@@ -82,5 +82,71 @@ recordRoutes.route("/record/add").post(function (req, response) {
 //    response.json(obj);
 //  });
 // });
+
+// CREATE User
+router.route('/create-user').post((req, res, next) => {
+  userSchema.create(req.body, (error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      console.log(data)
+      res.json(data)
+    }
+  })
+})
+
+// READ Students
+router.route('/').get((req, res) => {
+  studentSchema.find((error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
+// Get Single Student
+router.route('/edit-student/:id').get((req, res) => {
+  studentSchema.findById(req.params.id, (error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
+// Update Student
+router.route('/record/:id').put((req, res, next) => {
+  studentSchema.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set: req.body,
+    },
+    (error, data) => {
+      if (error) {
+        return next(error)
+        console.log(error)
+      } else {
+        res.json(data)
+        console.log('Student updated successfully !')
+      }
+    },
+  )
+})
+
+// Delete Student
+router.route('/delete-student/:id').delete((req, res, next) => {
+  studentSchema.findByIdAndRemove(req.params.id, (error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.status(200).json({
+        msg: data,
+      })
+    }
+  })
+})
  
 module.exports = recordRoutes;

@@ -10,6 +10,7 @@ import AdminPage from './pages/AdminPage';
 import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 import UserSettingsPage from './pages/UserSettingsPage';
+import CreatePage from './pages/CreatePage';
 
 ReactDOM.render(
   <Router>
@@ -21,6 +22,7 @@ ReactDOM.render(
       <Route exact path='/SignIn' element={<SignInPage/>} />
       <Route exact path='/SignUp' element={<SignUpPage/>} />
       <Route exact path='/UserSettings' element={<UserSettingsPage/>} />
+      <Route exact path='/Create' element={<CreatePage/>} />
     </Routes>
   </Router>,
   document.getElementById('root')
