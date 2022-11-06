@@ -13,7 +13,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #000;
+  color: rgb(198, 22, 22);
 }
 
 p {
@@ -138,9 +138,9 @@ h3 {
 
 .btn {
   padding: 10px 20px;
-  border: 1px solid #000;
+  border: 1px solid rgb(204, 169, 169);
   border-radius: 5px;
-  background: #000;
+  background: rgb(237, 8, 8);
   color: #fff;
   font-size: 16px;
   font-weight: 700;
