@@ -16,9 +16,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false}))
 
 
-app.get('/', (req,res) => {
-    res.send('hello')
-})
+// app.get('/', (req,res) => {
+//     res.send('hello')
+// })
 
 //routes
 app.use('/api/users', require('./routes/userRoutes'))
