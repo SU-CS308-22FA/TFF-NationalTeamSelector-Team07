@@ -1,8 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-import {FaQuestionCircle, FaTicketAlt} from 'react-icons/fa'
+import {FaTicketAlt} from 'react-icons/fa'
+import {useSelector} from 'react-redux'
 
 function Home() {
+
+    const {user} = useSelector( (state) => state.auth)
+
+    
     return (
         <>
             <section className="heading">
@@ -10,10 +15,18 @@ function Home() {
                     <p>Develpment in progress...</p>
                 </h1>
             </section>
-            <Link to='/profile' className='btn
-            btn-block'> 
+            <ul>
+            {user ? 
+            (            
+            <Link to='/profile' className='btnbtn-block'> 
                 <FaTicketAlt /> View My Profile
-            </Link>
+            </Link>)
+            : 
+            (
+                <h1> MAIN PAGE WITHOUT LOGIN</h1>
+            )
+            }           
+            </ul>
         </>
     );
 }

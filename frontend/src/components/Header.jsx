@@ -2,7 +2,8 @@ import React from 'react';
 import {FaSignInAlt, FaSignOutAlt, FaUser} from 'react-icons/fa'
 import {Link, useNavigate} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
-import {logout, reset} from '../features/auth/authSlice'
+import {logout} from '../features/auth/authSlice'
+
 function Header() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -17,7 +18,7 @@ function Header() {
     return (
         <header className='header'>
             <div className='logo'>
-                <Link to='/'> TFF National Team Selector</Link>
+                <Link to='/'> <b>TFF National Team Selector</b></Link>
             </div>
             <ul>
                 {user ? 
