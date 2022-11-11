@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-import {FaTicketAlt} from 'react-icons/fa'
 import {useSelector} from 'react-redux'
 
 function Home() {
@@ -18,8 +17,8 @@ function Home() {
             <ul>
             {user ? 
             (            
-            <Link to='/profile' className='btnbtn-block'> 
-                <FaTicketAlt /> View My Profile
+            <Link to='/profile' className='btn-block'> 
+                View My Profile
             </Link>)
             : 
             (
