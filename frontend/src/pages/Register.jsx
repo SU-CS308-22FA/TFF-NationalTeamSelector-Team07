@@ -53,7 +53,7 @@ state => state.auth)
 
        
 
-        if(password != password2){
+        if(password !== password2){
             toast.error('Passwords do not match')
         }
         else{

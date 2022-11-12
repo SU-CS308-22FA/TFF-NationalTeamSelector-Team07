@@ -1,33 +1,21 @@
-import React from 'react';
 import {Link} from 'react-router-dom'
-import {useSelector} from 'react-redux'
-
+import {FaQuestionCircle, FaTicketAlt} from 'react-icons/fa'
 function Home() {
-
-    const {user} = useSelector( (state) => state.auth)
-
-    
     return (
-        <>
+        <div>
             <section className="heading">
-                <h1>TFF National Football Team Selector 
-                    <p>Develpment in progress...</p>
-                </h1>
+                <h1>What do you need help with?</h1>
+                <p>Please chose from an option below</p>
             </section>
-            <ul>
-            {user ? 
-            (            
-            <Link to='/profile' className='btn-block'> 
-                View My Profile
-            </Link>)
-            : 
-            (
-                <h1> MAIN PAGE WITHOUT LOGIN</h1>
-            )
-            }           
-            </ul>
-        </>
-    );
+            <Link to='/new-team' className='btn btn-reverse btn-block'>
+                <FaQuestionCircle /> Create New Team
+            </Link>
+
+            <Link to='/teams' className='btn btn-block'>
+                <FaTicketAlt /> View My Teams
+            </Link>
+        </div>
+    )
 }
 
-export default Home;
+export default Home
