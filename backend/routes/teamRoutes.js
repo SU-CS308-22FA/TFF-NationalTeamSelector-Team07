@@ -4,7 +4,7 @@ const {getTeams, createTeam, getTeam, deleteTeam, updateTeam} = require('../cont
 
 const {protect} = require('../middleware/authMiddleware')
 
-router.route('/').get(protect, getTeams).post(protect, createTeam)
+router.route('/').get(protect, getTeams).post(createTeam)
 
 router.route('/:id')
 .get(protect, getTeam)

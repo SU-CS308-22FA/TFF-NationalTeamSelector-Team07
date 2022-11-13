@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = '/api/teams/'
+// const API_URL = '/api/teams/'
 
 // create new team
 const createTeam = async (teamData, token) => {
@@ -10,7 +10,7 @@ const createTeam = async (teamData, token) => {
         }
     }
 
-    const response = await axios.post(API_URL, teamData, config)
+    const response = await axios.post('/api/teams/', teamData)
 
     return response.data
 }
@@ -23,7 +23,7 @@ const getTeams = async (token) => {
         }
     }
 
-    const response = await axios.get(API_URL, config)
+    const response = await axios.get('/api/teams/')
 
     return response.data
 }
@@ -36,7 +36,7 @@ const getTeam = async (teamId, token) => {
         }
     }
 
-    const response = await axios.get(API_URL + teamId, config)
+    const response = await axios.get('/api/teams/' + teamId)
 
     return response.data
 }

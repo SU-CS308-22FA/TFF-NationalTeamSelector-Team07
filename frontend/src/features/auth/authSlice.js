@@ -158,6 +158,46 @@ export const login = createAsyncThunk(
 
 }) 
 
+// login a user
+export const update = createAsyncThunk(
+  'auth/update', 
+  async (user, thunkAPI) => {
+    console.log('authslice user ' + user)
+      try{
+          return await authService.update(user)
+      }catch (error){
+          const message = 
+          (error.response && 
+              error.response.data && 
+              error.response.data.message) || 
+              error.message || 
+              error.toString()
+
+          return thunkAPI.rejectWithValue(message)
+      }
+
+}) 
+
+// delete a user
+export const deleteUser = createAsyncThunk(
+  'auth/delete', 
+  async (user, thunkAPI) => {
+    console.log('authslice user ' + user)
+      try{
+          return await authService.deleteUser(user)
+      }catch (error){
+          const message = 
+          (error.response && 
+              error.response.data && 
+              error.response.data.message) || 
+              error.message || 
+              error.toString()
+
+          return thunkAPI.rejectWithValue(message)
+      }
+
+}) 
+
 
 //logout user
 export const logout =  createAction('auth/logout', () => {
@@ -198,6 +238,16 @@ export const authSlice = createSlice({
             state.isLoading = false
           })
           .addCase(login.rejected, (state) => {
+            state.isLoading = false
+          })
+          .addCase(update.pending, (state) => {
+            state.isLoading = false
+          })
+          .addCase(update.fulfilled, (state, action) => {
+            state.user = action.payload
+            state.isLoading = false
+          })
+          .addCase(update.rejected, (state) => {
             state.isLoading = false
           })
     }

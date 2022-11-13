@@ -56,6 +56,7 @@ const registerUser = asyncHandler(async (req,res) => {
 
 const loginUser = asyncHandler(async (req,res) => {
 
+
     const {email,password} = req.body
     const user = await User.findOne({email})
 
@@ -79,21 +80,38 @@ const loginUser = asyncHandler(async (req,res) => {
 const updateUser = asyncHandler(async (req, res) => {
 
     // get user using the id and jwt
-    const user = await user.findById(req.user.id)
+    const user = await User.findById(req.params.id)
+
+    console.log('user controler id ' + req.params.user_id)
+    console.log(req.body)
 
     if(!user) {
         res.status(401)
         throw new Error('User not found')
     }
 
-    
+    const updatedUser = await user.findByIdAndUpdate(req.params.id, req.body, {new: true})
 
-    const updatedUser = await team.findByIdAndUpdate({_id: req.body._id}, {$set:{name:req.body.name, email: req.body.email}})
-
-    res.redirect('/profile')
     res.status(200).json(updatedUser)
 })
 
+// @desc Delete user
+// @route DELETE /api/teams/:id
+// @access Private
+const deleteUser = asyncHandler(async (req, res) => {
+    console.log('user controller ' + req.user.id)
+    // get user using the id and jwt
+    const user = await user.findById(req.params.id)
+
+    if(!user) {
+        res.status(401)
+        throw new Error('User not found')
+    }
+
+    await user.remove()
+
+    res.status(200).json({success: true})
+})
 
 // @desc    get current user
 // @route   /api/users/me
@@ -121,5 +139,6 @@ module.exports = {
     registerUser,
     loginUser,
     updateUser,
-    getMe
+    deleteUser,
+    getMe,
 }

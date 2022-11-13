@@ -101,7 +101,7 @@ const deleteTeam = asyncHandler(async (req, res) => {
 
     if(team.user.toString() !== req.user.id) {
         res.status(401)
-        throw new Error('Not authorize')
+        throw new Error('Not authorized')
     }
 
     await team.remove()
