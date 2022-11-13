@@ -28,9 +28,23 @@ const getTeams = async (token) => {
     return response.data
 }
 
+// get user team
+const getTeam = async (teamId, token) => {
+    const config = {
+        headers: {
+            Authorization: `Esra ${token}`
+        }
+    }
+
+    const response = await axios.get(API_URL + teamId, config)
+
+    return response.data
+}
+
 const teamService = {
     createTeam,
     getTeams,
+    getTeam,
 }
 
 export default teamService

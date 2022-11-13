@@ -2,6 +2,8 @@ import {useState} from 'react'
 import {FaUser} from 'react-icons/fa'
 import {toast} from 'react-toastify'
 import { useSelector, useDispatch } from 'react-redux'
+import {Link} from 'react-router-dom'
+import {FaQuestionCircle, FaTicketAlt} from 'react-icons/fa'
 
 function Profile() {
     const [formData, setFormData] = useState({
@@ -36,41 +38,27 @@ function Profile() {
         <>
             <section className='heading'>
                 <h1>
-                    <FaUser /> Profile
+                    <FaUser /> Dear {user.name}, this is your profile
                 </h1>
-                <p>Here is your Profile</p>
+                
             </section>
 
-            <section className="form">
-                <form onSubmit={onSubmit}>
-                    <div className="form-group">
-                        <input 
-                        type="text"
-                        className="form-control" 
-                        id='name'
-                        name='name'
-                        value={username}
-                        onChange={onChange}
-                        placeholder='esra nur'
-                        />
-                    </div>
-                    <div className="form-group">
-                        <input 
-                        type="email"
-                        className="form-control" 
-                        id='email'
-                        name='email'
-                        value={useremail}
-                        onChange={onChange}
-                        placeholder='esra@gmail.com'
-                        />
-                    </div>
-                    <div className="form-group">
-                        <button className="btn btn-block">Edit</button>
-                    </div>
-                </form>
-                <button onSubmit={onSubmit2} className="btn btn-block">Delete my account</button>
+            <div>
+            <section className="heading">
+                <h1>What do you need help with?</h1>
+                <p>Please chose from an option below</p>
             </section>
+            <Link to='/new-team' className='btn btn-reverse btn-block'>
+                <FaQuestionCircle /> Create New Team
+            </Link>
+
+            <Link to='/teams' className='btn btn-block'>
+                <FaTicketAlt /> View My Teams
+            </Link>
+            <Link to='/profilesettings' className='btn btn-block'>
+                <FaTicketAlt /> Profile Settings
+            </Link>
+        </div>
         </>
     )
 }

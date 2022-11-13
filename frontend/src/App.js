@@ -10,6 +10,8 @@ import Register from './pages/Register'
 import NewTeam from './pages/NewTeam'
 import PrivateRoute from './components/PrivateRoute'
 import Teams from './pages/Teams'
+import Team from './pages/Team'
+import ProfileSettings from './pages/ProfileSettings'
 
 function App() {
   return(
@@ -22,11 +24,15 @@ function App() {
             <Route path='/login' element={<Login/>} />
             <Route path='/register' element={<Register/>} />
             <Route path='/profile' element={<Profile/>} />
+            <Route path='/profilesettings' element={<ProfileSettings/>} />
             <Route path='/new-team' element={<PrivateRoute />}>
               <Route path='/new-team' element={<NewTeam />}/>
             </Route>
             <Route path='/teams' element={<PrivateRoute />}>
               <Route path='/teams' element={<Teams />}/>
+            </Route>
+            <Route path='/team/:teamId' element={<PrivateRoute />}>
+              <Route path='/team/:teamId' element={<Team />}/>
             </Route>
         </Routes>
       </div>

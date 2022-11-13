@@ -73,6 +73,27 @@ const loginUser = asyncHandler(async (req,res) => {
 
 })
 
+// @desc Update team
+// @route PUT /api/teams/:id
+// @access Private
+const updateUser = asyncHandler(async (req, res) => {
+
+    // get user using the id and jwt
+    const user = await user.findById(req.user.id)
+
+    if(!user) {
+        res.status(401)
+        throw new Error('User not found')
+    }
+
+    
+
+    const updatedUser = await team.findByIdAndUpdate({_id: req.body._id}, {$set:{name:req.body.name, email: req.body.email}})
+
+    res.redirect('/profile')
+    res.status(200).json(updatedUser)
+})
+
 
 // @desc    get current user
 // @route   /api/users/me
@@ -99,5 +120,6 @@ const generateToken = (id) => {
 module.exports = {
     registerUser,
     loginUser,
+    updateUser,
     getMe
 }
