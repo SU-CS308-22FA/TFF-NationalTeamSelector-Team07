@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler')
+const { collection } = require('../models/playerModel')
 
 const player = require('../models/playerModel')
 
@@ -59,7 +60,8 @@ const createPlayer = asyncHandler(async (req, res) => {
 
     if(!fullName || !team || !position || !raiting) {
         res.status(400)
-        throw new Error('Please fill all spaces')
+        throw new Error('Please fill all spaces'),
+        console.log(fullName, team, position, raiting)
     }
     
     const Player = await player.create({

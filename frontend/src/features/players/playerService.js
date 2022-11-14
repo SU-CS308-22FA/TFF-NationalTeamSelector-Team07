@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-const API_URL = '/api/players/'
+//const API_URL = '/api/players/'
 
-// create new team
+// create new player
 const createPlayer = async (playerData, token) => {
     const config = {
         headers: {
-            Authorization: `Esra ${token}`
+            Authorization: `admin ${token}`
         }
     }
 
@@ -19,7 +19,7 @@ const createPlayer = async (playerData, token) => {
 const getPlayers = async (token) => {
     const config = {
         headers: {
-            Authorization: `Esra ${token}`
+            Authorization: `admin ${token}`
         }
     }
 
@@ -32,7 +32,7 @@ const getPlayers = async (token) => {
 const getPlayer = async (playerId, token) => {
     const config = {
         headers: {
-            Authorization: `Esra ${token}`
+            Authorization: `admin ${token}`
         }
     }
 

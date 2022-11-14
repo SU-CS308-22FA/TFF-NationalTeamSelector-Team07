@@ -14,13 +14,13 @@ import playerService from './playerService'
 
 
 const initialState = {
-    players: [],
+    players: null,
     player: null,
 }
 
  // create new team
  export const createPlayer = createAsyncThunk(
-    'players/create', 
+    'players/createPlayer', 
     async (playerData, thunkAPI) => {
      
         try{
