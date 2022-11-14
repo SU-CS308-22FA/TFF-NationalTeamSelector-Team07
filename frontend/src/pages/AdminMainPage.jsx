@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import {Link} from 'react-router-dom'
 import {FaQuestionCircle, FaTicketAlt} from 'react-icons/fa'
 
-function Profile() {
+function AdminProfilePage() {
     
     const { user } = useSelector((state) => state.auth)
     const [username] = useState(user.name)
@@ -23,12 +23,12 @@ function Profile() {
                 <h1>What do you need help with?</h1>
                 <p>Please chose from an option below</p>
             </section>
-            <Link to='/new-team' className='btn btn-reverse btn-block'>
-                <FaQuestionCircle /> Create New Team
+            <Link to='/new-player' className='btn btn-reverse btn-block'>
+                <FaQuestionCircle /> Create New Player
             </Link>
 
-            <Link to='/teams' className='btn btn-block'>
-                <FaTicketAlt /> View My Teams
+            <Link to='/new-player' className='btn btn-block'>
+                <FaTicketAlt /> View All Players not working for now
             </Link>
             <Link to='/profilesettings' className='btn btn-block'>
                 <FaTicketAlt /> Profile Settings
@@ -38,4 +38,4 @@ function Profile() {
     )
 }
 
-export default Profile
+export default AdminProfilePage
