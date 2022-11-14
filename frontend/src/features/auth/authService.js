@@ -27,8 +27,8 @@ const login = async (userData) => {
 
 // update user
 const update = async (userData) => {
-    console.log('authservice id ' + userData)
-    const response = await axios.put('/api/users/' + userData)
+    //console.log('authservice id ' + userData)
+    const response = await axios.put('/api/users/' + userData.id, {name: userData.name, email: userData.email})
 
     if(response.data) {
         localStorage.setItem('user', JSON.stringify(response.data))
@@ -39,14 +39,15 @@ const update = async (userData) => {
 
 // delete user
 const deleteUser = async (userData) => {
-    console.log('authservice id ' + userData)
-    const response = await axios.delete(`/api/users/${userData}`)
+    console.log('authservice id delete ' + userData)
+    const response = await axios.delete('/api/users/' + userData)
 
     if(response.data) {
         localStorage.setItem('user', JSON.stringify(response.data))
     }
-
+    
     return response.data
+    
 }
 
 //logout user

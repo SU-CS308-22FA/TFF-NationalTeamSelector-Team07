@@ -74,7 +74,7 @@ export const getTeam = createAsyncThunk(
 })
 
 export const teamSlice = createSlice({
-    name: 'team',
+    name: 'teams',
     initialState,
     reducers: {
         reset: (state) => initialState

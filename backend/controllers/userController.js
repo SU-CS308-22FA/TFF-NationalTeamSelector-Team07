@@ -78,19 +78,17 @@ const loginUser = asyncHandler(async (req,res) => {
 // @route PUT /api/teams/:id
 // @access Private
 const updateUser = asyncHandler(async (req, res) => {
+    const {name, email} = req.body
 
     // get user using the id and jwt
     const user = await User.findById(req.params.id)
-
-    console.log('user controler id ' + req.params.user_id)
-    console.log(req.body)
 
     if(!user) {
         res.status(401)
         throw new Error('User not found')
     }
 
-    const updatedUser = await user.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, {name: name, email: email}, {new: true})
 
     res.status(200).json(updatedUser)
 })
@@ -99,18 +97,18 @@ const updateUser = asyncHandler(async (req, res) => {
 // @route DELETE /api/teams/:id
 // @access Private
 const deleteUser = asyncHandler(async (req, res) => {
-    console.log('user controller ' + req.user.id)
+    console.log('user controller ' + req.params.id)
     // get user using the id and jwt
-    const user = await user.findById(req.params.id)
+    const user = await User.findById(req.params.id)
 
     if(!user) {
-        res.status(401)
+        res.status(404)
         throw new Error('User not found')
     }
 
-    await user.remove()
+    await User.findByIdAndDelete(req.params.id)
 
-    res.status(200).json({success: true})
+    res.status(200).json("Account has been deleted");
 })
 
 // @desc    get current user
@@ -131,7 +129,7 @@ const user = {
 
 const generateToken = (id) => {
     return jwt.sign({id }, 'abc123', {
-        expiresIn: '30d'
+        expiresIn: '3d'
     })
 }
 

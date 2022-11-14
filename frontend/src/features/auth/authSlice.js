@@ -114,16 +114,13 @@ const user = JSON.parse(localStorage.getItem('user'))
 
 const initialState = {
     user: user ? user : null,
-    isError: false,
-    isSuccess: false,
     isLoading: false,
-    message: '' 
 }
  // register new user
 export const register = createAsyncThunk(
     'auth/register', 
     async (user, thunkAPI) => {
-      console.log(user)
+      //console.log(user)
         try{
             return await authService.register(user)
         }catch (error){
@@ -162,7 +159,6 @@ export const login = createAsyncThunk(
 export const update = createAsyncThunk(
   'auth/update', 
   async (user, thunkAPI) => {
-    console.log('authslice user ' + user)
       try{
           return await authService.update(user)
       }catch (error){
@@ -180,7 +176,7 @@ export const update = createAsyncThunk(
 
 // delete a user
 export const deleteUser = createAsyncThunk(
-  'auth/delete', 
+  'auth/deleteUser', 
   async (user, thunkAPI) => {
     console.log('authslice user ' + user)
       try{
@@ -211,12 +207,9 @@ export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        reset: (state) => {
-            state.isLoading = false
-            state.isError = false
-            state.isSuccess = false
-            state.message = ''
-        }
+        logout: (state) => {
+            state.user = null
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -248,6 +241,16 @@ export const authSlice = createSlice({
             state.isLoading = false
           })
           .addCase(update.rejected, (state) => {
+            state.isLoading = false
+          })
+          .addCase(deleteUser.pending, (state) => {
+            state.isLoading = false
+          })
+          .addCase(deleteUser.fulfilled, (state, action) => {
+            state.user = action.payload
+            state.isLoading = false
+          })
+          .addCase(deleteUser.rejected, (state) => {
             state.isLoading = false
           })
     }

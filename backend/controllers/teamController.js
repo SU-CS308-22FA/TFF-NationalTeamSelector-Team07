@@ -1,8 +1,6 @@
 const asyncHandler = require('express-async-handler')
 
-const user = require('../models/userModel')
-
-const team = require('../models/teamModel')
+const Team = require('../models/teamModel')
 
 
 // @desc Get user team
@@ -10,15 +8,8 @@ const team = require('../models/teamModel')
 // @access Private
 const getTeams = asyncHandler(async (req, res) => {
 
-    // get user using the id and jwt
-    const user = await user.findById(req.user.id)
-
-    if(!user) {
-        res.status(401)
-        throw new Error('User not found')
-    }
-
-    const teams = await team.find({user: req.user.id})
+   
+    const teams = await Team.find({user: req.user.id})
     
     res.status(200).json(teams)
 })
@@ -28,15 +19,7 @@ const getTeams = asyncHandler(async (req, res) => {
 // @access Private
 const getTeam = asyncHandler(async (req, res) => {
 
-    // get user using the id and jwt
-    const user = await user.findById(req.user.id)
-
-    if(!user) {
-        res.status(401)
-        throw new Error('User not found')
-    }
-
-    const team = await team.findById(req.params.id)
+    const team = await Team.findById(req.params.id)
     
     if(!team) {
         res.status(404)
@@ -62,15 +45,7 @@ const createTeam = asyncHandler(async (req, res) => {
         throw new Error('Please fill all spaces')
     }
     
-    // get user using the id and jwt
-    const user = await user.findById(req.user.id)
-
-    if(!user) {
-        res.status(401)
-        throw new Error('User not found')
-    }
-
-    const team = await team.createTeam({
+    const team = await Team.create({
         player,
         teamName,
         user: req.user.id
@@ -83,14 +58,6 @@ const createTeam = asyncHandler(async (req, res) => {
 // @route DELETE /api/teams/:id
 // @access Private
 const deleteTeam = asyncHandler(async (req, res) => {
-
-    // get user using the id and jwt
-    const user = await user.findById(req.user.id)
-
-    if(!user) {
-        res.status(401)
-        throw new Error('User not found')
-    }
 
     const team = await team.findById(req.params.id)
     
@@ -114,15 +81,7 @@ const deleteTeam = asyncHandler(async (req, res) => {
 // @access Private
 const updateTeam = asyncHandler(async (req, res) => {
 
-    // get user using the id and jwt
-    const user = await user.findById(req.user.id)
-
-    if(!user) {
-        res.status(401)
-        throw new Error('User not found')
-    }
-
-    const team = await team.findById(req.params.id)
+    const team = await Team.findById(req.params.id)
     
     if(!team) {
         res.status(404)

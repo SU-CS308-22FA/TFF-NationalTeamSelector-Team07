@@ -4,6 +4,8 @@ import {toast} from 'react-toastify'
 import { useSelector, useDispatch } from 'react-redux'
 import {update} from '../features/auth/authSlice'
 import { deleteUser } from '../features/auth/authSlice'
+import Spinner from '../components/Spinner'
+import {useNavigate} from 'react-router-dom'
 
 function ProfileSettings() {
     /*const [formData, setFormData] = useState({
@@ -11,8 +13,9 @@ function ProfileSettings() {
         email: ''
     })*/
 
-    const { user } = useSelector((state) => state.auth)
+    const { user, isLoading} = useSelector((state) => state.auth)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     
     
     const [firstName, setName] = useState(user.name);
@@ -21,18 +24,28 @@ function ProfileSettings() {
     const [username] = useState(user.name)
     const [mail] = useState(user.email)
     
+    const userData = {
+        name: firstName,
+        email: email,
+        id: user_id
+    }
 
+    
     const handleEdit = (e) => {
         e.preventDefault()
         toast.info('Profile edited')
-        dispatch(update({user_id}))
+        dispatch(update(userData))
     }
 
     const handleDelete = (e) => {
         e.preventDefault()
         toast.error('Account deleted')
-        console.log('profileSettng: ' + user_id)
         dispatch(deleteUser(user_id))
+        navigate('/login')   //burda sorun var 
+    }
+
+    if(isLoading){
+        return <Spinner />
     }
 
     return (
