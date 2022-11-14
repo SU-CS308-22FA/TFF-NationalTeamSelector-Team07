@@ -9,7 +9,7 @@ const createTeam = async (teamData, token) => {
             Authorization: `Esra ${token}`
         }
     }
-
+    console.log('teamservice', teamData)
     const response = await axios.post('/api/teams/', teamData)
 
     return response.data

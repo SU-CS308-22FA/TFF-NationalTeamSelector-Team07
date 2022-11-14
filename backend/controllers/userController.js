@@ -20,6 +20,7 @@ const registerUser = asyncHandler(async (req,res) => {
 
     if(userExists) {
         res.status(400)
+        console.log('user exist')
         throw new Error('User already exists')
     }
 
@@ -45,6 +46,7 @@ const registerUser = asyncHandler(async (req,res) => {
         })
     } else{
         res.status(400)
+        console.log('invalid')
         throw new error('Invalid user data')
     }
 })
@@ -58,11 +60,35 @@ const loginUser = asyncHandler(async (req,res) => {
 
 
     const {email,password} = req.body
-    const user = await User.findOne({email})
+    const user = await User.findOne({email: email, isAdmin: false})
 
     if(user && (await bcrypt.compare(password, user.password))){
         res.status(200).json({
             _id: user._id,
+            name: user.name,
+            email: user.email,
+            token: generateToken(user._id),
+        })
+    }else{
+        res.status(401)
+        throw new error('Invalid Credentials')
+    }
+
+})
+// @desc   LOGIN USER
+// @route   /api/users/login
+// @access  Public
+
+const loginAdmin = asyncHandler(async (req,res) => {
+
+
+    const {email,password} = req.body
+    const user = await User.findOne({email: email, isAdmin: true})
+
+    if(user && (await bcrypt.compare(password, user.password))){
+        res.status(200).json({
+            _id: user._id,
+            isAdmin: user.isAdmin,
             name: user.name,
             email: user.email,
             token: generateToken(user._id),
@@ -136,6 +162,7 @@ const generateToken = (id) => {
 module.exports = {
     registerUser,
     loginUser,
+    loginAdmin,
     updateUser,
     deleteUser,
     getMe,

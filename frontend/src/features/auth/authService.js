@@ -25,6 +25,17 @@ const login = async (userData) => {
     return response.data
 }
 
+// login user
+const loginAdmin = async (userData) => {
+    const response = await axios.post('/api/users/' + 'adminlogin' , userData)
+
+    if(response.data) {
+        localStorage.setItem('user', JSON.stringify(response.data))
+    }
+
+    return response.data
+}
+
 // update user
 const update = async (userData) => {
     //console.log('authservice id ' + userData)
@@ -59,6 +70,7 @@ const authService = {
     register,
     logout,
     login,
+    loginAdmin,
     update,
     deleteUser,
 }
