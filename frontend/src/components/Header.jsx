@@ -2,7 +2,7 @@ import React from 'react';
 import {FaSignInAlt, FaSignOutAlt, FaUser} from 'react-icons/fa'
 import {Link, useNavigate} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
-import {logout, reset} from '../features/auth/authSlice'
+import {logout} from '../features/auth/authSlice'
 function Header() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -32,10 +32,16 @@ function Header() {
                         <Link to='/profile'>
                             <FaUser /> Profile
                         </Link>
-                    </li>
+                    </li> 
+                    
                 </>) : 
                 ( 
                 <>
+                <li>
+                    <Link to='/loginAdmin'>
+                        <FaSignInAlt /> Admin Login
+                    </Link>
+                </li>
                 <li>
                     <Link to='/login'>
                         <FaSignInAlt /> Login
@@ -56,3 +62,10 @@ function Header() {
 }
 
 export default Header;
+
+
+/*<li>
+                        <Link to='/profile'>
+                            <FaUser /> Profile
+                        </Link>
+                    </li> */

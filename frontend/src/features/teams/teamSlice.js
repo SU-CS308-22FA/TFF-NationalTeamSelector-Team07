@@ -2,12 +2,9 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import teamService from './teamService'
 
 const initialState = {
-    teams: [],
-    team: {},
-    isError: false,
-    isSuccess: false,
-    isLoading: false,
-    message: ''
+    teams: null,
+    team: null,
+    
 }
 
  // create new team
@@ -76,9 +73,6 @@ export const getTeam = createAsyncThunk(
 export const teamSlice = createSlice({
     name: 'team',
     initialState,
-    reducers: {
-        reset: (state) => initialState
-    },
     extraReducers: (builder) => {
         builder
         .addCase(createTeam.pending, (state) => {
