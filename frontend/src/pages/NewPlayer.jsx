@@ -1,102 +1,149 @@
-import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { Component, useState } from "react";
 import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import { useEffect } from 'react'
+import { useSelector} from 'react-redux'
+import { useDispatch } from 'react-redux'
+import {createPlayer} from '../features/players/playerSlice'
 import Spinner from '../components/Spinner'
-
+import { toast } from 'react-toastify'
 function NewPlayer() {
-    const {isLoading, isError, isSuccess, message} = useSelector(
-        (state) => state.teams
-    )
 
-    const [playerPosition, setPlayer] = useState('forvet')
-    const [name, setName] = useState('')
-    const [surname, setSurname] = useState('')
-    const [age, setAge] = useState('')
+    // const {} = useSelector(
+    //     (state) => state.players
+    // )
+  // Setting up functions
+  const dispatch = useDispatch()
+  
+  // Setting up state
 
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+//   useEffect(() => {
+   
 
-    useEffect(() => {
-        if(isError) {
-            toast.error(message)
-        }
-
-        if(isSuccess) {
-            
-            navigate('/players')
-        }
-
+    // if(isSuccess) {
         
-    }, [dispatch, isError, isSuccess, navigate, message])
+    //     console.log("success")
+    // }
+    // }, [dispatch, message])
 
-    const onSubmit =(e) => {
-        e.preventDefault()
-        //dispatch(createTeam({player, teamName}))
-    }
+  const [FullName, setFullName] = useState({
+    fullName: ''
+    })
+    const [Team, setTeam] = useState({
 
-    if(isLoading) {
-        return <Spinner />
-    }
+    team: ''
+    })
+    const [Position, setPosition] = useState({
 
-    return (
-        <>
-            <section className="heading">
-                <h1>Create New PLayer</h1>
-                <p>Please Fill Out the Form Below</p>
-            </section>
+    position: ''
+    })
+    const [Raiting, setRaiting] = useState({
 
-            <section className="form">
-                <div className="form-group">
-                    <label htmlFor="name">player Name</label>
-                    <input type="text" 
-                    className="form-control"
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder={name}
-                    value={name}/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="surname">player Surname</label>
-                    <input type="text" 
-                    className="form-control"
-                    onChange={(e) => setSurname(e.target.value)}
-                    placeholder={surname}
-                    value={surname}/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="age">age</label>
-                    <input type="text" 
-                    className="form-control"
-                    onChange={(e) => setAge(e.target.value)}
-                    placeholder={age}
-                    value={age}/>
-                </div>
+        raiting: ''
+    })
+// const {fullName, team, position, raiting} = formData
+
+// const onChange = (e) => {
+//     setFromData( (prevState) => ({
+//         ...prevState, 
+//         [e.target.fullName]: e.target.value,
+//         [e.target.team]: e.target.value,
+//         [e.target.position]: e.target.value,
+//         [e.target.raiting]: e.target.value,
+//     }))
+// }
+
+//   const onChangeFullName = (e) => {
+//     useState({ fullName: e.target.value })
+//   }
+
+//   const onChangeTeam = (e) =>  {
+//     useState({ team: e.target.value })
+//   }
+
+//   const onChangePosition = (e) => {
+//     useState({ position: e.target.value })
+//   }
+
+//   const onChangeRaiting = (e) =>  {
+//     useState({ raiting: e.target.value })
+//   }
+
+
+  const onSubmit = (e) =>  {
+    e.preventDefault()
+
+    const playerObject = {
+      fullName: FullName,
+      team: Team,
+      position: Position,
+      raiting: Raiting
+    };
+    dispatch(createPlayer({playerObject}))
+  }
+//   if(isLoading) {
+//     return <Spinner />
+// }
+
+  
+    return (<div className="form-wrapper">
+      <div>
+          <h3>Add Football Player</h3>
+      </div>
+      <section className="form">
                 <form onSubmit={onSubmit}>
                     <div className="form-group">
-                        <label htmlFor="player">player position</label>
-                        <select name="player" 
-                        id="player" 
-                        value={playerPosition} 
-                        onChange={(e) => setPlayer(e.target.value)}>
-                            <option value="sağ açık">sağ kanat</option>
-                            <option value="sol açık">sol kanat</option>
-                            <option value="forvet">forvet</option>
-                            <option value="defans">defans</option>
-                            <option value="kaleci">kaleci</option>
-                        </select>
+                        <input type="text" className='form-control'
+                        id='fullName' value={FullName} name='fullName' onChange={(e) => setFullName(e.target.value)}
+                        placeholder='Enter football player full name' required />
                     </div>
-                   
+                    <div className="form-group">
+                        <input type="text" className='form-control'
+                        id='team' value={Team} name='team' onChange={(e) => setTeam(e.target.value)}
+                        placeholder='Enter team' required/>
+                    </div>
+                    <div className="form-group">
+                        <input type="text" className='form-control'
+                        id='position' value={Position} name='position' onChange={(e) => setPosition(e.target.value)} 
+                        placeholder='Enter position' required/>
+                    </div>
+                    <div className="form-group">
+                        <input type="text" className='form-control'
+                        id='raiting' value={Raiting} name='raiting' onChange={(e) => setRaiting(e.target.value)}
+                        placeholder='Enter raiting' required/>
+                    </div>
                     <div className="form-group">
                         <button className="btn btn-block">
                             Submit
                         </button>
                     </div>
-                    
                 </form>
             </section>
-        </>
-    )
+      {/* <Form onSubmit={onSubmit}>
+        <Form.Group controlId="fullName">
+          <Form.Label>Full Name</Form.Label>
+          <Form.Control type="text" value={fullName} onChange={(e) => fullName(e.target.value)} />
+        </Form.Group>
 
-}
+        <Form.Group controlId="team">
+          <Form.Label>Team</Form.Label>
+          <Form.Control type="text" value={team} onChange={(e) => team(e.target.value)} />
+        </Form.Group>
 
+        <Form.Group controlId="position">
+          <Form.Label>Position</Form.Label>
+          <Form.Control type="text" value={position} onChange={(e) => position(e.target.value)} />
+        </Form.Group>
+
+        <Form.Group controlId="raiting">
+          <Form.Label>Raiting</Form.Label>
+          <Form.Control type="text" value={raiting} onChange={(e) => raiting(e.target.value)} />
+        </Form.Group>
+
+
+        <Button variant="danger" size="lg" block="block" type="submit" className="mt-4">
+          Create Football Player!
+        </Button>
+      </Form> */}
+    </div>);
+  }
 export default NewPlayer
