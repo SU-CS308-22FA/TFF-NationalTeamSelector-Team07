@@ -15,7 +15,6 @@ function NewTeam() {
     const [name] = useState(user.name)
     const [email] = useState(user.email)
     const [teamName, setTeamName] = useState()
-    const [user_id] = useState(user.id)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 

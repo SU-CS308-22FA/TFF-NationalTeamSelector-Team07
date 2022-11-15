@@ -9,14 +9,9 @@ const player = require('../models/playerModel')
 // @access Private
 const getPlayers = asyncHandler(async (req, res) => {
 
-    player.find((error, data) => {
-        if (error) {
-            res.status(401)
-            throw new Error('No players') 
-        } else {
-          res.status(200).json(data)
-        }
-      })
+  const players = await player.find()
+  res.status(200).json(players)
+
 })
 
 // @desc Get user team
@@ -74,20 +69,26 @@ const createPlayer = asyncHandler(async (req, res) => {
     res.status(201).json(Player)
 })
 
-// @desc Delete team
+
+
+// @desc Delete user
 // @route DELETE /api/teams/:id
 // @access Private
 const deletePlayer = asyncHandler(async (req, res) => {
+  
+  const {fullname, id, team, position, rating} = req.body
+  
+  // get user using the id and jwt
+  const Player = await player.findById(req.params.id)
 
-    userSchema.findByIdAndRemove(req.params.id, (error, data) => {
-        if (error) {
-          return next(error)
-        } else {
-          res.status(200).json({
-            msg: data,
-          })
-        }
-      })
+  if(!Player) {
+      res.status(404)
+      throw new Error('Player not found')
+  }
+
+  await player.findByIdAndDelete(id)
+
+  res.status(200).json("Account has been deleted");
 })
 
 const editPlayer = asyncHandler(async (req, res) => {
