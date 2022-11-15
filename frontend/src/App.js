@@ -15,6 +15,8 @@ import ProfileSettings from './pages/ProfileSettings'
 import LoginAdmin from './pages/LoginAdmin'
 import AdminProfilePage from './pages/AdminMainPage'
 import NewPlayer from './pages/NewPlayer'
+import Players from './pages/Players'
+import Player from './pages/Player'
 
 function App() {
   return(
@@ -30,6 +32,8 @@ function App() {
             <Route path='/profile' element={<Profile/>} />
             <Route path='/adminprofilepage' element={<AdminProfilePage/>} />
             <Route path='/profilesettings' element={<ProfileSettings/>} />
+            <Route path='/players' element={<Players />}/>
+            <Route path='/player/:playerId' element={<Player />}/>
            
               <Route path='/new-team' element={<NewTeam />}/>
             

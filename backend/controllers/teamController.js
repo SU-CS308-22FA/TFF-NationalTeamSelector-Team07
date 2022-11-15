@@ -8,8 +8,8 @@ const User = require('../models/userModel')
 // @access Private
 const getTeams = asyncHandler(async (req, res) => {
 
-   
-    const teams = await Team.find({user: req.user._id})
+    
+    const teams = await Team.find()
     
     res.status(200).json(teams)
 })

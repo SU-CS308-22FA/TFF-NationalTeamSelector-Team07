@@ -6,7 +6,8 @@ const {protect} = require('../middleware/authMiddleware')
 
 
 
-router.route('/').get(getPlayers)
+//router.route('/').get(getPlayers)
+router.get('/', getPlayers)
 router.post('/', createPlayer)
 
 router.route('/:id')

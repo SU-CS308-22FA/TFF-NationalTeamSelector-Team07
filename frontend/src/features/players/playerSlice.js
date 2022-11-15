@@ -14,8 +14,8 @@ import playerService from './playerService'
 
 
 const initialState = {
-    players: null,
-    player: null,
+    players: [],
+    player: [],
 }
 
  // create new team
@@ -41,7 +41,7 @@ const initialState = {
 
  // Get user teams
  export const getPlayers = createAsyncThunk(
-    'player/getPlayers', 
+    'players/getPlayers', 
     async (_, thunkAPI) => {
      
         try{
@@ -80,6 +80,25 @@ export const getPlayer = createAsyncThunk(
         }
 
 })
+
+// delete a user
+export const deletePlayer = createAsyncThunk(
+    'players/deletePlayer', 
+    async (player, thunkAPI) => {
+        try{
+            return await playerService.deletePlayer(player)
+        }catch (error){
+            const message = 
+            (error.response && 
+                error.response.data && 
+                error.response.data.message) || 
+                error.message || 
+                error.toString()
+  
+            return thunkAPI.rejectWithValue(message)
+        }
+  
+  }) 
 
 export const playerSlice = createSlice({
     name: 'player',
