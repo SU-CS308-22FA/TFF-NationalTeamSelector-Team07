@@ -31,11 +31,13 @@ function Header() {
                             <FaUser /> Profile
                         </Link>
                     </li> 
+
                     <li>
                     <button className='btn' onClick={onLogout}>
                       <FaSignOutAlt />  {user.name} Logout
                     </button>
                     </li>
+
                     
                 </>) : 
                 ( 
@@ -106,3 +108,4 @@ function Header() {
 }
 
 export default Header;
+

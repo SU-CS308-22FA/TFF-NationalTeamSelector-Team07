@@ -10,7 +10,8 @@ const {
 
 const {protect} = require('../middleware/authMiddleware')
 
-router.route('/').get(protect, getTeams)
+router.route('/').get(getTeams)
+
 router.post('/', createTeam)
 
 router.route('/:id')

@@ -1,20 +1,31 @@
+
+// export const createPlayer =  createAction('auth/player', async (playerData) => {
+//     const response = await axios.post('/api/players/', playerData)
+  
+//       if(response.data) {
+//           localStorage.setItem('player', JSON.stringify(response.data))
+//       }
+  
+//       return response.data
+//   })
+
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import teamService from './teamService'
+import playerService from './playerService'
+
 
 const initialState = {
-    teams: [],
-    team: [],
-    
+    players: null,
+    player: null,
 }
 
  // create new team
- export const createTeam = createAsyncThunk(
-    'teams/createTeam', 
-    async (teamData, thunkAPI) => {
+ export const createPlayer = createAsyncThunk(
+    'players/createPlayer', 
+    async (playerData, thunkAPI) => {
      
         try{
             const token = thunkAPI.getState().auth.user.token
-            return await teamService.createTeam(teamData, token)
+            return await playerService.createPlayer(playerData, token)
         }catch (error){
             const message = 
             (error.response && 
@@ -29,13 +40,13 @@ const initialState = {
 })
 
  // Get user teams
- export const getTeams = createAsyncThunk(
-    'teams/getTeams', 
+ export const getPlayers = createAsyncThunk(
+    'player/getPlayers', 
     async (_, thunkAPI) => {
      
         try{
             const token = thunkAPI.getState().auth.user.token
-            return await teamService.getTeams(token)
+            return await playerService.getPlayers(token)
         }catch (error){
             const message = 
             (error.response && 
@@ -50,13 +61,13 @@ const initialState = {
 })
 
 // Get user team
-export const getTeam = createAsyncThunk(
-    'teams/get', 
-    async (teamId, thunkAPI) => {
+export const getPlayer = createAsyncThunk(
+    'players/get', 
+    async (playerId, thunkAPI) => {
      
         try{
             const token = thunkAPI.getState().auth.user.token
-            return await teamService.getTeam(teamId, token)
+            return await playerService.getPlayer(playerId, token)
         }catch (error){
             const message = 
             (error.response && 
@@ -70,45 +81,48 @@ export const getTeam = createAsyncThunk(
 
 })
 
-export const teamSlice = createSlice({
-    name: 'team',
+export const playerSlice = createSlice({
+    name: 'player',
     initialState,
+    reducers: {
+        reset: (state) => initialState
+    },
     extraReducers: (builder) => {
         builder
-        .addCase(createTeam.pending, (state) => {
+        .addCase(createPlayer.pending, (state) => {
             state.isLoading = true
         })
-        .addCase(createTeam.fulfilled, (state) => {
+        .addCase(createPlayer.fulfilled, (state) => {
             state.isLoading = false
             state.isSuccess = true
         })
-        .addCase(createTeam.rejected, (state, action) => {
+        .addCase(createPlayer.rejected, (state, action) => {
             state.isLoading = false
             state.isError = true
             state.message = action.payload
         })
-        .addCase(getTeams.pending, (state) => {
+        .addCase(getPlayers.pending, (state) => {
             state.isLoading = true
         })
-        .addCase(getTeams.fulfilled, (state, action) => {
+        .addCase(getPlayers.fulfilled, (state, action) => {
             state.isLoading = false
             state.isSuccess = true
-            state.teams = action.payload
+            state.players = action.payload
         })
-        .addCase(getTeams.rejected, (state, action) => {
+        .addCase(getPlayers.rejected, (state, action) => {
             state.isLoading = false
             state.isError = true
             state.message = action.payload
         })
-        .addCase(getTeam.pending, (state) => {
+        .addCase(getPlayer.pending, (state) => {
             state.isLoading = true
         })
-        .addCase(getTeam.fulfilled, (state, action) => {
+        .addCase(getPlayer.fulfilled, (state, action) => {
             state.isLoading = false
             state.isSuccess = true
-            state.teams = action.payload
+            state.players = action.payload
         })
-        .addCase(getTeam.rejected, (state, action) => {
+        .addCase(getPlayer.rejected, (state, action) => {
             state.isLoading = false
             state.isError = true
             state.message = action.payload
@@ -117,5 +131,5 @@ export const teamSlice = createSlice({
 })
 
 
-export const {reset} = teamSlice.actions
-export default teamSlice.reducer
+export const {reset} = playerSlice.actions
+export default playerSlice.reducer

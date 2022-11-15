@@ -6,7 +6,7 @@ import axios from 'axios'
 const createTeam = async (teamData, token) => {
     const config = {
         headers: {
-            Authorization: `Esra ${token}`
+            Authorization: `user ${token}`
         }
     }
     console.log('teamservice', teamData)
@@ -19,7 +19,7 @@ const createTeam = async (teamData, token) => {
 const getTeams = async (token) => {
     const config = {
         headers: {
-            Authorization: `Esra ${token}`
+            Authorization: `user ${token}`
         }
     }
 
@@ -32,7 +32,7 @@ const getTeams = async (token) => {
 const getTeam = async (teamId, token) => {
     const config = {
         headers: {
-            Authorization: `Esra ${token}`
+            Authorization: `user ${token}`
         }
     }
 

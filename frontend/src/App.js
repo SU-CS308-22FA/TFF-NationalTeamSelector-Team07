@@ -30,12 +30,13 @@ function App() {
             <Route path='/profile' element={<Profile/>} />
             <Route path='/adminprofilepage' element={<AdminProfilePage/>} />
             <Route path='/profilesettings' element={<ProfileSettings/>} />
-            <Route path='/new-team' element={<PrivateRoute />}>
+           
               <Route path='/new-team' element={<NewTeam />}/>
-            </Route>
-            <Route path='/new-player' element={<PrivateRoute />}>
+
+            
               <Route path='/new-player' element={<NewPlayer />}/>
-            </Route>
+            
+
             <Route path='/teams' element={<PrivateRoute />}>
               <Route path='/teams' element={<Teams />}/>
             </Route>
