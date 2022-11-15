@@ -27,9 +27,8 @@ function Teams() {
     return (
         <>
             <h1>TEAMS</h1>
-            <div className="tickets">
+            <div>
                 <div className="ticket-headings">
-                    
                     <div>Date</div>
                     <div>Player</div>
                     <div>Team Name</div>

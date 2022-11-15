@@ -32,10 +32,11 @@ function App() {
             <Route path='/profilesettings' element={<ProfileSettings/>} />
            
               <Route path='/new-team' element={<NewTeam />}/>
-            
+
             
               <Route path='/new-player' element={<NewPlayer />}/>
             
+
             <Route path='/teams' element={<PrivateRoute />}>
               <Route path='/teams' element={<Teams />}/>
             </Route>
