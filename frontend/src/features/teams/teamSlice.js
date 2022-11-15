@@ -2,8 +2,8 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import teamService from './teamService'
 
 const initialState = {
-    teams: null,
-    team: null,
+    teams: [],
+    team: [],
     
 }
 
