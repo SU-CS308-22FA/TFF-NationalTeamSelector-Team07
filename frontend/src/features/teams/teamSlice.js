@@ -2,14 +2,14 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import teamService from './teamService'
 
 const initialState = {
-    teams: null,
-    team: null,
+    teams: [],
+    team: [],
     
 }
 
  // create new team
  export const createTeam = createAsyncThunk(
-    'teams/create', 
+    'teams/createTeam', 
     async (teamData, thunkAPI) => {
      
         try{
@@ -30,7 +30,7 @@ const initialState = {
 
  // Get user teams
  export const getTeams = createAsyncThunk(
-    'teams/getAll', 
+    'teams/getTeams', 
     async (_, thunkAPI) => {
      
         try{

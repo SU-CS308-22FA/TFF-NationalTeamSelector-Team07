@@ -1,7 +1,7 @@
 const asyncHandler = require('express-async-handler')
 
 const Team = require('../models/teamModel')
-
+const User = require('../models/userModel')
 
 // @desc Get user team
 // @route GET /api/teams
@@ -9,7 +9,7 @@ const Team = require('../models/teamModel')
 const getTeams = asyncHandler(async (req, res) => {
 
    
-    const teams = await Team.find({user: req.user.id})
+    const teams = await Team.find({user: req.user._id})
     
     res.status(200).json(teams)
 })
@@ -19,14 +19,14 @@ const getTeams = asyncHandler(async (req, res) => {
 // @access Private
 const getTeam = asyncHandler(async (req, res) => {
 
-    const team = await Team.findById(req.params.id)
+    const team = await Team.findById(req.params._id)
     
     if(!team) {
         res.status(404)
         throw new Error('Team not found')
     }
 
-    if(team.user.toString() !== req.user.id) {
+    if(team.user.toString() !== req.user._id) {
         res.status(401)
         throw new Error('Not authorize')
     }
@@ -38,8 +38,8 @@ const getTeam = asyncHandler(async (req, res) => {
 // @access Private
 const createTeam = asyncHandler(async (req, res) => {
 
-    const {player, teamName} = req.body
-
+    const {player, teamName, email} = req.body
+    const user = await User.findOne({email})
     if(!player || !teamName) {
         res.status(400)
         throw new Error('Please fill all spaces')
@@ -48,7 +48,7 @@ const createTeam = asyncHandler(async (req, res) => {
     const team = await Team.create({
         player,
         teamName,
-        user: req.user.id
+        user: user._id,
     })
 
     res.status(201).json(team)
@@ -59,14 +59,14 @@ const createTeam = asyncHandler(async (req, res) => {
 // @access Private
 const deleteTeam = asyncHandler(async (req, res) => {
 
-    const team = await team.findById(req.params.id)
+    const team = await team.findById(req.params._id)
     
     if(!team) {
         res.status(404)
         throw new Error('Team not found')
     }
 
-    if(team.user.toString() !== req.user.id) {
+    if(team.user.toString() !== req.user._id) {
         res.status(401)
         throw new Error('Not authorized')
     }
@@ -81,19 +81,19 @@ const deleteTeam = asyncHandler(async (req, res) => {
 // @access Private
 const updateTeam = asyncHandler(async (req, res) => {
 
-    const team = await Team.findById(req.params.id)
+    const team = await Team.findById(req.params._id)
     
     if(!team) {
         res.status(404)
         throw new Error('Team not found')
     }
 
-    if(team.user.toString() !== req.user.id) {
+    if(team.user.toString() !== req.user._id) {
         res.status(401)
         throw new Error('Not authorize')
     }
 
-    const updatedTeam = await team.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    const updatedTeam = await team.findByIdAndUpdate(req.params._id, req.body, {new: true})
 
     res.status(200).json(updatedTeam)
 })

@@ -4,12 +4,12 @@ const teamSchema = mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'User'
+        ref: 'user'
     },
     player: {
         type: String,
         required: [true, 'Please select a player'],
-        enum: ['Ronaldo', 'messi', 'Arda Turan','Sabri','Hasan Şaş']
+        //enum: ['Ronaldo', 'messi', 'Arda Turan','Sabri','Hasan Şaş']
     },
     teamName: {
         type: String,

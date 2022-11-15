@@ -12,14 +12,13 @@ function Teams() {
     useEffect(() => {
         return () => {
             if(isSuccess) {
-                dispatch(reset())
+                dispatch(getTeams())
+                console.log("success")
             }
         }
     }, [dispatch, isSuccess])
 
-    useEffect(() => {
-        dispatch(getTeams())
-    }, [dispatch])
+    
 
     if(isLoading) {
         return <Spinner />
