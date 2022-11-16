@@ -1,15 +1,16 @@
 import {Link} from 'react-router-dom'
 import {useState} from 'react'
-
 import {toast} from 'react-toastify'
 import { useSelector, useDispatch } from 'react-redux'
 import Spinner from '../components/Spinner'
 import { deletePlayer } from '../features/players/playerSlice'
+import {useNavigate} from 'react-router-dom'
 
-function PlayerItem() {
+function PlayerItem({player}) {
 
-    const {player} = useSelector((state) => state.players)
+    
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [FullName] = useState(player.fullName)
     const [Team] = useState(player.team)
@@ -24,6 +25,15 @@ function PlayerItem() {
         position: Position,
         raiting: Rating
     }
+
+    const handleDelete = (e) => {
+        e.preventDefault()
+        toast.error('Account deleted')
+        console.log('item: ' + player_id)
+        dispatch(deletePlayer(player_id))
+        navigate('/players')
+    }
+
 
     return (
         <div className="tickets">
@@ -40,11 +50,10 @@ function PlayerItem() {
                 <div className="right-panel box">
                     {player.raiting}
                 </div>
+                <form onSubmit={handleDelete}  >
+                    <button className="btn btn-reverse btn-sm">Delete</button>
+                </form>
                 
-                <div className="right-panel box">
-                    <Link to={`/player/${player._id}`} className='btn btn-reverse btn-sm'> Edit
-                    </Link>
-                </div>
             </div>
         </div>
     )

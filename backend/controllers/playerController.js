@@ -76,8 +76,6 @@ const createPlayer = asyncHandler(async (req, res) => {
 // @access Private
 const deletePlayer = asyncHandler(async (req, res) => {
   
-  const {fullname, id, team, position, rating} = req.body
-  
   // get user using the id and jwt
   const Player = await player.findById(req.params.id)
 
@@ -86,9 +84,9 @@ const deletePlayer = asyncHandler(async (req, res) => {
       throw new Error('Player not found')
   }
 
-  await player.findByIdAndDelete(id)
+  await player.findByIdAndDelete(req.params.id)
 
-  res.status(200).json("Account has been deleted");
+  res.status(200).json("Player has been deleted");
 })
 
 const editPlayer = asyncHandler(async (req, res) => {
