@@ -27,7 +27,7 @@ function AdminProfilePage() {
                 <FaQuestionCircle /> Create New Player
             </Link>
 
-            <Link to='/new-player' className='btn btn-block'>
+            <Link to='/players' className='btn btn-block'>
                 <FaTicketAlt /> View All Players not working for now
             </Link>
             <Link to='/profilesettings' className='btn btn-block'>

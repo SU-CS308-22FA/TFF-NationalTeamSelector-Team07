@@ -9,14 +9,9 @@ const player = require('../models/playerModel')
 // @access Private
 const getPlayers = asyncHandler(async (req, res) => {
 
-    player.find((error, data) => {
-        if (error) {
-            res.status(401)
-            throw new Error('No players') 
-        } else {
-          res.status(200).json(data)
-        }
-      })
+  const players = await player.find()
+  res.status(200).json(players)
+
 })
 
 // @desc Get user team
@@ -74,54 +69,38 @@ const createPlayer = asyncHandler(async (req, res) => {
     res.status(201).json(Player)
 })
 
-// @desc Delete team
+
+
+// @desc Delete user
 // @route DELETE /api/teams/:id
 // @access Private
 const deletePlayer = asyncHandler(async (req, res) => {
+  
+  // get user using the id and jwt
+  const Player = await player.findById(req.params.id)
 
-    userSchema.findByIdAndRemove(req.params.id, (error, data) => {
-        if (error) {
-          return next(error)
-        } else {
-          res.status(200).json({
-            msg: data,
-          })
-        }
-      })
+  if(!Player) {
+      res.status(404)
+      throw new Error('Player not found')
+  }
+
+  await player.findByIdAndDelete(req.params.id)
+
+  res.status(200).json("Player has been deleted");
 })
 
-const editPlayer = asyncHandler(async (req, res) => {
-
-    player.findById(req.params.id, (error, data) => {
-        if (error) {
-          return next(error)
-        } else {
-          res.status(200).json(data)
-        }
-      })
-})
-
-// @desc Update team
-// @route PUT /api/teams/:id
+// @desc Update player
+// @route PUT /api/players/:id
 // @access Private
-const updatePlayer = asyncHandler(async (req, res) => {
+const editPlayer = asyncHandler(async (req, res) => {
+  const {name, team, rating, id, position} = req.body
 
-    player.findByIdAndUpdate(
-        req.params.id,
-        {
-          $set: req.body,
-        },
-        (error, data) => {
-          if (error) {
-            return next(error)
-            console.log(error)
-          } else {
-            res.json(data)
-            console.status(200).log('Player updated successfully !')
-          }
-        },
-      )
+  const updatedPlayer = await player.findByIdAndUpdate(req.params.id, {name: name, team: team, raiting: rating, position: position}, {new: true})
+
+  res.status(200).json(updatedPlayer)
 })
+
+
 
 module.exports = {
     getPlayers,
@@ -129,5 +108,4 @@ module.exports = {
     createPlayer,
     editPlayer,
     deletePlayer,
-    updatePlayer,
 }
