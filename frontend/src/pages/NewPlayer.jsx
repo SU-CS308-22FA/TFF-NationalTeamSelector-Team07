@@ -1,3 +1,4 @@
+
 // import React, { Component, useState } from "react";
 // import { useNavigate } from 'react-router-dom'
 // import { useEffect } from 'react'
@@ -148,10 +149,12 @@
 //   }
 // export default NewPlayer
 
+
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+
 import { createPlayer, reset } from '../features/players/playerSlice'
 import Spinner from '../components/Spinner'
 
@@ -167,6 +170,7 @@ function NewPlayer() {
     const [raiting, setPlayerRaiting] = useState()
     const [name] = useState(user.name)
     const [email] = useState(user.email)
+
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -186,7 +190,9 @@ function NewPlayer() {
 
     const onSubmit =(e) => {
         e.preventDefault()
+
         dispatch(createPlayer({fullName, team, position, raiting}))
+
     }
 
     if(isLoading) {
@@ -196,6 +202,7 @@ function NewPlayer() {
     return (
         <>
             <section className="heading">
+
                 <h1>Create New Player</h1>
                 <p>Please Fill Out the Form Below</p>
             </section>
@@ -232,14 +239,17 @@ function NewPlayer() {
                 
                     
                     
+
                     <div className="form-group">
                         <button className="btn btn-block">
                             Submit
                         </button>
                     </div>
+
                     </section>
                 </form>
             
+
         </>
     )
 

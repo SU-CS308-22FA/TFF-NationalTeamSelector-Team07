@@ -38,10 +38,10 @@ function App() {
             <Route path='/editPlayer' element={<EditPlayer/>} />
            
             <Route path='/new-team' element={<NewTeam />}/>
-            
-            
+
             <Route path='/new-player' element={<NewPlayer />}/>
             
+
             <Route path='/teams' element={<PrivateRoute />}>
               <Route path='/teams' element={<Teams />}/>
             </Route>

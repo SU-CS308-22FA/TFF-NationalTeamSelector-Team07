@@ -1,15 +1,17 @@
 const asyncHandler = require('express-async-handler')
 
 const Team = require('../models/teamModel')
+
 const User = require('../models/userModel')
+
 
 // @desc Get user team
 // @route GET /api/teams
 // @access Private
 const getTeams = asyncHandler(async (req, res) => {
 
-    
     const teams = await Team.find()
+
     
     res.status(200).json(teams)
 })
@@ -19,7 +21,9 @@ const getTeams = asyncHandler(async (req, res) => {
 // @access Private
 const getTeam = asyncHandler(async (req, res) => {
 
+
     const team = await Team.findById(req.params._id)
+
     
     if(!team) {
         res.status(404)
@@ -59,7 +63,9 @@ const createTeam = asyncHandler(async (req, res) => {
 // @access Private
 const deleteTeam = asyncHandler(async (req, res) => {
 
+
     const team = await team.findById(req.params._id)
+
     
     if(!team) {
         res.status(404)
@@ -81,7 +87,9 @@ const deleteTeam = asyncHandler(async (req, res) => {
 // @access Private
 const updateTeam = asyncHandler(async (req, res) => {
 
+
     const team = await Team.findById(req.params._id)
+
     
     if(!team) {
         res.status(404)
