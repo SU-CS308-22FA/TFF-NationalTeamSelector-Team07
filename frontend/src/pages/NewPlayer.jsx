@@ -250,34 +250,42 @@ function NewPlayer() {
 
     const onSubmit =(e) => {
         e.preventDefault()
+        
 
         dispatch(createPlayer({fullName, team, position, raiting}))
 
     }
 
-    const onSubmitDB =(e) => {
+    const onSubmitDB = (e) => {
         e.preventDefault()
 
-        console.log("mapping: ",array)
+        //console.log("mapping: ",array)
         // console.log(
         // Object.entries(array)
         // .map( ([key, value]) => `My key is ${key} and my value is ${value}` )
         // )
         // console.log("array elements", Object.values(array)[0].Name)
-        console.log(Object.entries(array).length)
+        //console.log(Object.entries(array).length)
         for(let k=0; k < Object.entries(array).length; k++){
             //console.log(Object.values(array)[k].Rating)
             // fullName=Object.values(array)[k].Name
             // team=Object.values(array)[k].Team
             // position=Object.values(array)[k].Position
             //raiting=25
-            setPlayerName(Object.values(array)[k].Name)
-            setPlayerTeam(Object.values(array)[k].Team)
-            setPlayerPosition(Object.values(array)[k].Position)
+           
+            const _fullName=Object.values(array)[k].Name
+            const _position= Object.values(array)[k].Position
+            const _team=Object.values(array)[k].Team
+            const _rating =Object.values(array)[k].Rating
+            
+            //rating = rating.toString()
+           
+            console.log("for player" + k,  _fullName, _team, _position, _rating)
+            //setPlayerPosition(Object.values(array)[k].Position)
             //setPlayerRaiting(Object.values(array)[k].Rating.toString())
-            // dispatch(createPlayer({fullName, team, position, raiting}))
+            dispatch(createPlayer(_fullName, _team, _position, _rating))
 
-            console.log("for player" + {k}, fullName, team, position, raiting)
+            
         }
 
     }

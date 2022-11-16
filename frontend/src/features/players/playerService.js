@@ -4,14 +4,15 @@ import axios from 'axios'
 
 // create new player
 const createPlayer = async (playerData, token) => {
+    console.log("playeService")
     const config = {
         headers: {
             Authorization: `admin ${token}`
         }
     }
-
+    console.log(playerData)
     const response = await axios.post('/api/players/', playerData)
-
+    console.log("playeService")
     return response.data
 }
 
