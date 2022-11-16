@@ -76,8 +76,6 @@ const createPlayer = asyncHandler(async (req, res) => {
 // @access Private
 const deletePlayer = asyncHandler(async (req, res) => {
   
-  const {fullname, id, team, position, rating} = req.body
-  
   // get user using the id and jwt
   const Player = await player.findById(req.params.id)
 
@@ -86,43 +84,23 @@ const deletePlayer = asyncHandler(async (req, res) => {
       throw new Error('Player not found')
   }
 
-  await player.findByIdAndDelete(id)
+  await player.findByIdAndDelete(req.params.id)
 
-  res.status(200).json("Account has been deleted");
+  res.status(200).json("Player has been deleted");
 })
 
-const editPlayer = asyncHandler(async (req, res) => {
-
-    player.findById(req.params.id, (error, data) => {
-        if (error) {
-          return next(error)
-        } else {
-          res.status(200).json(data)
-        }
-      })
-})
-
-// @desc Update team
-// @route PUT /api/teams/:id
+// @desc Update player
+// @route PUT /api/players/:id
 // @access Private
-const updatePlayer = asyncHandler(async (req, res) => {
+const editPlayer = asyncHandler(async (req, res) => {
+  const {name, team, rating, id, position} = req.body
 
-    player.findByIdAndUpdate(
-        req.params.id,
-        {
-          $set: req.body,
-        },
-        (error, data) => {
-          if (error) {
-            return next(error)
-            console.log(error)
-          } else {
-            res.json(data)
-            console.status(200).log('Player updated successfully !')
-          }
-        },
-      )
+  const updatedPlayer = await player.findByIdAndUpdate(req.params.id, {name: name, team: team, raiting: rating, position: position}, {new: true})
+
+  res.status(200).json(updatedPlayer)
 })
+
+
 
 module.exports = {
     getPlayers,
@@ -130,5 +108,4 @@ module.exports = {
     createPlayer,
     editPlayer,
     deletePlayer,
-    updatePlayer,
 }

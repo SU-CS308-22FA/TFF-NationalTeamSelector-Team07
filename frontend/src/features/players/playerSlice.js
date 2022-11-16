@@ -81,11 +81,31 @@ export const getPlayer = createAsyncThunk(
 
 })
 
+// edit a player
+export const editPlayer = createAsyncThunk(
+    'players/editPlayer', 
+    async (player, thunkAPI) => {
+        try{
+            return await playerService.editPlayer(player)
+        }catch (error){
+            const message = 
+            (error.response && 
+                error.response.data && 
+                error.response.data.message) || 
+                error.message || 
+                error.toString()
+  
+            return thunkAPI.rejectWithValue(message)
+        }
+  
+  }) 
+
 // delete a user
 export const deletePlayer = createAsyncThunk(
     'players/deletePlayer', 
     async (player, thunkAPI) => {
         try{
+            console.log('playersice ' + player)
             return await playerService.deletePlayer(player)
         }catch (error){
             const message = 
@@ -103,9 +123,7 @@ export const deletePlayer = createAsyncThunk(
 export const playerSlice = createSlice({
     name: 'player',
     initialState,
-    reducers: {
-        reset: (state) => initialState
-    },
+    
     extraReducers: (builder) => {
         builder
         .addCase(createPlayer.pending, (state) => {
@@ -142,6 +160,32 @@ export const playerSlice = createSlice({
             state.players = action.payload
         })
         .addCase(getPlayer.rejected, (state, action) => {
+            state.isLoading = false
+            state.isError = true
+            state.message = action.payload
+        })
+        .addCase(deletePlayer.pending, (state) => {
+            state.isLoading = true
+        })
+        .addCase(deletePlayer.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isSuccess = true
+            state.players = action.payload
+        })
+        .addCase(deletePlayer.rejected, (state, action) => {
+            state.isLoading = false
+            state.isError = true
+            state.message = action.payload
+        })
+        .addCase(editPlayer.pending, (state) => {
+            state.isLoading = true
+        })
+        .addCase(editPlayer.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isSuccess = true
+            state.players = action.payload
+        })
+        .addCase(editPlayer.rejected, (state, action) => {
             state.isLoading = false
             state.isError = true
             state.message = action.payload
