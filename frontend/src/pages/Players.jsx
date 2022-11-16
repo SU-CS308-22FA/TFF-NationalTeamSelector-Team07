@@ -33,6 +33,7 @@ function Players() {
                     <div>Team</div>
                     <div>Position</div>
                     <div>Rating</div>
+                    <div></div>
                     <div>Action</div>
                     
                 </div>

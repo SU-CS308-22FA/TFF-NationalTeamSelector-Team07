@@ -13,7 +13,6 @@ router.delete('/:id', deletePlayer)
 
 router.route('/:id')
 .get(getPlayer)
-.get(editPlayer)
-.put(updatePlayer)
+.put(editPlayer)
 
 module.exports = router

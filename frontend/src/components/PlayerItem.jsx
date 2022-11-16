@@ -6,7 +6,7 @@ import Spinner from '../components/Spinner'
 import { deletePlayer } from '../features/players/playerSlice'
 import {useNavigate} from 'react-router-dom'
 
-function PlayerItem({player}) {
+function PlayerItem({player, navigation}) {
 
     
     const dispatch = useDispatch()
@@ -33,6 +33,10 @@ function PlayerItem({player}) {
         dispatch(deletePlayer(player_id))
         navigate('/players')
     }
+    const handleEdit = (e) => {
+        e.preventDefault()
+        navigate('/editPlayer', {state:{playerId: player_id,playerName: FullName, playerTeam: Team, playerRating: Rating, playerPosition: Position}});
+    }
 
 
     return (
@@ -50,6 +54,9 @@ function PlayerItem({player}) {
                 <div className="right-panel box">
                     {player.raiting}
                 </div>
+                <form onSubmit={handleEdit}  >
+                    <button className="btn btn-reverse btn-sm">Edit</button>
+                </form>
                 <form onSubmit={handleDelete}  >
                     <button className="btn btn-reverse btn-sm">Delete</button>
                 </form>

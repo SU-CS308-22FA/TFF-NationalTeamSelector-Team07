@@ -56,12 +56,24 @@ const deletePlayer = async (playerData) => {
     
 }
 
+// update player
+const editPlayer = async (playerData) => {
+    
+    const response = await axios.put('/api/players/' + playerData.id, {fullName: playerData.fullName, team: playerData.team, rating: playerData.raiting, position: playerData.position})
+
+    if(response.data) {
+        localStorage.setItem('player', JSON.stringify(response.data))
+    }
+    console.log(response.data)
+    return response.data
+}
+
 
 const playerService = {
     createPlayer,
     getPlayers,
     getPlayer,
-    // editPlayer,
+    editPlayer,
     // updatePlayer,
     deletePlayer,
 }

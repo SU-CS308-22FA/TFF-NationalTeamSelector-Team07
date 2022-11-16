@@ -81,6 +81,25 @@ export const getPlayer = createAsyncThunk(
 
 })
 
+// edit a player
+export const editPlayer = createAsyncThunk(
+    'players/editPlayer', 
+    async (player, thunkAPI) => {
+        try{
+            return await playerService.editPlayer(player)
+        }catch (error){
+            const message = 
+            (error.response && 
+                error.response.data && 
+                error.response.data.message) || 
+                error.message || 
+                error.toString()
+  
+            return thunkAPI.rejectWithValue(message)
+        }
+  
+  }) 
+
 // delete a user
 export const deletePlayer = createAsyncThunk(
     'players/deletePlayer', 
@@ -154,6 +173,19 @@ export const playerSlice = createSlice({
             state.players = action.payload
         })
         .addCase(deletePlayer.rejected, (state, action) => {
+            state.isLoading = false
+            state.isError = true
+            state.message = action.payload
+        })
+        .addCase(editPlayer.pending, (state) => {
+            state.isLoading = true
+        })
+        .addCase(editPlayer.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isSuccess = true
+            state.players = action.payload
+        })
+        .addCase(editPlayer.rejected, (state, action) => {
             state.isLoading = false
             state.isError = true
             state.message = action.payload
