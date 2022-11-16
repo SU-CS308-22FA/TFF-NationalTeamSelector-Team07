@@ -163,13 +163,73 @@ function NewPlayer() {
     const {isLoading, isError, isSuccess, message} = useSelector(
         (state) => state.players
     )
+    //////////////////////////////////////////////////////////////////
+                    
 
+    const [file, setFile] = useState();
+    const [array, setArray] = useState([]);
     const [fullName, setPlayerName] = useState()
     const [team, setPlayerTeam] = useState()
     const [position, setPlayerPosition] = useState()
     const [raiting, setPlayerRaiting] = useState()
-    const [name] = useState(user.name)
-    const [email] = useState(user.email)
+    const fileReader = new FileReader();
+  
+    const handleOnChangeCSV = (e) => {
+      setFile(e.target.files[0]);
+    };
+  
+    const csvFileToArray = string => {
+      const csvHeader = string.slice(0, string.indexOf("\n")).split(";");
+      const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
+      //console.log(csvHeader)
+      //console.log(csvRows)
+      
+      const array = csvRows.map(i => {
+        const values = i.split(";");
+        const obj = csvHeader.reduce((object, header, index) => {
+            
+          object[header] = values[index];
+          
+         
+          return object;
+        }, {});
+        //console.log("196: " ,obj)
+        return obj;
+      });
+      console.log("arrayın 0'ı: ", array[0])
+      setArray(array);
+    };
+
+    function arrayToDb(){
+
+
+
+    }
+  
+    const handleOnSubmitCSV = (e) => {
+      e.preventDefault();
+  
+      if (file) {
+        fileReader.onload = function (event) {
+          const text = event.target.result;
+          csvFileToArray(text);
+        };
+  
+        fileReader.readAsText(file);
+      }
+    };
+  
+    const headerKeys = Object.keys(Object.assign({}, ...array));
+    //console.log("211: " + headerKeys)
+  
+
+
+    /////////////////////////////////////////////////////////////////
+
+   
+    // const [name] = useState(user.name)
+    // const [email] = useState(user.email)
+    //const [file, setFile] = useState()
 
 
     const dispatch = useDispatch()
@@ -195,10 +255,46 @@ function NewPlayer() {
 
     }
 
+    const onSubmitDB =(e) => {
+        e.preventDefault()
+
+        console.log("mapping: ",array)
+        // console.log(
+        // Object.entries(array)
+        // .map( ([key, value]) => `My key is ${key} and my value is ${value}` )
+        // )
+        // console.log("array elements", Object.values(array)[0].Name)
+        console.log(Object.entries(array).length)
+        for(let k=0; k < Object.entries(array).length; k++){
+            //console.log(Object.values(array)[k].Rating)
+            // fullName=Object.values(array)[k].Name
+            // team=Object.values(array)[k].Team
+            // position=Object.values(array)[k].Position
+            //raiting=25
+            setPlayerName(Object.values(array)[k].Name)
+            setPlayerTeam(Object.values(array)[k].Team)
+            setPlayerPosition(Object.values(array)[k].Position)
+            //setPlayerRaiting(Object.values(array)[k].Rating.toString())
+            // dispatch(createPlayer({fullName, team, position, raiting}))
+
+            console.log("for player" + {k}, fullName, team, position, raiting)
+        }
+
+    }
+
+   
+
     if(isLoading) {
         return <Spinner />
     }
 
+    ///////////////////////////////////////
+
+ 
+
+    //const fileReader = new FileReader();
+
+    
     return (
         <>
             <section className="heading">
@@ -236,10 +332,6 @@ function NewPlayer() {
                     placeholder={raiting}
                     value={raiting} onChange={(e) => setPlayerRaiting(e.target.value)}/>
                 </div>
-                
-                    
-                    
-
                     <div className="form-group">
                         <button className="btn btn-block">
                             Submit
@@ -247,7 +339,57 @@ function NewPlayer() {
                     </div>
 
                     </section>
+
                 </form>
+                <div style={{ textAlign: "center" }}>
+                <h1>REACTJS CSV IMPORT EXAMPLE </h1>
+                <form>
+                    <input
+                    type={"file"}
+                    id={"csvFileInput"}
+                    accept={".csv"}
+                    onChange={handleOnChangeCSV}
+                    />
+
+                    <button
+                    onClick={(e) => {
+                        handleOnSubmitCSV(e);
+                    }}
+                    >
+                    IMPORT CSV
+                    </button>
+                </form>
+                <form onSubmit={onSubmitDB}>
+                    <div className="form-group">
+                        <button className="btn btn-block">
+                            Submit to Database
+                        </button>
+                    </div>
+                </form>
+                
+
+                <br />
+
+                <table>
+                    <thead>
+                    <tr key={"header"}>
+                        {headerKeys.map((key) => (
+                        <th>{key}</th>
+                        ))}
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {array.map((item) => (
+                        <tr key={item.id}>
+                        {Object.values(item).map((val) => (
+                            <td>{val}</td>
+                        ))}
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+                </div>
             
 
         </>
