@@ -32,7 +32,7 @@ const initialState = {
  export const getTeams = createAsyncThunk(
     'teams/getTeams', 
     async (_, thunkAPI) => {
-     
+        
         try{
             const token = thunkAPI.getState().auth.user.token
             return await teamService.getTeams(token)

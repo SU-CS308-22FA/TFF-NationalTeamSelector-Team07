@@ -16,7 +16,8 @@ const createTeam = async (teamData, token) => {
 }
 
 // get user teams
-const getTeams = async (token) => {
+const getTeams = async (user, token) => {
+
     const config = {
         headers: {
             Authorization: `user ${token}`
@@ -38,6 +39,7 @@ const getTeam = async (teamId, token) => {
 
     const response = await axios.get('/api/teams/' + teamId)
 
+    
     return response.data
 }
 

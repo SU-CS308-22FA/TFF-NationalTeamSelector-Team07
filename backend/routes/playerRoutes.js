@@ -6,13 +6,13 @@ const {protect} = require('../middleware/authMiddleware')
 
 
 
-router.route('/').get(getPlayers)
+//router.route('/').get(getPlayers)
+router.get('/', getPlayers)
 router.post('/', createPlayer)
+router.delete('/:id', deletePlayer)
 
 router.route('/:id')
 .get(getPlayer)
-.get(editPlayer)
-.delete(deletePlayer)
-.put(updatePlayer)
+.put(editPlayer)
 
 module.exports = router
