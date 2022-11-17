@@ -15,7 +15,7 @@ function Header() {
     }
 
     const isAdmin = user?.isAdmin || false
-    console.log(isAdmin)
+    
 
     if(!isAdmin){
     return (

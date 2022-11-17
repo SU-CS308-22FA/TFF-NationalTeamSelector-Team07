@@ -37,7 +37,7 @@ const getPlayer = asyncHandler(async (req, res) => {
 // @route POST /api/teams
 // @access Private
 const createPlayer = asyncHandler(async (req, res) => {
-
+  //console.log('playerController: ', res)
     // player.create(req.body, (error, data) => {
     //     if (error) {
     //       throw new Error('Please fill all spaces')
@@ -57,7 +57,7 @@ const createPlayer = asyncHandler(async (req, res) => {
     // res.status(201).json(player)
     //-----
     const {fullName, team, position, raiting} = req.body
-
+  
     if(!fullName || !team || !position || !raiting) {
         res.status(400)
         throw new Error('Please fill all spaces'),
