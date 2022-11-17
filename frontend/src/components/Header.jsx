@@ -15,7 +15,7 @@ function Header() {
     }
 
     const isAdmin = user?.isAdmin || false
-    console.log(isAdmin)
+    
 
     if(!isAdmin){
     return (
@@ -69,7 +69,7 @@ function Header() {
         return(
         <header className='header'>
             <div className='logo'>
-                <Link to='/'> <b>TFF National Team Selector</b></Link>
+                <Link to='/adminprofilepage'> <b>TFF National Team Selector</b></Link>
             </div>
             <ul>
                 {user ? 
