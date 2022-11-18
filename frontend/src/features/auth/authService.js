@@ -48,21 +48,26 @@ const update = async (userData) => {
     return response.data
 }
 
+
+//logout user
+const logout = () => localStorage.removeItem('user')
+
 // delete user
 const deleteUser = async (userData) => {
+    
     console.log('authservice id delete ' + userData)
     const response = await axios.delete('/api/users/' + userData)
 
     if(response.data) {
         localStorage.setItem('user', JSON.stringify(response.data))
+        logout(userData)
     }
     
     return response.data
     
+    
 }
 
-//logout user
-const logout = () => localStorage.removeItem('user')
 
 
 

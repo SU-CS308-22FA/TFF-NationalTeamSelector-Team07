@@ -28,7 +28,7 @@ function AdminProfilePage() {
             </Link>
 
             <Link to='/players' className='btn btn-block'>
-                <FaTicketAlt /> View All Players not working for now
+                <FaTicketAlt /> View All Players
             </Link>
             <Link to='/profilesettings' className='btn btn-block'>
                 <FaTicketAlt /> Profile Settings
