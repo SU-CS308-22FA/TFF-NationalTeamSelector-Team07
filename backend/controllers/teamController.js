@@ -20,9 +20,10 @@ const getTeams = asyncHandler(async (req, res) => {
 // @route GET /api/teams/:id
 // @access Private
 const getTeam = asyncHandler(async (req, res) => {
-
-
-    const team = await Team.findById(req.params._id)
+    const {team_id} = req.params.id
+    console.log(team_id)
+    
+    const team = await Team.find({team_id: team_id})
 
     
     if(!team) {
