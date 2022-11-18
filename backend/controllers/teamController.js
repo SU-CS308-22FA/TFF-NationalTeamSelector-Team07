@@ -42,15 +42,26 @@ const getTeam = asyncHandler(async (req, res) => {
 // @access Private
 const createTeam = asyncHandler(async (req, res) => {
 
-    const {player, teamName, email} = req.body
+    const {player1, player2, player3, player4, player5, player6, player7, player8, player9, player10, player11, teamName, email} = req.body
     const user = await User.findOne({email})
-    if(!player || !teamName) {
+    //!player1 || !player2 || !player3 || !player4 || !player5 || !player6 || !player7 || !player8 || !player9 || !player10 || !player11 ||
+    if( !teamName) {
         res.status(400)
         throw new Error('Please fill all spaces')
     }
     
     const team = await Team.create({
-        player,
+        player1,
+        player2,
+        player3,
+        player4,
+        player5,
+        player6,
+        player7,
+        player8,
+        player9,
+        player10,
+        player11,
         teamName,
         user: user._id,
     })

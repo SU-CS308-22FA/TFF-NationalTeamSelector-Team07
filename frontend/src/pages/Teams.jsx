@@ -19,7 +19,7 @@ function Teams() {
             dispatch(getTeams())
             console.log('teams ' + email)
         }
-    }, [dispatch, isSuccess])
+    }, [dispatch, isSuccess, email])
 
     
 
@@ -28,20 +28,36 @@ function Teams() {
     }
 
     return (
+
+       
+
         <>
             <h1>TEAMS</h1>
-            <div>
-                <div className="ticket-headings">
-                    <div>Date</div>
-                    <div>Player</div>
-                    <div>Team Name</div>
-                    <div></div>
+            <div class="container text-center">
+                <div class="row">
+                    <div className="col">
+                       
+                        <div className='col'>Team Name</div>
+                        <div className='col'>Player1 - Goalkeeper</div>
+                        <div className='col'>Player2 - Defender</div>
+                        <div className='row'>Player3 - Defender</div>
+                        <div className='row'>Player4 - Defender</div>
+                        <div className='row'>Player5 - Defender</div>
+                        <div className='row'>Player6 - Midfielder</div>
+                        <div className='row'>Player7 - Midfielder</div>
+                        <div className='row'>Player8 - Midfielder</div>
+                        <div className='row'>Player9 - Midfielder</div>
+                        <div className='row'>Player10 - Forward</div>
+                        <div className='row'>Player11 - Forward</div>       
+                    </div>  
                 </div>
-                
-                {teams.map((team) => (
-                    <TeamItem key={team._id} team={team}/>
-                ))}
             </div>
+            <div>
+                {teams.map((team) => (
+                    <TeamItem key={team._id} team={team}/>))}
+            </div>
+               
+                
         </>
     )
 }
