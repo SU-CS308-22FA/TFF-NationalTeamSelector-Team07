@@ -3,9 +3,10 @@ import {FaUser} from 'react-icons/fa'
 import {toast} from 'react-toastify'
 import { useSelector, useDispatch } from 'react-redux'
 import {update} from '../features/auth/authSlice'
-import { deleteUser } from '../features/auth/authSlice'
+import { deleteUser,logout } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
 import {useNavigate} from 'react-router-dom'
+
 
 
 function ProfileSettings() {
@@ -37,12 +38,14 @@ function ProfileSettings() {
 
 
     const handleDelete = (e) => {
+        let userID=userData.id
         e.preventDefault()
         toast.error('Account deleted')
+        dispatch(deleteUser(userID))
+        dispatch(logout())     
+        navigate('/') 
+        window.location.reload()
         
-        dispatch(deleteUser(user_id))
-        
-        navigate('/login')   //burda sorun var 
     }
 
     if(isLoading){
