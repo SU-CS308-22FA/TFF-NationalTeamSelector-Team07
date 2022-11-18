@@ -31,14 +31,14 @@ const getTeams = async (user, token) => {
 }
 
 // get user team
-const getTeam = async (teamData, token) => {
+const getTeam = async (teamId, token) => {
     const config = {
         headers: {
             Authorization: `user ${token}`
         }
     }
-
-    const response = await axios.get('/api/teams/' + teamData)
+    console.log('teamservice: ' + teamId)
+    const response = await axios.get('/api/teams/' + teamId)
     console.log(response.data)
 
     

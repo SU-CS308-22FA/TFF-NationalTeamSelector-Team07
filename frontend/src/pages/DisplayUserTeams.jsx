@@ -1,10 +1,9 @@
 import {useEffect, useState} from 'react'
-import {FaUser} from 'react-icons/fa'
-import {toast} from 'react-toastify'
+
 import { useDispatch, useSelector } from 'react-redux'
 import {useLocation} from 'react-router-dom'
+import { useParams} from 'react-router-dom'
 import { getTeam } from '../features/teams/teamSlice'
-import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 
 
 function DisplayTeam() {
@@ -12,43 +11,91 @@ function DisplayTeam() {
     const dispatch = useDispatch()
     const {state} = useLocation();
     const {team } = useSelector((state) => state.teams)
+
+    const [id] = useState(team._id)
     
 
-    const {teamId, teamname, user_id} = state
+    const {teamId, teamname, player1, player2, player3, player4,
+        player5, player6, player7, player8, player9, player10, player11} = state
     //const [currentteam] = dispatch(getTeam(user_id))
-
-    const teamData = {
-        name: teamname,
-        uid: user_id,
-        tid: teamId
-    }
-
-    useEffect(() => {
-        return () => {
-            dispatch(getTeam(team._id)).unwrap().catch(toast.error)
-            console.log('teams ' + user_id)
-        }
-        
-
-    }, [dispatch])
 
 
     return (
         <div className="tickets">
             <div className="ticket-headings">
-                <div className="left-panel box">
-                    {team._id}
+            <div className="left-panel box">
+                    Team Name:
                 </div>
-                <div className="middle-panel box">
-                    {team.teamName}
+                <div className="left-panel box">
+                    {teamname}
+                </div>
+                <div className="left-panel box">
+                    
+                </div>
+                
+
+                <div className="left-panel box">
+                    
                 </div>
                 <div className="right-panel box">
-                    {team.createdAt}
+                    Team ID:
                 </div>
-                <div></div>
+                <div className="right-panel box">
+                    {teamId}
+                </div>
+                
                 <div></div>
                 
                 
+            </div>
+            <div className="ticket-headings">
+                <div className="left-panel box">
+                    
+                </div>
+                <div className="left-panel box">
+                    
+                </div>
+                <div className="left-panel box">
+                    
+                </div>
+
+                <div className="left-panel box">
+                        Players
+                    </div>
+                </div>
+            
+            <div className="right-panel box">
+                    player 1: {player1}
+            </div>
+            <div className="right-panel box">
+                    player 2: {player2}
+            </div>
+            <div className="right-panel box">
+                    player 3: {player3}
+            </div>
+            <div className="right-panel box">
+                    player 4: {player4}
+            </div>
+            <div className="right-panel box">
+                    player 5:{player5}
+            </div>
+            <div className="right-panel box">
+                    player 6:{player6}
+            </div>
+            <div className="right-panel box">
+                    player 7:{player7}
+            </div>
+            <div className="right-panel box">
+                    player 8:{player8}
+            </div>
+            <div className="right-panel box">
+                    player 9:{player9}
+            </div>
+            <div className="right-panel box">
+                    player 10:{player10}
+            </div>
+            <div className="right-panel box">
+                    player 11:{player11}
             </div>
             
         </div>

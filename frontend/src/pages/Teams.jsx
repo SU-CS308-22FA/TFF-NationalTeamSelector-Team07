@@ -19,7 +19,7 @@ function Teams() {
     useEffect(() => {
         return () => {
             dispatch(getTeams())
-            console.log('teams ' + user_id)
+            
         }
     }, [dispatch, user_id])
 
@@ -30,9 +30,6 @@ function Teams() {
     }
 
     return (
-
-       
-
         <>
             <h1>TEAMS</h1>
             <div className="tickets">
@@ -48,7 +45,7 @@ function Teams() {
                 </div>
                 
                 {teams.map((team) => (
-                    <TeamItem key={team._id} team={team} user={user}/>))}
+                    <TeamItem key={team._id} team={team}/>))}
             </div>
     
         </>
