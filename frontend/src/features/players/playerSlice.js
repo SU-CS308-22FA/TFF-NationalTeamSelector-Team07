@@ -22,7 +22,7 @@ const initialState = {
  export const createPlayer = createAsyncThunk(
     'players/createPlayer', 
     async (playerData, thunkAPI) => {
-     
+        //console.log("playereSlice: " + playerData._team)
         try{
             const token = thunkAPI.getState().auth.user.token
             return await playerService.createPlayer(playerData, token)
