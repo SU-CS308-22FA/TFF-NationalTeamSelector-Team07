@@ -15,7 +15,7 @@ router.route('/').get(getTeams)
 router.post('/', createTeam)
 
 router.route('/:id')
-.get(protect, getTeam)
+.get(getTeam)
 .delete(protect, deleteTeam)
 .put(protect, updateTeam)
 

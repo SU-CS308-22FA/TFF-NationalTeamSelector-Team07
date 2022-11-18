@@ -18,6 +18,7 @@ import NewPlayer from './pages/NewPlayer'
 import Players from './pages/Players'
 import Player from './pages/Player'
 import EditPlayer from './pages/EditPlayer'
+import DisplayTeam from './pages/DisplayUserTeams'
 
 function App() {
   return(
@@ -36,6 +37,7 @@ function App() {
             <Route path='/players' element={<Players />}/>
             <Route path='/player/:playerId' element={<Player />}/>
             <Route path='/editPlayer' element={<EditPlayer/>} />
+            <Route path='/displayTeam' element={<DisplayTeam/>} />
            
             <Route path='/new-team' element={<NewTeam />}/>
 
