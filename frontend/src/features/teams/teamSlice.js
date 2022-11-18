@@ -31,11 +31,12 @@ const initialState = {
  // Get user teams
  export const getTeams = createAsyncThunk(
     'teams/getTeams', 
-    async (_, thunkAPI) => {
+    async (user, thunkAPI) => {
+        //console.log('teamslice: ' + user)
         
         try{
             const token = thunkAPI.getState().auth.user.token
-            return await teamService.getTeams(token)
+            return await teamService.getTeams(user,token)
         }catch (error){
             const message = 
             (error.response && 
@@ -52,11 +53,11 @@ const initialState = {
 // Get user team
 export const getTeam = createAsyncThunk(
     'teams/get', 
-    async (teamId, thunkAPI) => {
+    async (teamData, thunkAPI) => {
      
         try{
             const token = thunkAPI.getState().auth.user.token
-            return await teamService.getTeam(teamId, token)
+            return await teamService.getTeam(teamData, token)
         }catch (error){
             const message = 
             (error.response && 
@@ -69,6 +70,7 @@ export const getTeam = createAsyncThunk(
         }
 
 })
+
 
 export const teamSlice = createSlice({
     name: 'team',

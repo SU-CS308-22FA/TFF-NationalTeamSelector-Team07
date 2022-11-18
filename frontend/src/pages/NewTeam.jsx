@@ -28,18 +28,6 @@ function NewTeam() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    useEffect(() => {
-        if(isError) {
-            toast.error(message)
-        }
-
-        if(isSuccess) {
-            
-            navigate('/teams')
-        }
-
-        
-    }, [dispatch, isError, isSuccess, navigate, message])
 
     const onSubmit =(e) => {
         e.preventDefault()
