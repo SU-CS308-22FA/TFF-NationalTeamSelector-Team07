@@ -11,11 +11,10 @@ function NewTeam() {
         (state) => state.teams
     )
 
-    const [player, setPlayer] = useState('Ronaldo')
+    const [player, setPlayerName] = useState()
     const [name] = useState(user.name)
     const [email] = useState(user.email)
-    const [teamName, setTeamName] = useState('myTeam')
-
+    const [teamName, setTeamName] = useState()
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -34,7 +33,7 @@ function NewTeam() {
 
     const onSubmit =(e) => {
         e.preventDefault()
-        dispatch(createTeam({player, teamName}))
+        dispatch(createTeam({player, teamName, email}))
     }
 
     if(isLoading) {
@@ -47,24 +46,38 @@ function NewTeam() {
                 <h1>Create New Team</h1>
                 <p>Please Fill Out the Form Below</p>
             </section>
-
+            <form onSubmit={onSubmit}>
             <section className="form">
-                <div className="form-group">
-                    <label htmlFor="name">user Name</label>
+            <div className="form-group">
+                    <label htmlFor="player">User Name</label>
                     <input type="text" 
                     className="form-control"
                     placeholder={name}
                     value={name} disabled/>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="email">user email</label>
+                    <label htmlFor="player">User Email</label>
                     <input type="text" 
                     className="form-control"
                     placeholder={email}
-                    value={email} disabled/>
+                    value={email} />
                 </div>
-                <form onSubmit={onSubmit}>
-                    <div className="form-group">
+                <div className="form-group">
+                    <label htmlFor="player">Player Name</label>
+                    <input type="text" 
+                    className="form-control"
+                    placeholder={player}
+                    value={player} onChange={(e) => setPlayerName(e.target.value)}/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="teamName">Player Team</label>
+                    <input type="text" 
+                    className="form-control"
+                    placeholder={teamName}
+                    value={teamName} onChange={(e) => setTeamName(e.target.value)}/>
+                </div>
+                
+                    {/* <div className="form-group">
                         <label htmlFor="player">Player</label>
                         <select name="player" 
                         id="player" 
@@ -87,15 +100,15 @@ function NewTeam() {
                             onChange={(e) => setTeamName(e.target.value)}>
 
                         </textarea>
-                    </div>
+                    </div> */}
                     <div className="form-group">
                         <button className="btn btn-block">
                             Submit
                         </button>
                     </div>
-                    
+                    </section>
                 </form>
-            </section>
+            
         </>
     )
 

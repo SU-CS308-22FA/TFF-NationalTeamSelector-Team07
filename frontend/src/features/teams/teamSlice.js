@@ -9,7 +9,7 @@ const initialState = {
 
  // create new team
  export const createTeam = createAsyncThunk(
-    'teams/create', 
+    'teams/createTeam', 
     async (teamData, thunkAPI) => {
      
         try{
@@ -30,9 +30,9 @@ const initialState = {
 
  // Get user teams
  export const getTeams = createAsyncThunk(
-    'teams/getAll', 
+    'teams/getTeams', 
     async (_, thunkAPI) => {
-     
+        
         try{
             const token = thunkAPI.getState().auth.user.token
             return await teamService.getTeams(token)

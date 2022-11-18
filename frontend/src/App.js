@@ -15,6 +15,9 @@ import ProfileSettings from './pages/ProfileSettings'
 import LoginAdmin from './pages/LoginAdmin'
 import AdminProfilePage from './pages/AdminMainPage'
 import NewPlayer from './pages/NewPlayer'
+import Players from './pages/Players'
+import Player from './pages/Player'
+import EditPlayer from './pages/EditPlayer'
 
 function App() {
   return(
@@ -30,12 +33,15 @@ function App() {
             <Route path='/profile' element={<Profile/>} />
             <Route path='/adminprofilepage' element={<AdminProfilePage/>} />
             <Route path='/profilesettings' element={<ProfileSettings/>} />
-            <Route path='/new-team' element={<PrivateRoute />}>
-              <Route path='/new-team' element={<NewTeam />}/>
-            </Route>
-            <Route path='/new-player' element={<PrivateRoute />}>
-              <Route path='/new-player' element={<NewPlayer />}/>
-            </Route>
+            <Route path='/players' element={<Players />}/>
+            <Route path='/player/:playerId' element={<Player />}/>
+            <Route path='/editPlayer' element={<EditPlayer/>} />
+           
+            <Route path='/new-team' element={<NewTeam />}/>
+
+            <Route path='/new-player' element={<NewPlayer />}/>
+            
+
             <Route path='/teams' element={<PrivateRoute />}>
               <Route path='/teams' element={<Teams />}/>
             </Route>
