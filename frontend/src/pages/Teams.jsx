@@ -6,20 +6,18 @@ import TeamItem from '../components/TeamItem'
 
 
 function Teams() {
-    const {teams, isLoading, isSuccess} = useSelector((state) => state.teams)
-    const {user} = useSelector((state) => state.auth)
-
-    const {email} = useState(user.email)
-    
+    const {teams, isLoading} = useSelector((state) => state.teams)
+    //const {user} = useSelector((state) => state.auth)
+    //const {team} = useSelector((state) => state.teams)
+   // const [user_id] = useState(user._id)
 
     const dispatch = useDispatch()
 
+
     useEffect(() => {
-        return () => {
-            dispatch(getTeams())
-            console.log('teams ' + email)
-        }
-    }, [dispatch, isSuccess])
+        
+        dispatch(getTeams())
+    }, [dispatch])
 
     
 
@@ -30,18 +28,23 @@ function Teams() {
     return (
         <>
             <h1>TEAMS</h1>
-            <div>
+            <div className="tickets">
                 <div className="ticket-headings">
-                    <div>Date</div>
-                    <div>Player</div>
-                    <div>Team Name</div>
+                    
+                    <div>Team ID</div>
                     <div></div>
+                    <div>Team Name</div>
+                    <div>Created At</div>
+                    <div></div>
+                    <div></div>
+                    <div>Action</div>
+                    
                 </div>
                 
                 {teams.map((team) => (
-                    <TeamItem key={team._id} team={team}/>
-                ))}
+                    <TeamItem key={team._id} team={team}/>))}
             </div>
+    
         </>
     )
 }
