@@ -16,8 +16,9 @@ const createTeam = async (teamData, token) => {
 }
 
 // get user teams
-const getTeams = async (user, token) => {
-    //console.log('teamservice: ' + user)
+const getTeams = async (teamData, token) => {
+    console.log('teamservice: ' + JSON.stringify(teamData))
+    console.log('teamservice222: ' + teamData.user_id)
 
     const config = {
         headers: {
@@ -25,7 +26,8 @@ const getTeams = async (user, token) => {
         }
     }
 
-    const response = await axios.get('/api/teams/', user)
+    const response = await axios.get('/api/teams/')
+    console.log(response.data)
 
     return response.data
 }
@@ -46,10 +48,25 @@ const getTeam = async (teamId, token) => {
 }
 
 
+// delete team
+const deleteTeam = async (teamData) => {
+
+    const response = await axios.delete('/api/teams/' + teamData)
+
+    if(response.data) {
+        localStorage.setItem('team', JSON.stringify(response.data))
+    }
+    
+    return response.data
+    
+}
+
+
 
 const teamService = {
     createTeam,
     getTeams,
+    deleteTeam,
     getTeam,
 }
 
