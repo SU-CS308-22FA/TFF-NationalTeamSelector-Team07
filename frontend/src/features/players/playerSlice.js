@@ -60,6 +60,27 @@ const initialState = {
 
 })
 
+
+ // Get user teams
+ export const getPlayersHome = createAsyncThunk(
+    'players/getPlayers', 
+    async (_, thunkAPI) => {
+     
+        try{
+            return await playerService.getPlayersHome()
+        }catch (error){
+            const message = 
+            (error.response && 
+                error.response.data && 
+                error.response.data.message) || 
+                error.message || 
+                error.toString()
+
+            return thunkAPI.rejectWithValue(message)
+        }
+
+})
+
 // Get user team
 export const getPlayer = createAsyncThunk(
     'players/get', 

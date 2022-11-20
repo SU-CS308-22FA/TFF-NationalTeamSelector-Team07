@@ -2,34 +2,34 @@ import {Link} from 'react-router-dom'
 import { useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import MainPagePlayerItem from '../components/MainPagePlayerItem'
-import {getPlayers} from '../features/players/playerSlice'
+import {getPlayersHome} from '../features/players/playerSlice'
+import Spinner from '../components/Spinner'
 
 function Home() {
 
-    const {players, isSuccess} = useSelector((state) => state.players)
-
-
+    const {user} = useSelector( (state) => state.auth)
     const dispatch = useDispatch()
 
+    const {players, isLoading, isSuccess} = useSelector((state) => state.players)
+    
     useEffect(() => {
         return () => {
-            dispatch(getPlayers())
+            dispatch(getPlayersHome())
         }
     }, [dispatch, isSuccess])
 
-    const {user} = useSelector( (state) => state.auth)
+    if(isLoading) {
+        return <Spinner />
+    }
+
     return (
         <div>
-            <section className="heading">
-                <h1>What do you need help with?</h1>
-                <p>Please chose from an option below</p>
-            </section>
-            <ul>
             {user ? 
             (            
             <Link to='/profile' className='btn-block'> 
                 View My Profile
-            </Link>)
+            </Link>
+            )
             : 
             (
                 <div className="tickets">
@@ -46,9 +46,7 @@ function Home() {
                     ))}
                 </div>
             )
-            }           
-            </ul>
-            
+            }             
         </div>
     )
 }

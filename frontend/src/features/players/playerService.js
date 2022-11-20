@@ -30,6 +30,15 @@ const getPlayers = async (token) => {
     return response.data
 }
 
+// get players for homepage
+const getPlayersHome = async () => {
+
+    const response = await axios.get('/api/players/')
+    console.log(response.data)
+
+    return response.data
+}
+
 // get user team
 const getPlayer = async (playerId, token) => {
     const config = {
@@ -77,6 +86,7 @@ const playerService = {
     editPlayer,
     // updatePlayer,
     deletePlayer,
+    getPlayersHome,
 }
 
 export default playerService

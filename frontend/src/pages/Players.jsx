@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import {getPlayers, reset} from '../features/players/playerSlice'
+import {getPlayers} from '../features/players/playerSlice'
 import Spinner from '../components/Spinner'
 import PlayerItem from '../components/PlayerItem'
 

@@ -1,8 +1,6 @@
-import {Link} from 'react-router-dom'
 import {useState} from 'react'
 import {toast} from 'react-toastify'
-import { useSelector, useDispatch } from 'react-redux'
-import Spinner from '../components/Spinner'
+import { useDispatch } from 'react-redux'
 import { deletePlayer } from '../features/players/playerSlice'
 import {useNavigate} from 'react-router-dom'
 
