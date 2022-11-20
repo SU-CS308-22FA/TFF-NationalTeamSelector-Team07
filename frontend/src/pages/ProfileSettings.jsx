@@ -3,16 +3,14 @@ import {FaUser} from 'react-icons/fa'
 import {toast} from 'react-toastify'
 import { useSelector, useDispatch } from 'react-redux'
 import {update} from '../features/auth/authSlice'
-import { deleteUser } from '../features/auth/authSlice'
+import { deleteUser,logout } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
 import {useNavigate} from 'react-router-dom'
 
-function ProfileSettings() {
-    /*const [formData, setFormData] = useState({
-        name: '',
-        email: ''
-    })*/
 
+
+function ProfileSettings() {
+ 
     const { user, isLoading} = useSelector((state) => state.auth)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -37,17 +35,22 @@ function ProfileSettings() {
         dispatch(update(userData))
     }
 
+
+
     const handleDelete = (e) => {
+        let userID=userData.id
         e.preventDefault()
         toast.error('Account deleted')
-        dispatch(deleteUser(user_id))
-        navigate('/login')   //burda sorun var 
+        dispatch(deleteUser(userID))
+        dispatch(logout())     
+        navigate('/') 
+        window.location.reload()
+        
     }
 
     if(isLoading){
         return <Spinner />
     }
-
     return (
         <>
             <section className='heading'>
