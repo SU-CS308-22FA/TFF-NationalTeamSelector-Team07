@@ -126,9 +126,9 @@ const loginAdmin = asyncHandler(async (req,res) => {
 
 // })
 
-// @desc Update team
-// @route PUT /api/teams/:id
-// @access Private
+// // @desc Update team
+// // @route PUT /api/teams/:id
+// // @access Private
 const updateUser = asyncHandler(async (req, res) => {
     const {name, email} = req.body
 
