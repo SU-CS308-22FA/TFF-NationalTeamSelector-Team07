@@ -1,10 +1,14 @@
 import {Link} from 'react-router-dom'
 import {useNavigate} from 'react-router-dom'
 import {useState} from 'react'
+import {useDispatch} from 'react-redux'
+import { deleteTeam } from '../features/teams/teamSlice'
 
 function TeamItem({team}) {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+
     const [teamId] = useState(team._id)
     const [name] = useState(team.teamName)
     const [player1] = useState(team.player1)
@@ -28,6 +32,11 @@ function TeamItem({team}) {
             player4: player4, player5: player5, player6: player6, player7: player7, player8: player8, player9: player9, 
             player10: player10, player11: player11}});
     }
+    const deleteUserTeam = (e) => {
+        e.preventDefault()
+        dispatch(deleteTeam(teamId))
+        window.location.reload(false);
+    }
 
 
     return (
@@ -46,6 +55,9 @@ function TeamItem({team}) {
                 <div></div>
                 <form onSubmit={displayTeam}  >
                     <button className="btn btn-reverse btn-sm">View Team</button>
+                </form>
+                <form onSubmit={deleteUserTeam}  >
+                    <button className="btn btn-reverse btn-sm">Delete Team</button>
                 </form>
                 
             </div>

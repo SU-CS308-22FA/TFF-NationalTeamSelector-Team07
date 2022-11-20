@@ -9,6 +9,7 @@ const User = require('../models/userModel')
 // @route GET /api/teams
 // @access Private
 const getTeams = asyncHandler(async (req, res) => {
+    
 
     const teams = await Team.find()
 
@@ -75,21 +76,14 @@ const createTeam = asyncHandler(async (req, res) => {
 // @access Private
 const deleteTeam = asyncHandler(async (req, res) => {
 
+    const team = await Team.findById(req.params.id)
 
-    const team = await team.findById(req.params._id)
-
-    
     if(!team) {
         res.status(404)
         throw new Error('Team not found')
     }
 
-    if(team.user.toString() !== req.user._id) {
-        res.status(401)
-        throw new Error('Not authorized')
-    }
-
-    await team.remove()
+    await Team.findByIdAndDelete(req.params.id)
 
     res.status(200).json({success: true})
 })

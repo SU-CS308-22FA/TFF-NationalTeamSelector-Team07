@@ -15,13 +15,14 @@ function Teams() {
 
     const dispatch = useDispatch()
 
+    
+    const teamData = {
+        user_id
+    }
 
     useEffect(() => {
-        return () => {
-            dispatch(getTeams())
-            
-        }
-    }, [dispatch, user_id])
+        dispatch(getTeams())
+    }, [dispatch])
 
     
 
@@ -39,6 +40,7 @@ function Teams() {
                     <div></div>
                     <div>Team Name</div>
                     <div>Created At</div>
+                    <div></div>
                     <div></div>
                     <div>Action</div>
                     
