@@ -31,8 +31,8 @@ const initialState = {
  // Get user teams
  export const getTeams = createAsyncThunk(
     'teams/getTeams', 
-    async (userId, thunkAPI) => {
-        console.log('teamslice: ' + userId)
+    async (_, thunkAPI) => {
+        //console.log('teamslice: ' + userId)
         
         try{
             const token = thunkAPI.getState().auth.user.token

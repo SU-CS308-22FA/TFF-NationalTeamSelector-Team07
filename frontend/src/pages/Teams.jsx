@@ -6,21 +6,16 @@ import TeamItem from '../components/TeamItem'
 
 
 function Teams() {
-    const {teams, isLoading, isSuccess} = useSelector((state) => state.teams)
-    const {user} = useSelector((state) => state.auth)
-
-    const [email] = useState(user.email)
-    const [user_id] = useState(user._id)
-
+    const {teams, isLoading} = useSelector((state) => state.teams)
+    //const {user} = useSelector((state) => state.auth)
+    //const {team} = useSelector((state) => state.teams)
+   // const [user_id] = useState(user._id)
 
     const dispatch = useDispatch()
 
-    
-    const teamData = {
-        user_id
-    }
 
     useEffect(() => {
+        
         dispatch(getTeams())
     }, [dispatch])
 

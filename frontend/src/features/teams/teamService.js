@@ -16,9 +16,9 @@ const createTeam = async (teamData, token) => {
 }
 
 // get user teams
-const getTeams = async (teamData, token) => {
-    console.log('teamservice: ' + JSON.stringify(teamData))
-    console.log('teamservice222: ' + teamData.user_id)
+const getTeams = async (token) => {
+    //console.log('teamservice: ' + JSON.stringify(teamData))
+    //console.log('teamservice222: ' + teamData.user_id)
 
     const config = {
         headers: {
