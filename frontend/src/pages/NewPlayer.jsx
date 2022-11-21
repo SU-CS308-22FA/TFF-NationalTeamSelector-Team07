@@ -96,7 +96,7 @@ function NewPlayer() {
 
         if(isSuccess) {
             
-            navigate('/players')
+            // navigate('/players')
         }
 
         
@@ -200,7 +200,7 @@ function NewPlayer() {
                     </button>
                 </form>
                 <form onSubmit={onSubmitDB}>
-                    <div className="form-group">
+                    <div className="form-group" style={{margin: "40x 20px"}}>
                         <button className="btn btn-block">
                             Submit to Database
                         </button>
@@ -210,6 +210,7 @@ function NewPlayer() {
 
                 <br />
 
+                <hr className="solid" />
                 <table>
                     <thead>
                     <tr key={"header"}>
