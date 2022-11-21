@@ -96,7 +96,7 @@ function NewPlayer() {
 
         if(isSuccess) {
             
-            navigate('/players')
+            // navigate('/players')
         }
 
         
