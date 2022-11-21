@@ -3,11 +3,29 @@ import {FaUser} from 'react-icons/fa'
 import { useSelector } from 'react-redux'
 import {Link} from 'react-router-dom'
 import {FaQuestionCircle, FaTicketAlt} from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 
 function AdminProfilePage() {
     
     const { user } = useSelector((state) => state.auth)
     const [username] = useState(user.name)
+    const navigate = useNavigate()
+
+    const handleSubmitPlayers = (e) => {
+        e.preventDefault()
+        navigate('/players')
+        //window.location.reload()
+    }
+    const handleSubmitCreatePlayer = (e) => {
+        e.preventDefault()
+        navigate('/new-player')
+        //window.location.reload()
+    }
+    const handleSubmitProfile = (e) => {
+        e.preventDefault()
+        navigate('/profileSettings')
+        //window.location.reload()
+    }
 
     return (
         <>
@@ -23,16 +41,22 @@ function AdminProfilePage() {
                 <h1>What do you need help with?</h1>
                 <p>Please chose from an option below</p>
             </section>
-            <Link to='/new-player' className='btn btn-reverse btn-block'>
-                <FaQuestionCircle /> Create New Player
-            </Link>
+            <form onSubmit={handleSubmitCreatePlayer}className='btn btn-block'>
+               <button>
+                    Create player
+               </button>
+            </form>
 
-            <Link to='/players' className='btn btn-block'>
-                <FaTicketAlt /> View All Players
-            </Link>
-            <Link to='/profilesettings' className='btn btn-block'>
-                <FaTicketAlt /> Profile Settings
-            </Link>
+            <form onSubmit={handleSubmitPlayers} className='btn btn-block' >
+                <button>
+                    View all players
+                </button>
+            </form>
+            <form onSubmit={handleSubmitProfile}className='btn btn-block'>
+               <button>
+                    Profile
+               </button>
+            </form>
         </div>
         </>
     )

@@ -30,6 +30,7 @@ function EditPlayer() {
         toast.info('Player Profile edited')
 
         dispatch(editPlayer(playerData))
+        window.location.reload()
     }
 
     return (

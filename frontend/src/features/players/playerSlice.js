@@ -24,8 +24,8 @@ const initialState = {
     async (playerData, thunkAPI) => {
         //console.log("playereSlice: " + playerData._team)
         try{
-            const token = thunkAPI.getState().auth.user.token
-            return await playerService.createPlayer(playerData, token)
+            //const token = thunkAPI.getState().auth.user.token
+            return await playerService.createPlayer(playerData)
         }catch (error){
             const message = 
             (error.response && 

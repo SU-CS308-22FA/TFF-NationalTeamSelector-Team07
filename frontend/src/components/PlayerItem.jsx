@@ -30,6 +30,7 @@ function PlayerItem({player, navigation}) {
         console.log('item: ' + player_id)
         dispatch(deletePlayer(player_id))
         navigate('/players')
+        window.location.reload()
     }
     const handleEdit = (e) => {
         e.preventDefault()
