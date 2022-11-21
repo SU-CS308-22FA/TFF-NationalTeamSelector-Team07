@@ -6,10 +6,49 @@ const teamSchema = mongoose.Schema({
         required: true,
         ref: 'user'
     },
-    player: {
+    player1: {
         type: String,
         required: [true, 'Please select a player'],
-        //enum: ['Ronaldo', 'messi', 'Arda Turan','Sabri','Hasan Şaş']
+    },
+    player2: {
+        type: String,
+        required: [true, 'Please select a player'],
+    },
+    player3: {
+        type: String,
+        required: [true, 'Please select a player'],
+    },
+    player4: {
+        type: String,
+        required: [true, 'Please select a player'],
+    },
+    player5: {
+        type: String,
+        required: [true, 'Please select a player'],
+    },
+    player6: {
+        type: String,
+        required: [true, 'Please select a player'],
+    },
+    player7: {
+        type: String,
+        required: [true, 'Please select a player'],
+    },
+    player8: {
+        type: String,
+        required: [true, 'Please select a player'],
+    },
+    player9: {
+        type: String,
+        required: [true, 'Please select a player'],
+    },
+    player10: {
+        type: String,
+        required: [true, 'Please select a player'],
+    },
+    player11: {
+        type: String,
+        required: [true, 'Please select a player'],
     },
     teamName: {
         type: String,

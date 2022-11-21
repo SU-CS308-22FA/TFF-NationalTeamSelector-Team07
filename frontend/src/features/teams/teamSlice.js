@@ -32,6 +32,7 @@ const initialState = {
  export const getTeams = createAsyncThunk(
     'teams/getTeams', 
     async (_, thunkAPI) => {
+        //console.log('teamslice: ' + userId)
         
         try{
             const token = thunkAPI.getState().auth.user.token
@@ -51,8 +52,9 @@ const initialState = {
 
 // Get user team
 export const getTeam = createAsyncThunk(
-    'teams/get', 
+    'teams/getTeam', 
     async (teamId, thunkAPI) => {
+        console.log('teamslice: ' + teamId)
      
         try{
             const token = thunkAPI.getState().auth.user.token
@@ -69,6 +71,27 @@ export const getTeam = createAsyncThunk(
         }
 
 })
+
+// delete a team
+export const deleteTeam = createAsyncThunk(
+    'auth/deleteTeam', 
+    async (team, thunkAPI) => {
+      console.log('authslice team ' + team)
+        try{
+            return await teamService.deleteTeam(team)
+        }catch (error){
+            const message = 
+            (error.response && 
+                error.response.data && 
+                error.response.data.message) || 
+                error.message || 
+                error.toString()
+  
+            return thunkAPI.rejectWithValue(message)
+        }
+  
+  }) 
+
 
 export const teamSlice = createSlice({
     name: 'team',
@@ -109,6 +132,19 @@ export const teamSlice = createSlice({
             state.teams = action.payload
         })
         .addCase(getTeam.rejected, (state, action) => {
+            state.isLoading = false
+            state.isError = true
+            state.message = action.payload
+        })
+        .addCase(deleteTeam.pending, (state) => {
+            state.isLoading = true
+        })
+        .addCase(deleteTeam.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isSuccess = true
+            state.teams = action.payload
+        })
+        .addCase(deleteTeam.rejected, (state, action) => {
             state.isLoading = false
             state.isError = true
             state.message = action.payload
