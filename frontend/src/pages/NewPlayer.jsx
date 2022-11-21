@@ -200,37 +200,36 @@ function NewPlayer() {
                     </button>
                 </form>
                 <form onSubmit={onSubmitDB}>
-                    <div className="form-group" style={{marginTop: "30px"}}>
+                    <div className="form-group">
                         <button className="btn btn-block">
                             Submit to Database
                         </button>
                     </div>
                 </form>
                 
-                <hr className="solid" style={{marginBottom: "20px"}}/>
-                <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-                    <table>
-                        <thead>
-                        <tr key={"header"}>
-                            {headerKeys.map((key) => (
-                            <th>{key}</th>
-                            ))}
-                        </tr>
-                        </thead>
-                        
-                        <tbody  >
-                        {array.map((item)=> (
-                            <tr key={item.id}>
-                            {Object.values(item).map((val) => (
-                                <td>{val}</td>
-                            ))}
-                            </tr>
+
+                <br />
+
+                <table>
+                    <thead>
+                    <tr key={"header"}>
+                        {headerKeys.map((key) => (
+                        <th>{key}</th>
                         ))}
-                        </tbody>
-                    </table>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {array.map((item) => (
+                        <tr key={item.id}>
+                        {Object.values(item).map((val) => (
+                            <td>{val}</td>
+                        ))}
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
                 </div>
-                
-            </div>
             
 
         </>
