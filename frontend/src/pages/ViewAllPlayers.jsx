@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import {getPlayers} from '../features/players/playerSlice'
+import {getPlayersHome} from '../features/players/playerSlice'
 import Spinner from '../components/Spinner'
-import PlayerItem from '../components/PlayerItem'
+import MainPagePlayerItem from '../components/MainPagePlayerItem'
 
 
-function Players() {
+function ViewAllPlayers() {
     const {players, isLoading, isSuccess} = useSelector((state) => state.players)
 
 
@@ -13,7 +13,7 @@ function Players() {
 
     useEffect(() => {
         return () => {
-            dispatch(getPlayers())
+            dispatch(getPlayersHome())
         }
     }, [dispatch, isSuccess])
 
@@ -28,22 +28,18 @@ function Players() {
             <h1>PLAYERS</h1>
             <div className="tickets">
                 <div className="ticket-headings">
-                    
                     <div>Name</div>
                     <div>Team</div>
                     <div>Position</div>
                     <div>Rating</div>
-                    <div></div>
-                    <div>Action</div>
-                    
                 </div>
                 
                 {players.map((player) => (
-                    <PlayerItem key={player._id} player={player}/>
+                    <MainPagePlayerItem key={player._id} player={player}/>
                 ))}
             </div>
         </>
     )
 }
 
-export default Players
+export default ViewAllPlayers
