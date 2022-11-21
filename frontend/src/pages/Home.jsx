@@ -18,6 +18,12 @@ function Home() {
         }
     }, [dispatch, isSuccess])
 
+    // 👇️ sort by String property ASCENDING (A - Z)
+    const strAscending = [...players].sort((a, b) =>
+    a.raiting > b.raiting ? 1 : -1,
+    ).reverse();
+    
+
     if(isLoading) {
         return <Spinner />
     }
@@ -49,6 +55,10 @@ function Home() {
             )
             : 
             (
+                <>
+                <div style={{marginBottom:"20px"}}>
+                    <h1>TOP 5 PLAYERS OF THE MONTH</h1>
+                </div>
                 <div className="tickets">
                     <div className="ticket-headings">
                         
@@ -58,10 +68,11 @@ function Home() {
                         <div>Rating</div>
                         
                     </div>
-                    {players.slice(0,4).map((player) => (
+                    {strAscending.slice(0,5).map((player) => (
                         <MainPagePlayerItem key={player._id} player={player}/>
                     ))}
                 </div>
+                </>
             )
             }             
         </div>
