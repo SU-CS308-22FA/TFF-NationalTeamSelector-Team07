@@ -9,9 +9,8 @@ function Home() {
 
     const {user} = useSelector( (state) => state.auth)
     const dispatch = useDispatch()
-
     const {players, isLoading, isSuccess} = useSelector((state) => state.players)
-    
+
     useEffect(() => {
         return () => {
             dispatch(getPlayersHome())
@@ -41,7 +40,7 @@ function Home() {
                         <div>Rating</div>
                         
                     </div>
-                    {players.map((player) => (
+                    {players.slice(0,4).map((player) => (
                         <MainPagePlayerItem key={player._id} player={player}/>
                     ))}
                 </div>
