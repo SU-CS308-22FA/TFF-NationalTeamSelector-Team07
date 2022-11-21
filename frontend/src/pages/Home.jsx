@@ -31,10 +31,10 @@ function Home() {
                     <Link to='/viewAllPlayers'>
                         <button >View all players</button>
                     </Link>
-                    <Link to=''>
+                    <Link to='/new-team'>
                         <button >Create your team</button>
                     </Link>
-                    <Link to=''>
+                    <Link to='/teams'>
                         <button >View your team</button>
                     </Link>
                     <Link to=''>
