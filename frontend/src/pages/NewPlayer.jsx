@@ -200,36 +200,37 @@ function NewPlayer() {
                     </button>
                 </form>
                 <form onSubmit={onSubmitDB}>
-                    <div className="form-group">
+                    <div className="form-group" style={{marginTop: "30px"}}>
                         <button className="btn btn-block">
                             Submit to Database
                         </button>
                     </div>
                 </form>
                 
-
-                <br />
-
-                <table>
-                    <thead>
-                    <tr key={"header"}>
-                        {headerKeys.map((key) => (
-                        <th>{key}</th>
-                        ))}
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    {array.map((item) => (
-                        <tr key={item.id}>
-                        {Object.values(item).map((val) => (
-                            <td>{val}</td>
-                        ))}
+                <hr className="solid" style={{marginBottom: "20px"}}/>
+                <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+                    <table>
+                        <thead>
+                        <tr key={"header"}>
+                            {headerKeys.map((key) => (
+                            <th>{key}</th>
+                            ))}
                         </tr>
-                    ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        
+                        <tbody  >
+                        {array.map((item)=> (
+                            <tr key={item.id}>
+                            {Object.values(item).map((val) => (
+                                <td>{val}</td>
+                            ))}
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
                 </div>
+                
+            </div>
             
 
         </>
