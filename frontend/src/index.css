@@ -211,14 +211,14 @@ h3 {
 .ticket,
 .ticket-headings {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 30px;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   background: #f4f4f4;
-  padding: 10px 15px;
-  border-radius: 5px;
+  padding: 5px 10px;
+  border-radius: 10px;
   text-align: center;
 }
 
@@ -403,4 +403,50 @@ footer {
   .heading p {
     font-size: 1.5rem;
   }
+}
+
+.btn-group button {
+  background-color: red; 
+  border: 1px solid red; 
+  margin: 0px 20px;
+  /* border-radius: 5px; */
+  /* color: white; */
+  /* padding: 10px 24px;  */
+  /* cursor: pointer;  */
+
+  padding: 10px 20px;
+  /* border: 1px solid rgb(204, 169, 169); */
+  border-radius: 5px;
+  background: rgb(237, 8, 8);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  transform: scale(0.98);
+}
+
+hr.solid {
+  border-top: 3px solid black;
+}
+hr.dotted {
+  border-top: 3px dotted black;
 }

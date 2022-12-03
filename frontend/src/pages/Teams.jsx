@@ -1,25 +1,25 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {getTeams, reset} from '../features/teams/teamSlice'
 import Spinner from '../components/Spinner'
 import TeamItem from '../components/TeamItem'
 
+
 function Teams() {
-    const {teams, isLoading, isSuccess} = useSelector((state) => state.teams)
+    const {teams, isLoading} = useSelector((state) => state.teams)
+    //const {user} = useSelector((state) => state.auth)
+    //const {team} = useSelector((state) => state.teams)
+   // const [user_id] = useState(user._id)
 
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        return () => {
-            if(isSuccess) {
-                dispatch(reset())
-            }
-        }
-    }, [dispatch, isSuccess])
 
     useEffect(() => {
+        
         dispatch(getTeams())
     }, [dispatch])
+
+    
 
     if(isLoading) {
         return <Spinner />
@@ -31,15 +31,20 @@ function Teams() {
             <div className="tickets">
                 <div className="ticket-headings">
                     
-                    <div>Date</div>
-                    <div>Player</div>
-                    <div>Team Name</div>
+                    <div>Team ID</div>
                     <div></div>
+                    <div>Team Name</div>
+                    <div>Created At</div>
+                    <div></div>
+                    <div></div>
+                    <div>Action</div>
+                    
                 </div>
+                
                 {teams.map((team) => (
-                    <TeamItem key={team._id} team={team}/>
-                ))}
+                    <TeamItem key={team._id} team={team}/>))}
             </div>
+    
         </>
     )
 }
