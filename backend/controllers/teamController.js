@@ -11,8 +11,9 @@ const User = require('../models/userModel')
 const getTeams = asyncHandler(async (req, res) => {
     
     //console.log(req.team.user)
-    const teams = await Team.find({user: '6377c48740692e6b896cb99f'})
-    
+    //const teams = await Team.find({user: '6377c48740692e6b896cb99f'})
+    const teams = await Team.find()
+
     res.status(200).json(teams)
 })
 
