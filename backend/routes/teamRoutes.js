@@ -17,9 +17,13 @@ router.get('/', getMyTeams)
 
 router.post('/', createTeam)
 
+
+router.put('/:id', updateTeam)
+
+
 router.route('/:id')
 .get(getTeam)
 .delete(deleteTeam)
-.put(updateTeam)
+
 
 module.exports = router

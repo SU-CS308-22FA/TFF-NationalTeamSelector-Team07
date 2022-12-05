@@ -110,23 +110,35 @@ const deleteTeam = asyncHandler(async (req, res) => {
 // @route PUT /api/teams/:id
 // @access Private
 const updateTeam = asyncHandler(async (req, res) => {
-    const {team_id, user_id} = req.body
-    
+    const {team_id, user_id, isliked} = req.body
+    console.log("controller teamid: ", team_id)
+    console.log("controller userid: ", user_id)
+    console.log("controller liked: ", isliked)
+
 
     const team = await Team.find({_id: team_id})
     
-
     if(!team) {
         res.status(404)
         throw new Error('Team not found')
     }
 
-    const updatedTeam = await Team.findByIdAndUpdate(team_id, {
-        $push:{likes:user_id}
-    }, {new: true})
-
-    res.status(200).json(updatedTeam)
+    if(isliked == "no")
+    {
+        const updatedTeam = await Team.findByIdAndUpdate(team_id, {
+            $push:{likes:user_id}
+        }, {new: true})
+        res.status(200).json(updatedTeam)
+    }
+    else {
+        const updatedTeam = await Team.findByIdAndUpdate(team_id, {
+            $pull:{likes:user_id}
+        }, {new: true})
+        res.status(200).json(updatedTeam)
+    }
+   
 })
+
 
 module.exports = {
     getTeams,

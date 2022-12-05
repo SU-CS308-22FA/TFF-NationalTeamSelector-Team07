@@ -78,7 +78,7 @@ const deleteTeam = async (teamData) => {
 
 // update team likes
 const updateTeam = async (sentData) => {
-    console.log("controller", sentData)
+    console.log("update team controller", sentData)
     const response = await axios.put('/api/teams/' + sentData.team_id, sentData)
     console.log("response", response.data)
 
@@ -90,6 +90,7 @@ const updateTeam = async (sentData) => {
     return response.data
     
 }
+
 
 
 

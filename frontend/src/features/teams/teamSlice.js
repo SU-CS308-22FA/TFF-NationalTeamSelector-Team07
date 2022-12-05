@@ -118,7 +118,7 @@ export const deleteTeam = createAsyncThunk(
 export const updateLike = createAsyncThunk(
     'teams/updateLike', 
     async (sentData, thunkAPI) => {
-      console.log('teamslice team ' + sentData)
+      console.log('update slice team ' + sentData)
         try{
             return await teamService.updateTeam(sentData)
         }catch (error){
@@ -133,6 +133,7 @@ export const updateLike = createAsyncThunk(
         }
   
   }) 
+ 
 
 
 export const teamSlice = createSlice({
