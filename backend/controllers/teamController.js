@@ -39,6 +39,23 @@ const getTeam = asyncHandler(async (req, res) => {
     res.status(200).json(team)
 })
 
+// @desc Get user team
+// @route GET /api/teams/:id
+// @access Private
+const getMyTeams = asyncHandler(async (req, res) => {
+    const {team_id, user_id} = req.body
+    //console.log(team_id)
+    
+    const team = await Team.find({user: user_id})
+
+    
+    if(!team) {
+        res.status(404)
+        throw new Error('Team not found')
+    }
+    res.status(200).json(team)
+})
+
 // @desc create a new team
 // @route POST /api/teams
 // @access Private
@@ -66,6 +83,7 @@ const createTeam = asyncHandler(async (req, res) => {
         player11,
         teamName,
         user: user._id,
+        likes: [],
     })
 
     res.status(201).json(team)
@@ -92,22 +110,20 @@ const deleteTeam = asyncHandler(async (req, res) => {
 // @route PUT /api/teams/:id
 // @access Private
 const updateTeam = asyncHandler(async (req, res) => {
-
-
-    const team = await Team.findById(req.params._id)
-
+    const {team_id, user_id} = req.body
     
+
+    const team = await Team.find({_id: team_id})
+    
+
     if(!team) {
         res.status(404)
         throw new Error('Team not found')
     }
 
-    if(team.user.toString() !== req.user._id) {
-        res.status(401)
-        throw new Error('Not authorize')
-    }
-
-    const updatedTeam = await team.findByIdAndUpdate(req.params._id, req.body, {new: true})
+    const updatedTeam = await Team.findByIdAndUpdate(team_id, {
+        $push:{likes:user_id}
+    }, {new: true})
 
     res.status(200).json(updatedTeam)
 })
@@ -115,6 +131,7 @@ const updateTeam = asyncHandler(async (req, res) => {
 module.exports = {
     getTeams,
     getTeam,
+    getMyTeams,
     createTeam,
     deleteTeam,
     updateTeam,

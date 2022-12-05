@@ -1,9 +1,15 @@
 import {useNavigate} from 'react-router-dom'
 import {useState} from 'react'
+import {FaThumbsDown, FaThumbsUp} from 'react-icons/fa'
+import { updateLike } from '../features/teams/teamSlice'
+import { useDispatch,useSelector } from 'react-redux'
+import { format } from 'date-fns'
 
 function TeamItem({team}) {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const {user} = useSelector( (state) => state.auth)
 
     const [teamId] = useState(team._id)
     const [name] = useState(team.teamName)
@@ -18,6 +24,25 @@ function TeamItem({team}) {
     const [player9] = useState(team.player9)
     const [player10] = useState(team.player10)
     const [player11] = useState(team.player11)
+    const [likes] = useState(team.likes)
+
+
+    const sentData = {
+        user_id: user._id,
+        team_id: teamId,
+    }
+
+    const incrementLike = () => {
+
+      dispatch(updateLike(sentData))
+      window.location.reload(false);
+    };
+
+    const decrementLike = () => {
+        console.log("decrement")
+        //dispatch(updateLike(teamId))
+        //window.location.reload(false);
+      };
     
 
     const displayTeam = (e) => {
@@ -32,6 +57,8 @@ function TeamItem({team}) {
     return (
         <div className="tickets">
             <div className="ticket-headings">
+                
+                
                 <div className="left-panel box">
                     {team._id}
                 </div>
@@ -39,16 +66,44 @@ function TeamItem({team}) {
                     {team.teamName}
                 </div>
                 <div className="right-panel box">
-                    {team.createdAt}
+                    {format(new Date(team.createdAt), "dd/MM/Y")}
+                    
                 </div>
-                <div></div>
-                <div></div>
+               
                 <form onSubmit={displayTeam}  >
                     <button className="btn btn-reverse btn-sm">View Team</button>
-                </form>   
+                </form>  
+                
+                <button
+                    className={"btn btn-reverse btn-sm like-button " + (team.likes.includes(user._id) ? "liked" : "")}
+                    onClick = {incrementLike}
+                >
+                    
+                like
+                </button> 
+                <button
+                    className={"btn btn-reverse btn-sm like-button " + (team.likes.includes(user._id) ? "" : "liked")} 
+                    onClick = {decrementLike}
+                >   
+                unlike
+                </button> 
+                <div> <FaThumbsUp/>  {likes.length}</div>
+                <style>
+                    {`
+                        .like-button {
+                            font-size: 1rem;
+                            padding: 9px 10px;
+                            color:  #585858;
+                        }
+                        .liked {
+                            font-weight: bold;
+                            color: #1565c0;
+                        }
+                    `}
+                </style>
+                
             </div>
         </div>
-
         
     )
 }

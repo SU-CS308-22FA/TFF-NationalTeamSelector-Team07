@@ -72,6 +72,28 @@ export const getTeam = createAsyncThunk(
 
 })
 
+// Get user team
+export const getMyTeams = createAsyncThunk(
+    'teams/getMyTeams', 
+    async (getTeam, thunkAPI) => {
+        console.log('teamslice: ' + getTeam)
+     
+        try{
+            const token = thunkAPI.getState().auth.user.token
+            return await teamService.getMyTeams(getTeam, token)
+        }catch (error){
+            const message = 
+            (error.response && 
+                error.response.data && 
+                error.response.data.message) || 
+                error.message || 
+                error.toString()
+
+            return thunkAPI.rejectWithValue(message)
+        }
+
+})
+
 // delete a team
 export const deleteTeam = createAsyncThunk(
     'auth/deleteTeam', 
@@ -79,6 +101,26 @@ export const deleteTeam = createAsyncThunk(
       console.log('authslice team ' + team)
         try{
             return await teamService.deleteTeam(team)
+        }catch (error){
+            const message = 
+            (error.response && 
+                error.response.data && 
+                error.response.data.message) || 
+                error.message || 
+                error.toString()
+  
+            return thunkAPI.rejectWithValue(message)
+        }
+  
+  }) 
+
+  // delete a team
+export const updateLike = createAsyncThunk(
+    'teams/updateLike', 
+    async (sentData, thunkAPI) => {
+      console.log('teamslice team ' + sentData)
+        try{
+            return await teamService.updateTeam(sentData)
         }catch (error){
             const message = 
             (error.response && 
@@ -136,6 +178,19 @@ export const teamSlice = createSlice({
             state.isError = true
             state.message = action.payload
         })
+        .addCase(getMyTeams.pending, (state) => {
+            state.isLoading = true
+        })
+        .addCase(getMyTeams.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isSuccess = true
+            state.teams = action.payload
+        })
+        .addCase(getMyTeams.rejected, (state, action) => {
+            state.isLoading = false
+            state.isError = true
+            state.message = action.payload
+        })
         .addCase(deleteTeam.pending, (state) => {
             state.isLoading = true
         })
@@ -145,6 +200,19 @@ export const teamSlice = createSlice({
             state.teams = action.payload
         })
         .addCase(deleteTeam.rejected, (state, action) => {
+            state.isLoading = false
+            state.isError = true
+            state.message = action.payload
+        })
+        .addCase(updateLike.pending, (state) => {
+            state.isLoading = true
+        })
+        .addCase(updateLike.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isSuccess = true
+            state.teams = action.payload
+        })
+        .addCase(updateLike.rejected, (state, action) => {
             state.isLoading = false
             state.isError = true
             state.message = action.payload
