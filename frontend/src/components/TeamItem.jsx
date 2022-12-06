@@ -22,6 +22,7 @@ function TeamItem({team}) {
     const [player9] = useState(team.player9)
     const [player10] = useState(team.player10)
     const [player11] = useState(team.player11)
+    const [likes] = useState(team.likes)
     
 
     const displayTeam = (e) => {
