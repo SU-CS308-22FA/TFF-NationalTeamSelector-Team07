@@ -4,17 +4,22 @@ import { useSelector, useDispatch } from 'react-redux'
 import MainPagePlayerItem from '../components/MainPagePlayerItem'
 import {getPlayersHome} from '../features/players/playerSlice'
 import Spinner from '../components/Spinner'
+import {getTeams, reset} from '../features/teams/teamSlice'
+import TeamItemHomePage from '../components/TeamItemHomePage'
 
 function Home() {
 
     const {user} = useSelector( (state) => state.auth)
     const dispatch = useDispatch()
+    const {teams} = useSelector((state) => state.teams)
 
     const {players, isLoading, isSuccess} = useSelector((state) => state.players)
 
     useEffect(() => {
         return () => {
             dispatch(getPlayersHome())
+            dispatch(getTeams())
+            
         }
     }, [dispatch, isSuccess])
 
@@ -49,7 +54,11 @@ function Home() {
                 </div>
                 <hr class="solid" style={{marginTop:"50px"}}></hr>
                 <br/>
-                <h1>POST TEMPLATES(IN PROGRESS...)</h1>
+                
+                <div>
+                {teams.map((team) => (
+                    <TeamItemHomePage key={team._id} team={team}/>))}
+                </div>
                 </>
             
             )

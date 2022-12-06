@@ -17,8 +17,6 @@ const createTeam = async (teamData, token) => {
 
 // get user teams
 const getTeams = async (token) => {
-    //console.log('teamservice: ' + JSON.stringify(teamData))
-    //console.log('teamservice222: ' + teamData.user_id)
 
     const config = {
         headers: {
@@ -27,7 +25,7 @@ const getTeams = async (token) => {
     }
 
     const response = await axios.get('/api/teams/')
-    console.log(response.data)
+    //console.log(response.data)
 
     return response.data
 }
@@ -39,9 +37,24 @@ const getTeam = async (teamId, token) => {
             Authorization: `user ${token}`
         }
     }
-    console.log('teamservice: ' + teamId)
+    //console.log('teamservice: ' + teamId)
     const response = await axios.get('/api/teams/' + teamId)
-    console.log(response.data)
+    //console.log(response.data)
+
+    
+    return response.data
+}
+
+// get user team
+const getMyTeams = async (getTeam, token) => {
+    const config = {
+        headers: {
+            Authorization: `user ${token}`
+        }
+    }
+    //console.log('teamservice: ' + getTeam)
+    const response = await axios.get('/api/teams/', {user: getTeam.user_id})
+    //console.log(response.data)
 
     
     return response.data
@@ -61,6 +74,22 @@ const deleteTeam = async (teamData) => {
     
 }
 
+// update team likes
+const updateTeam = async (sentData) => {
+
+    const response = await axios.put('/api/teams/' + sentData.team_id, sentData)
+    //console.log("response", response.data)
+
+    if(response.data) {
+        localStorage.setItem('team', JSON.stringify(response.data))
+    }
+    
+    
+    return response.data
+    
+}
+
+
 
 
 const teamService = {
@@ -68,6 +97,8 @@ const teamService = {
     getTeams,
     deleteTeam,
     getTeam,
+    getMyTeams,
+    updateTeam,
 }
 
 export default teamService
