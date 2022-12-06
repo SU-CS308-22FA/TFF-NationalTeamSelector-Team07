@@ -1,22 +1,27 @@
 import { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import {getTeams, reset} from '../features/teams/teamSlice'
+import {getMyTeams, reset,getTeams} from '../features/teams/teamSlice'
 import Spinner from '../components/Spinner'
 import TeamItem from '../components/TeamItem'
 
 
 function Teams() {
     const {teams, isLoading} = useSelector((state) => state.teams)
-    //const {user} = useSelector((state) => state.auth)
-    //const {team} = useSelector((state) => state.teams)
+    const {user} = useSelector((state) => state.auth)
+    const {team} = useSelector((state) => state.teams)
    // const [user_id] = useState(user._id)
 
     const dispatch = useDispatch()
 
+    const getTeam = {
+        user_id: user._id
+    }
+
 
     useEffect(() => {
-        
-        dispatch(getTeams())
+        console.log(getTeam)
+        dispatch(getMyTeams(getTeam))
+        //dispatch(getTeams())
     }, [dispatch])
 
     

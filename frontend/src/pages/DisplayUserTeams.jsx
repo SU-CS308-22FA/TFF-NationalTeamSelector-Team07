@@ -16,7 +16,7 @@ function DisplayTeam() {
     
 
     const {teamId, teamname, player1, player2, player3, player4,
-        player5, player6, player7, player8, player9, player10, player11} = state
+        player5, player6, player7, player8, player9, player10, player11, likes} = state
     //const [currentteam] = dispatch(getTeam(user_id))
 
 
@@ -33,16 +33,18 @@ function DisplayTeam() {
                     
                 </div>
                 
-
-                <div className="left-panel box">
-                    
-                </div>
                 <div className="right-panel box">
                     Team ID:
                 </div>
+                
                 <div className="right-panel box">
                     {teamId}
                 </div>
+                <div></div>
+                <div className="right-panel box">
+                    Likes: {likes.length}
+                </div>
+                
                 
                 <div></div>
                 
