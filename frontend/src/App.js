@@ -20,6 +20,7 @@ import Player from './pages/Player'
 import EditPlayer from './pages/EditPlayer'
 import ViewAllPlayers from './pages/ViewAllPlayers'
 import DisplayTeam from './pages/DisplayUserTeams'
+import TopFiveTeams from './pages/top5teams'
 
 function App() {
   return(
@@ -40,6 +41,7 @@ function App() {
             <Route path='/editPlayer' element={<EditPlayer/>} />
 
             <Route path='/viewAllPlayers' element={<ViewAllPlayers/>} />
+            <Route path='/TopFiveTeams' element={<TopFiveTeams/>} />
             <Route path='/displayTeam' element={<DisplayTeam/>} />
 
            

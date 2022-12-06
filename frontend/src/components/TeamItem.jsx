@@ -30,7 +30,7 @@ function TeamItem({team}) {
 
         navigate('/displayTeam', {state:{teamId: teamId, teamname: name, player1: player1, player2: player2, player3: player3,
             player4: player4, player5: player5, player6: player6, player7: player7, player8: player8, player9: player9, 
-            player10: player10, player11: player11}});
+            player10: player10, player11: player11, likes: likes}});
     }
     const deleteUserTeam = (e) => {
         e.preventDefault()
