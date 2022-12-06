@@ -14,15 +14,14 @@ function Teams() {
     const dispatch = useDispatch()
 
     const getTeam = {
-        team_id: team._id,
         user_id: user._id
     }
 
 
     useEffect(() => {
-        //console.log(getTeam.team_id)
-        //dispatch(getMyTeams(getTeam))
-        dispatch(getTeams())
+        console.log(getTeam)
+        dispatch(getMyTeams(getTeam))
+        //dispatch(getTeams())
     }, [dispatch])
 
     

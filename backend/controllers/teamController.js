@@ -43,8 +43,8 @@ const getTeam = asyncHandler(async (req, res) => {
 // @route GET /api/teams/:id
 // @access Private
 const getMyTeams = asyncHandler(async (req, res) => {
-    const {team_id, user_id} = req.body
-    //console.log(team_id)
+    const {user_id} = req.body
+    console.log(user_id)
     
     const team = await Team.find({user: user_id})
 
@@ -111,10 +111,6 @@ const deleteTeam = asyncHandler(async (req, res) => {
 // @access Private
 const updateTeam = asyncHandler(async (req, res) => {
     const {team_id, user_id, isliked} = req.body
-    console.log("controller teamid: ", team_id)
-    console.log("controller userid: ", user_id)
-    console.log("controller liked: ", isliked)
-
 
     const team = await Team.find({_id: team_id})
     

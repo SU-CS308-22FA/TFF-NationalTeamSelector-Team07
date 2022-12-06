@@ -98,7 +98,7 @@ export const getMyTeams = createAsyncThunk(
 export const deleteTeam = createAsyncThunk(
     'auth/deleteTeam', 
     async (team, thunkAPI) => {
-      console.log('authslice team ' + team)
+      //console.log('authslice team ' + team)
         try{
             return await teamService.deleteTeam(team)
         }catch (error){
@@ -118,7 +118,7 @@ export const deleteTeam = createAsyncThunk(
 export const updateLike = createAsyncThunk(
     'teams/updateLike', 
     async (sentData, thunkAPI) => {
-      console.log('update slice team ' + sentData)
+      //console.log('update slice team ' + sentData)
         try{
             return await teamService.updateTeam(sentData)
         }catch (error){
