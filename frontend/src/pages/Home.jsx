@@ -48,7 +48,7 @@ function Home() {
                     <Link to='/teams'>
                         <button >View your team</button>
                     </Link>
-                    <Link to=''>
+                    <Link to='/topFiveTeams'>
                         <button >Top 5 teams</button>
                     </Link>
                 </div>
