@@ -5,6 +5,8 @@ import {toast} from 'react-toastify'
 import { updateLike } from '../features/teams/teamSlice'
 import { useDispatch,useSelector } from 'react-redux'
 import { format } from 'date-fns'
+import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
+
 
 function TeamItem({team}) {
 
@@ -50,32 +52,12 @@ function TeamItem({team}) {
         window.location.reload(false);
 
     };
+
+    /*
     
-
-    const displayTeam = (e) => {
-        e.preventDefault()
-        
-
-        navigate('/displayTeam', {state:{teamId: teamId, teamname: name, player1: player1, player2: player2, player3: player3,
-            player4: player4, player5: player5, player6: player6, player7: player7, player8: player8, player9: player9, 
-            player10: player10, player11: player11, likes: likes}});
-    }
-
-    return (
-        <div className="tickets">
-            <div className="ticket-headings">
                 
                 
-                <div className="left-panel box">
-                    {team._id}
-                </div>
-                <div className="middle-panel box">
-                    {team.teamName}
-                </div>
-                <div className="right-panel box">
-                    {format(new Date(team.createdAt), "dd/MM/Y")}
-                    
-                </div>
+                
                
                 <form onSubmit={displayTeam}  >
                     <button className="btn btn-reverse btn-sm">View Team</button>
@@ -102,9 +84,100 @@ function TeamItem({team}) {
                         }
                     `}
                 </style>
-                
+     */
+    
+
+    const displayTeam = (e) => {
+        e.preventDefault()
+        
+
+        navigate('/displayTeam', {state:{teamId: teamId, teamname: name, player1: player1, player2: player2, player3: player3,
+            player4: player4, player5: player5, player6: player6, player7: player7, player8: player8, player9: player9, 
+            player10: player10, player11: player11, likes: likes}});
+    }
+
+    return (
+        <section className="w-auto p-1" style={{ backgroundColor: '#cdced1' }}>
+            <MDBContainer className="w-auto p-1">
+                <MDBRow className="justify-content-center align-items-center h-100">
+                <MDBCol lg="10" className="mb-4 mb-lg-4">
+                    <MDBCard className="mb-3" style={{ borderRadius: '.5rem' }}>
+                    <MDBRow className="g-5">
+                        <MDBCol md="4" className="gradient-custom text-center text-white" 
+                        style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem', backgroundColor: '#B84949'}}>
+                        
+                        <MDBTypography tag="h2">Team ID: {teamId}</MDBTypography>
+                        
+                        <MDBIcon far icon="edit mb-5" />
+                        </MDBCol>
+                        <MDBCol md="8">
+                        <MDBCardBody className="p-4">
+                            <MDBTypography style={{textAlign:'center'}} tag="h2">team name: {name}</MDBTypography>
+                            <hr className="mt-0 mb-4" />
+                            <MDBRow className="pt-1">
+                            <MDBCardImage src='https://news.virginia.edu/sites/default/files/Header_Soccer.jpg' fluid alt='...' 
+                                            style={{
+                                            width: 350,
+                                            height: 200,
+                                            backgroundColor: "red",
+                                            verticalAlign: "center"
+                                            }}
+                                />
+                                <a>
+                                <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
+                                </a>
+                            
+                            <MDBCol size="10" className="mb-1">
+                            </MDBCol>
+                            </MDBRow>
+                            <MDBCol size="10" className="mb-6">
+                                <MDBTypography tag="h4">Posted at: {format(new Date(team.createdAt), "dd/MM/Y")}</MDBTypography>
+                            </MDBCol>
+                        </MDBCardBody>
+                        </MDBCol>
+                    </MDBRow>
+                    </MDBCard>
+                </MDBCol>
+                </MDBRow>
+                <MDBRow>
+                <div className="tickets">
+                <div className="ticket-headings">
+                    <div></div>
+                    <div></div>
+                    <form onSubmit={displayTeam}  >
+                        <button className="btn btn-reverse btn-sm">View Team</button>
+                    </form>
+                    
+                    <div></div>
+                    <button
+                        className={"btn btn-reverse btn-sm like-button " + (team.likes.includes(user._id) ? "liked" : "")}
+                        onClick = {incrementLike}
+                    >
+                            
+                    <FaThumbsUp />  {likes.length}
+                    </button>
+                    
+                    
+                    <style>
+                        {`
+                            .like-button {
+                            font-size: 1rem;
+                                padding: 9px 10px;
+                                color:  #585858;
+                            }
+                            .liked {
+                                font-weight: bold;
+                                color: #1565c0;
+                            }
+                        `}
+                    </style>      
+                </div>
             </div>
-        </div>
+                </MDBRow>
+            </MDBContainer>
+  
+    </section>
+    
         
     )
 }

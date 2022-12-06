@@ -54,7 +54,7 @@ function Home() {
                 </div>
                 <hr class="solid" style={{marginTop:"50px"}}></hr>
                 <br/>
-                <h1>POST TEMPLATES WILL BE ADDED(IN PROGRESS...)</h1>
+                
                 <div>
                 {teams.map((team) => (
                     <TeamItemHomePage key={team._id} team={team}/>))}
