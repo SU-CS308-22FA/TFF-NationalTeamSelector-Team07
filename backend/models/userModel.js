@@ -20,6 +20,12 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         required: true,
         default: false
+    }, 
+    verification: {
+        type: Boolean,
+        required: true,
+        default: false
+        // false= normal user
     }
 },
 {
