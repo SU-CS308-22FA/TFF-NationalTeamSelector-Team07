@@ -103,22 +103,23 @@ function TeamItem({team}) {
                 <MDBCol lg="10" className="mb-4 mb-lg-4">
                     <MDBCard className="mb-3" style={{ borderRadius: '.5rem' }}>
                     <MDBRow className="g-5">
-                        <MDBCol md="4" className="gradient-custom text-center text-white" 
+                        <MDBCol md="4" className="gradient-custom text-center text-white " 
                         style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem', backgroundColor: '#B84949'}}>
                         
-                        <MDBTypography tag="h2">Team ID: {teamId}</MDBTypography>
+                        <div className="d-flex align-items-center"></div>
+                        <MDBTypography  tag="h10">Team ID: {teamId}</MDBTypography>
                         
-                        <MDBIcon far icon="edit mb-5" />
+                        {/* <MDBIcon far icon="edit mb-5" /> */}
                         </MDBCol>
                         <MDBCol md="8">
                         <MDBCardBody className="p-4">
-                            <MDBTypography style={{textAlign:'center'}} tag="h2">team name: {name}</MDBTypography>
+                            <MDBTypography style={{textAlign:'center'}} tag="h5">team name: {name}</MDBTypography>
                             <hr className="mt-0 mb-4" />
                             <MDBRow className="pt-1">
                             <MDBCardImage src='https://news.virginia.edu/sites/default/files/Header_Soccer.jpg' fluid alt='...' 
                                             style={{
                                             width: 350,
-                                            height: 200,
+                                            height:200,
                                             backgroundColor: "red",
                                             verticalAlign: "center"
                                             }}
@@ -127,11 +128,11 @@ function TeamItem({team}) {
                                 <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
                                 </a>
                             
-                            <MDBCol size="10" className="mb-1">
+                            <MDBCol size="10" className="mb-4">
                             </MDBCol>
                             </MDBRow>
-                            <MDBCol size="10" className="mb-6">
-                                <MDBTypography tag="h4">Posted at: {format(new Date(team.createdAt), "dd/MM/Y")}</MDBTypography>
+                            <MDBCol size="10" className="mb-4">
+                                <MDBTypography tag="h10">Posted at: {format(new Date(team.createdAt), "dd/MM/Y")}</MDBTypography>
                             </MDBCol>
                         </MDBCardBody>
                         </MDBCol>
