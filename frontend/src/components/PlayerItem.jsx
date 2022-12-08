@@ -15,14 +15,10 @@ function PlayerItem({player, navigation}) {
     const [player_id] = useState(player._id)
     const [Position] = useState(player.position)
     const [Rating] = useState(player.raiting)
-
-    const playerData = {
-        fullName: FullName,
-        _id: player_id,
-        team: Team,
-        position: Position,
-        raiting: Rating
-    }
+    const [DateOfBirth] = useState(player.DateOfBirth)
+    const [PreferedFoot] = useState(player.PreferedFoot)
+    const [Age] = useState(player.Age)
+    const [PlaceOfBirth] = useState(player.PlaceOfBirth)
 
     const handleDelete = (e) => {
         e.preventDefault()
@@ -36,6 +32,32 @@ function PlayerItem({player, navigation}) {
         e.preventDefault()
         navigate('/editPlayer', {state:{playerId: player_id,playerName: FullName, playerTeam: Team, playerRating: Rating, playerPosition: Position}});
     }
+
+    const playerData = {
+        fullName: FullName,
+        _id: player_id,
+        team: Team,
+        position: Position,
+        raiting: Rating,
+        dob: DateOfBirth,
+        foot: PreferedFoot,
+        age: Age,
+        pob: PlaceOfBirth
+    }
+
+    
+
+    const handleViewPlayerInfo = (e) => {
+        e.preventDefault()
+        //console.log(player_id)
+        //console.log("24 line: " + DateOfBirth)
+        navigate('/player-profile', {state: {pid: player_id, name: FullName, 
+            team: Team, pos: Position, Rating: Rating, dob: DateOfBirth, 
+            foot: PreferedFoot, age: Age, pob: PlaceOfBirth} })
+        //window.location.reload()
+    }
+
+    
 
 
     return (
@@ -58,6 +80,9 @@ function PlayerItem({player, navigation}) {
                 </form>
                 <form onSubmit={handleDelete}  >
                     <button className="btn btn-reverse btn-sm">Delete</button>
+                </form>
+                <form onSubmit={handleViewPlayerInfo}  >
+                    <button className="btn btn-reverse btn-sm">Details</button>
                 </form>
                 
             </div>
