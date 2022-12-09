@@ -49,7 +49,7 @@ h3 {
   align-items: center;
   padding: 20px 0;
   border-bottom: 1px solid #e6e6e6;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
 }
 
 .header ul {
@@ -450,3 +450,18 @@ hr.solid {
 hr.dotted {
   border-top: 3px dotted black;
 }
+
+.search-box{
+  text-align: center;
+}
+
+.search-box-header{
+    flex-direction: column;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #282c34;
+}
+
