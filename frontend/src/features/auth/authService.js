@@ -18,7 +18,6 @@ const getUser = async (userID, token) => {
 
 const getUsers = async () => {
     const response = await axios.get('/api/users/')
-    console.log("authService", response.data)
     return response.data
 }
 
