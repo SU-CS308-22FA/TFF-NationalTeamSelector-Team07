@@ -1,14 +1,12 @@
 import {createSlice, createAsyncThunk, createAction} from '@reduxjs/toolkit'
-import playerService from '../players/playerService'
 import authService from './authService'
 
 // get user from localStorage
 
-const User = JSON.parse(localStorage.getItem('user'))
+const user = JSON.parse(localStorage.getItem('user'))
 
 const initialState = {
-    user: User ? User : null,
-    singleUser: [],
+    user: user ? user : null,
     isLoading: false,
     users: []
 }
@@ -110,13 +108,11 @@ export const deleteUser = createAsyncThunk(
 }) 
 export const getUser = createAsyncThunk(
   'auth/getUser', 
-
-  async (user, thunkAPI) => {
+  async (userId, thunkAPI) => {
    
       try{
           const token = thunkAPI.getState().auth.user.token
-          return await authService.getUser(user, token)
-
+          return await authService.getUser(userId, token)
       }catch (error){
           const message = 
           (error.response && 
@@ -131,18 +127,12 @@ export const getUser = createAsyncThunk(
 })
 
 export const getUsers = createAsyncThunk(
-
-  'auth/getUsers',
+  'auth/getUsers', 
   async (_, thunkAPI) => {
-    console.log("authSlice: line 134")
   
       try{
-        const token = thunkAPI.getState().auth.user.token
-        //console.log("authSlice: line 138")
-        return await authService.getUsers(token)
+        return await authService.getUsers()
       }catch (error){
-        console.log("authSlice: line 140")
-
           const message = 
           (error.response && 
               error.response.data && 
@@ -150,12 +140,8 @@ export const getUsers = createAsyncThunk(
               error.message || 
               error.toString()
 
-              
-              return thunkAPI.rejectWithValue(message)
+          return thunkAPI.rejectWithValue(message)
       }
-      
-
-
 })
 
 //logout user
@@ -224,16 +210,6 @@ export const authSlice = createSlice({
             state.isLoading = false
           })
           .addCase(deleteUser.rejected, (state) => {
-            state.isLoading = false
-          })
-          .addCase(getUsers.pending, (state) => {
-            state.isLoading = false
-          })
-          .addCase(getUsers.fulfilled, (state, action) => {
-            state.user = action.payload
-            state.isLoading = false
-          })
-          .addCase(getUsers.rejected, (state) => {
             state.isLoading = false
           })
     }

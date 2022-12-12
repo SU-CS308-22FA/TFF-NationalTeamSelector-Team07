@@ -4,14 +4,12 @@ const
 { 
     registerUser, 
     loginUser, 
-    loginAdmin, 
+    loginAdmin,
+    getMe, 
     updateUser,
     deleteUser,
-
-    getUser,
-    getUsers,
-} = require('../controllers/userController.js')
-
+    getUsers 
+} = require('../controllers/userController')
 
 const { protect } = require('../middleware/authMiddleware')
 
@@ -19,12 +17,9 @@ router.post('/', registerUser)
 router.get('/', getUsers)
 router.post('/login', loginUser)
 router.post('/adminlogin', loginAdmin)
+router.get('/me', protect, getMe)
 
-
-router.route('/:id')
-.put(updateUser)
-.delete(deleteUser)
-.get(getUser)
+router.route('/:id').put(updateUser).delete(deleteUser)
 
 
 
