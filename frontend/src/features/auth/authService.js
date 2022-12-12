@@ -3,24 +3,6 @@ import axios from 'axios'
 
 // const API_URL = '/api/users/'
 
-//get user
-const getUser = async (userID, token) => {
-    const config = {
-        headers: {
-            Authorization: `admin ${token}`
-        }
-    }
-
-    const response = await axios.get('/api/users/' + userID)
-
-    return response.data
-}
-
-const getUsers = async () => {
-    const response = await axios.get('/api/users/')
-    return response.data
-}
-
 // register user 
 const register = async (userData) => {
     const response = await axios.post('/api/users/', userData)
@@ -57,7 +39,7 @@ const loginAdmin = async (userData) => {
 // update user
 const update = async (userData) => {
     //console.log('authservice id ' + userData)
-    const response = await axios.put('/api/users/' + userData.id, {name: userData.name, email: userData.email, verification: userData.verification})
+    const response = await axios.put('/api/users/' + userData.id, {name: userData.name, email: userData.email})
 
     if(response.data) {
         localStorage.setItem('user', JSON.stringify(response.data))
@@ -96,8 +78,6 @@ const authService = {
     loginAdmin,
     update,
     deleteUser,
-    getUser,
-    getUsers
 }
 
 export default authService

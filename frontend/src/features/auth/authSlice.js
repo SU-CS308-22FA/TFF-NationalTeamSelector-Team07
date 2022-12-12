@@ -1,3 +1,110 @@
+/*
+import { createSlice, createAsyncThunk, createAction } from '@reduxjs/toolkit'
+import authService from './authService'
+// NOTE: use a extractErrorMessage function to save some repetition
+
+
+// Get user from localstorage
+const user = JSON.parse(localStorage.getItem('user'))
+
+// NOTE: remove isSuccess from state as we can infer from
+// presence or absence of user
+// There is no need for a reset function as we can do this in our pending cases
+// No need for isError or message as we can catch the AsyncThunkAction rejection
+// in our component and we will have the error message there
+const initialState = {
+  user: user ? user : null,
+  isLoading: false,
+}
+
+// register new user
+export const register = createAsyncThunk(
+    'auth/register', 
+    async (user, thunkAPI) => {
+        try{
+            return await authService.register(user)
+        }catch (error){
+            const message = 
+            (error.response && 
+                error.response.data && 
+                error.response.data.message) || 
+                error.message || 
+                error.toString()
+
+            return thunkAPI.rejectWithValue(message)
+        }
+
+})
+
+// login a user
+export const login = createAsyncThunk(
+    'auth/login', 
+    async (user, thunkAPI) => {
+        try{
+            return await authService.login(user)
+        }catch (error){
+            const message = 
+            (error.response && 
+                error.response.data && 
+                error.response.data.message) || 
+                error.message || 
+                error.toString()
+
+            return thunkAPI.rejectWithValue(message)
+        }
+
+}) 
+
+
+// Logout user
+// NOTE: here we don't need a thunk as we are not doing anything async so we can
+// use a createAction instead
+export const logout = createAction('auth/logout', () => {
+  authService.logout()
+  // return an empty object as our payload as we don't need a payload but the
+  // prepare function requires a payload return
+  return {}
+})
+
+// NOTE: in cases of login or register pending or rejected then user will
+// already be null so no need to set to null in these cases
+
+export const authSlice = createSlice({
+  name: 'auth',
+  initialState,
+  reducers: {
+    logout: (state) => {
+      state.user = null
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(register.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(register.fulfilled, (state, action) => {
+        state.user = action.payload
+        state.isLoading = false
+      })
+      .addCase(register.rejected, (state) => {
+        state.isLoading = false
+      })
+      .addCase(login.pending, (state) => {
+        state.isLoading = false
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.user = action.payload
+        state.isLoading = false
+      })
+      .addCase(login.rejected, (state) => {
+        state.isLoading = false
+      })
+  },
+})
+
+export default authSlice.reducer
+ */
+
 import {createSlice, createAsyncThunk, createAction} from '@reduxjs/toolkit'
 import authService from './authService'
 
@@ -8,7 +115,6 @@ const user = JSON.parse(localStorage.getItem('user'))
 const initialState = {
     user: user ? user : null,
     isLoading: false,
-    users: []
 }
  // register new user
 export const register = createAsyncThunk(
@@ -68,7 +174,7 @@ export const loginAdmin = createAsyncThunk(
 
 })
 
-// update a user
+// login a user
 export const update = createAsyncThunk(
   'auth/update', 
   async (user, thunkAPI) => {
@@ -106,43 +212,7 @@ export const deleteUser = createAsyncThunk(
       }
 
 }) 
-export const getUser = createAsyncThunk(
-  'auth/getUser', 
-  async (userId, thunkAPI) => {
-   
-      try{
-          const token = thunkAPI.getState().auth.user.token
-          return await authService.getUser(userId, token)
-      }catch (error){
-          const message = 
-          (error.response && 
-              error.response.data && 
-              error.response.data.message) || 
-              error.message || 
-              error.toString()
 
-          return thunkAPI.rejectWithValue(message)
-      }
-
-})
-
-export const getUsers = createAsyncThunk(
-  'auth/getUsers', 
-  async (_, thunkAPI) => {
-  
-      try{
-        return await authService.getUsers()
-      }catch (error){
-          const message = 
-          (error.response && 
-              error.response.data && 
-              error.response.data.message) || 
-              error.message || 
-              error.toString()
-
-          return thunkAPI.rejectWithValue(message)
-      }
-})
 
 //logout user
 export const logout =  createAction('auth/logout', () => {
