@@ -1,5 +1,5 @@
 import {Link, useNavigate} from 'react-router-dom'
-import { useEffect} from 'react'
+import { useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import MainPagePlayerItem from '../components/MainPagePlayerItem'
 import {getPlayersHome} from '../features/players/playerSlice'
@@ -10,11 +10,14 @@ import authService from '../features/auth/authService'
 
  function Home() {
 
-    let items = []
+    // let items = []
     const {user} = useSelector( (state) => state.auth)
     const dispatch = useDispatch()
+    const [userList, setUserList] =  useState([])
 
     const {players, isLoading, isSuccess} = useSelector((state) => state.players)
+
+    let items = []
 
     useEffect(() => {
         return () => {
@@ -30,19 +33,10 @@ import authService from '../features/auth/authService'
 
 
   useEffect(() => {
-    return async (items) => {
-      items = await authService.getUsers() || [];
-      console.log("userList function",items);
+    return async () => {
+      setUserList(await authService.getUsers() || []);
     }
 },)
-
-console.log("userList", items )
-  
-  // async function userList() {
-  //   const items = await authService.getUsers() || [];
-  //   console.log("userList function",items);
-  //   return items;
-  // }
 
     // 👇️ sort by String property ASCENDING (A - Z)
     const strAscending = [...players].sort((a, b) =>
@@ -53,29 +47,6 @@ console.log("userList", items )
     if(isLoading) {
         return <Spinner />
     }
-
-    // const items = [
-    //     {
-    //       id: 0,
-    //       name: 'Cobol'
-    //     },
-    //     {
-    //       id: 1,
-    //       name: 'JavaScript'
-    //     },
-    //     {
-    //       id: 2,
-    //       name: 'Basic'
-    //     },
-    //     {
-    //       id: 3,
-    //       name: 'PHP'
-    //     },
-    //     {
-    //       id: 4,
-    //       name: 'Java'
-    //     }
-    //   ]
     
       const handleOnSearch = (string, results) => {
         // onSearch will have as the first callback parameter
@@ -114,7 +85,7 @@ console.log("userList", items )
                 <header className="search-box-header">
                     <div style={{ width: 400, marginBottom:"20px" }}>
                     <ReactSearchAutocomplete
-                        items={items}
+                        items={userList}
                         onSearch={handleOnSearch}
                         onHover={handleOnHover}
                         onSelect={handleOnSelect}
