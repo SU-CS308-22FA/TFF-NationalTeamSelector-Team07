@@ -26,9 +26,9 @@ function AdminProfilePage() {
         navigate('/profileSettings')
         //window.location.reload()
     }
-    const handleSubmitUserSettings = (e) => {
+    const handleSubmitVerify = (e) => {
         e.preventDefault()
-        navigate('/users')
+        navigate('/profileSettings')
         //window.location.reload()
     }
 
@@ -62,9 +62,9 @@ function AdminProfilePage() {
                     Profile
                </button>
             </form>
-            <form onSubmit={handleSubmitUserSettings}className='btn btn-block'>
+            <form onSubmit={handleSubmitVerify}className='btn btn-block'>
                <button>
-                    User Settings
+                    User Verification
                </button>
             </form>
         </div>
