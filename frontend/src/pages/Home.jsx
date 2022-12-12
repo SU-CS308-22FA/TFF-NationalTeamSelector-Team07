@@ -3,11 +3,14 @@ import { useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import MainPagePlayerItem from '../components/MainPagePlayerItem'
 import {getPlayersHome} from '../features/players/playerSlice'
+import {getUsers} from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
+import authService from '../features/auth/authService'
 
-function Home() {
+ function Home() {
 
+    let items = []
     const {user} = useSelector( (state) => state.auth)
     const dispatch = useDispatch()
 
@@ -19,6 +22,28 @@ function Home() {
         }
     }, [dispatch, isSuccess])
 
+    useEffect(() => {
+      return () => {
+          dispatch(getUsers())
+      } 
+  },[dispatch])
+
+
+  useEffect(() => {
+    return async (items) => {
+      items = await authService.getUsers() || [];
+      console.log("userList function",items);
+    }
+},)
+
+console.log("userList", items )
+  
+  // async function userList() {
+  //   const items = await authService.getUsers() || [];
+  //   console.log("userList function",items);
+  //   return items;
+  // }
+
     // 👇️ sort by String property ASCENDING (A - Z)
     const strAscending = [...players].sort((a, b) =>
     a.raiting > b.raiting ? 1 : -1,
@@ -29,28 +54,28 @@ function Home() {
         return <Spinner />
     }
 
-    const items = [
-        {
-          id: 0,
-          name: 'Cobol'
-        },
-        {
-          id: 1,
-          name: 'JavaScript'
-        },
-        {
-          id: 2,
-          name: 'Basic'
-        },
-        {
-          id: 3,
-          name: 'PHP'
-        },
-        {
-          id: 4,
-          name: 'Java'
-        }
-      ]
+    // const items = [
+    //     {
+    //       id: 0,
+    //       name: 'Cobol'
+    //     },
+    //     {
+    //       id: 1,
+    //       name: 'JavaScript'
+    //     },
+    //     {
+    //       id: 2,
+    //       name: 'Basic'
+    //     },
+    //     {
+    //       id: 3,
+    //       name: 'PHP'
+    //     },
+    //     {
+    //       id: 4,
+    //       name: 'Java'
+    //     }
+    //   ]
     
       const handleOnSearch = (string, results) => {
         // onSearch will have as the first callback parameter
