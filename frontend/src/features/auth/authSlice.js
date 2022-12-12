@@ -110,11 +110,13 @@ export const deleteUser = createAsyncThunk(
 }) 
 export const getUser = createAsyncThunk(
   'auth/getUser', 
+
   async (user, thunkAPI) => {
    
       try{
           const token = thunkAPI.getState().auth.user.token
           return await authService.getUser(user, token)
+
       }catch (error){
           const message = 
           (error.response && 
@@ -129,6 +131,7 @@ export const getUser = createAsyncThunk(
 })
 
 export const getUsers = createAsyncThunk(
+
   'auth/getUsers',
   async (_, thunkAPI) => {
     console.log("authSlice: line 134")
@@ -139,6 +142,7 @@ export const getUsers = createAsyncThunk(
         return await authService.getUsers(token)
       }catch (error){
         console.log("authSlice: line 140")
+
           const message = 
           (error.response && 
               error.response.data && 
@@ -150,6 +154,7 @@ export const getUsers = createAsyncThunk(
               return thunkAPI.rejectWithValue(message)
       }
       
+
 
 })
 

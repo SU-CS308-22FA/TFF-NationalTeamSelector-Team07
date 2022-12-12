@@ -7,9 +7,11 @@ const
     loginAdmin, 
     updateUser,
     deleteUser,
+
     getUser,
     getUsers,
 } = require('../controllers/userController.js')
+
 
 const { protect } = require('../middleware/authMiddleware')
 

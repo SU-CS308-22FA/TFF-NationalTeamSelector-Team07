@@ -1,4 +1,10 @@
-# Getting Started with Create React App
+# TTF NATIONAL TEAM SELECTOR
+
+Server URL:
+https://tffnationalteamselector-v2.herokuapp.com/
+
+##Project Descrition:
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

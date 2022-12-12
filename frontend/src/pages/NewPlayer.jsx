@@ -23,6 +23,7 @@ function NewPlayer() {
     const [team, setPlayerTeam] = useState()
     const [position, setPlayerPosition] = useState()
     const [raiting, setPlayerRaiting] = useState()
+    
     const fileReader = new FileReader();
   
    
@@ -114,12 +115,16 @@ function NewPlayer() {
         e.preventDefault()
         for(let k=0; k < Object.entries(array).length; k++){
             
-           
+            const pid=Object.values(array)[k].pid
             const fullName=Object.values(array)[k].Name
             const position= Object.values(array)[k].Position
             const team=Object.values(array)[k].Team
             const raiting =Object.values(array)[k].Rating
-            dispatch(createPlayer({fullName, team, position, raiting}))
+            const DateOfBirth=Object.values(array)[k].DateOfBirth
+            const PreferedFoot= Object.values(array)[k].PreferedFoot
+            const Age=Object.values(array)[k].Age
+            const PlaceOfBirth =Object.values(array)[k].PlaceOfBirth
+            dispatch(createPlayer({fullName, team, position, raiting, DateOfBirth, PreferedFoot, Age, PlaceOfBirth}))
             
         }
 

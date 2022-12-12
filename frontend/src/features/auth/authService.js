@@ -15,6 +15,7 @@ const getUser = async (userID, token) => {
 
     return response.data
 }
+
 const getUsers = async (token) => {
     console.log("authService: line 19")
     const config = {
@@ -30,6 +31,9 @@ const getUsers = async (token) => {
 
     return response.data
 }
+
+
+
 // register user 
 const register = async (userData) => {
     const response = await axios.post('/api/users/', userData)
