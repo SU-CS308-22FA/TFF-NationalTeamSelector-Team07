@@ -22,6 +22,7 @@ import ViewAllPlayers from './pages/ViewAllPlayers'
 import DisplayTeam from './pages/DisplayUserTeams'
 
 import PlayerProfilePage from './pages/PlayerProfilePage'
+import HistoricPlayerAdd from './pages/HistoricPlayerAdd'
 
 import TopFiveTeams from './pages/top5teams'
 
@@ -54,6 +55,7 @@ function App() {
             <Route path='/new-player' element={<NewPlayer />}/>
 
             <Route path='/player-profile' element={<PlayerProfilePage />}/>
+            <Route path='/historic-add' element={<HistoricPlayerAdd />}/>
 
             <Route path='/teams' element={<PrivateRoute />}>
             <Route path='/teams' element={<Teams />}/>

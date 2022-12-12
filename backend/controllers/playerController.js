@@ -32,25 +32,9 @@ const getPlayer = asyncHandler(async (req, res) => {
 // @route POST /api/teams
 // @access Private
 const createPlayer = asyncHandler(async (req, res) => {
-  //console.log('playerController: ', res)
-    // player.create(req.body, (error, data) => {
-    //     if (error) {
-    //       throw new Error('Please fill all spaces')
-    //     } else {
-    //       console.log(data)
-          
-    //     }
-    //   })
 
-      
-    //   const player = await Team.create({
-    //     fullName,
-    //     team,
-    //     position,
-    //     raiting
-    // })
-    // res.status(201).json(player)
-    //-----
+  
+  console.log("playerController: line 37")
     const {pid, fullName, team, position, raiting, DateOfBirth, PreferedFoot, Age, PlaceOfBirth} = req.body
   
     if(!fullName || !team || !position || !raiting || !DateOfBirth || !PreferedFoot || !Age || !PlaceOfBirth) {
@@ -70,7 +54,7 @@ const createPlayer = asyncHandler(async (req, res) => {
         Age,
         PlaceOfBirth
     })
-
+    
     res.status(201).json(Player)
 })
 
