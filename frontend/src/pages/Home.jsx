@@ -36,11 +36,11 @@ import TeamItemHomePage from '../components/TeamItemHomePage'
         }
     }, [dispatch, isSuccess])
 
-    useEffect(() => {
-      return () => {
-          dispatch(getUsers())
-      } 
-  },[dispatch])
+//     useEffect(() => {
+//       return () => {
+//           dispatch(getUsers())
+//       } 
+//   },[dispatch])
 
 
   useEffect(() => {
