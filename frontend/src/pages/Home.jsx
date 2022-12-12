@@ -5,15 +5,24 @@ import MainPagePlayerItem from '../components/MainPagePlayerItem'
 import {getPlayersHome} from '../features/players/playerSlice'
 import {getUsers} from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
+
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 import authService from '../features/auth/authService'
+
+import {getTeams, reset} from '../features/teams/teamSlice'
+import TeamItemHomePage from '../components/TeamItemHomePage'
+
 
  function Home() {
 
     // let items = []
     const {user} = useSelector( (state) => state.auth)
     const dispatch = useDispatch()
+
     const [userList, setUserList] =  useState([])
+
+    const {teams} = useSelector((state) => state.teams)
+
 
     const {players, isLoading, isSuccess} = useSelector((state) => state.players)
 
@@ -22,6 +31,8 @@ import authService from '../features/auth/authService'
     useEffect(() => {
         return () => {
             dispatch(getPlayersHome())
+            dispatch(getTeams())
+            
         }
     }, [dispatch, isSuccess])
 
@@ -106,13 +117,17 @@ import authService from '../features/auth/authService'
                     <Link to='/teams'>
                         <button >View your team</button>
                     </Link>
-                    <Link to=''>
+                    <Link to='/topFiveTeams'>
                         <button >Top 5 teams</button>
                     </Link>
                 </div>
                 <hr class="solid" style={{marginTop:"20px"}}></hr>
                 <br/>
-                <h1>POST TEMPLATES(IN PROGRESS...)</h1>
+                
+                <div>
+                {teams.map((team) => (
+                    <TeamItemHomePage key={team._id} team={team}/>))}
+                </div>
                 </>
             )
             : 

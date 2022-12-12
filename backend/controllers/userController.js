@@ -7,7 +7,7 @@ const User = require('../models/userModel')
 // @route   /api/users
 // @access  Public
 const registerUser = asyncHandler(async (req,res) => {
-    const {name,email,password} = req.body //data stored here
+    const {name,email,password, verification} = req.body //data stored here
 
     if(!name || !email || !password){
         res.status(400)
@@ -34,7 +34,8 @@ const registerUser = asyncHandler(async (req,res) => {
     const user = await User.create({
         name,
         email,
-        password: hashedPassword
+        password: hashedPassword,
+        verification,
     })
 
     if(user) {
@@ -42,7 +43,8 @@ const registerUser = asyncHandler(async (req,res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
-            token: generateToken(user._id)
+            token: generateToken(user._id),
+            verification: user.verification
         })
     } else{
         res.status(400)
@@ -68,7 +70,8 @@ const loginUser = asyncHandler(async (req,res) => {
             name: user.name,
             email: user.email,
             token: generateToken(user._id),
-            isAdmin: user.isAdmin
+            isAdmin: user.isAdmin,
+            verification: user.verification
         })
     }else{
         res.status(401)
@@ -93,7 +96,8 @@ const loginAdmin = asyncHandler(async (req,res) => {
             name: user.name,
             email: user.email,
             token: generateToken(user._id),
-            isAdmin: user.isAdmin
+            isAdmin: user.isAdmin,
+            verification: user.verification
         })
     }else{
         res.status(401)
@@ -171,7 +175,8 @@ const getMe = asyncHandler(async (req,res) => {
 const user = {
     id: req.user._id,
     email: req.user.email,
-    name: req.user.name
+    name: req.user.name,
+    verification: req.user.verification
 }
     res.status(200).json(user)
 })

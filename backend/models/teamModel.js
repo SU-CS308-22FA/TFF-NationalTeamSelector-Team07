@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const {ObjectId} = mongoose.Schema.Types
 
 const teamSchema = mongoose.Schema({
     user: {
@@ -53,7 +54,13 @@ const teamSchema = mongoose.Schema({
     teamName: {
         type: String,
         required: [true, 'Please name your team']
-    }
+    },
+    likes: [
+            {
+            type: ObjectId,
+             ref:"User"
+            }
+        ]
 },
 {
     timestamps: true,

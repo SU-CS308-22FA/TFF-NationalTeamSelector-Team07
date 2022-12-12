@@ -8,12 +8,11 @@ import {login} from '../features/auth/authSlice'
 import {useNavigate} from 'react-router-dom'
 import Spinner from '../components/Spinner';
 
-
 function Login() {
 
     const [formData, setFromData] = useState({
         email: '',
-        password: '',  
+        password: ''
     })
 
     const {email, password} = formData
@@ -83,8 +82,9 @@ function Login() {
                     <div className="form-group">
                         <input type="password" className='form-control'
                         id='pssword' value={password} name='password' onChange={onChange} 
-                        placeholder='Enter your password' requred/>
+                        placeholder='Enter your password' required/>
                     </div>
+                    
                     <div className="form-group">
                         <button className="btn btn-block">
                             Submit

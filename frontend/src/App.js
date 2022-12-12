@@ -21,6 +21,11 @@ import EditPlayer from './pages/EditPlayer'
 import ViewAllPlayers from './pages/ViewAllPlayers'
 import DisplayTeam from './pages/DisplayUserTeams'
 
+import PlayerProfilePage from './pages/PlayerProfilePage'
+
+import TopFiveTeams from './pages/top5teams'
+
+
 function App() {
   return(
     <>
@@ -40,19 +45,21 @@ function App() {
             <Route path='/editPlayer' element={<EditPlayer/>} />
 
             <Route path='/viewAllPlayers' element={<ViewAllPlayers/>} />
+            <Route path='/TopFiveTeams' element={<TopFiveTeams/>} />
             <Route path='/displayTeam' element={<DisplayTeam/>} />
 
            
             <Route path='/new-team' element={<NewTeam />}/>
 
             <Route path='/new-player' element={<NewPlayer />}/>
-            
+
+            <Route path='/player-profile' element={<PlayerProfilePage />}/>
 
             <Route path='/teams' element={<PrivateRoute />}>
-              <Route path='/teams' element={<Teams />}/>
+            <Route path='/teams' element={<Teams />}/>
             </Route>
             <Route path='/team/:teamId' element={<PrivateRoute />}>
-              <Route path='/team/:teamId' element={<Team />}/>
+            <Route path='/team/:teamId' element={<Team />}/>
             </Route>
         </Routes>
       </div>
