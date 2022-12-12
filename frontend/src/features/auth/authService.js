@@ -16,23 +16,10 @@ const getUser = async (userID, token) => {
     return response.data
 }
 
-const getUsers = async (token) => {
-    console.log("authService: line 19")
-    const config = {
-        headers: {
-            Authorization: `admin ${token}`
-        }
-    }
-
-   
+const getUsers = async () => {
     const response = await axios.get('/api/users/')
- 
-    console.log("authService: " + JSON.stringify(response.data))
-
     return response.data
 }
-
-
 
 // register user 
 const register = async (userData) => {

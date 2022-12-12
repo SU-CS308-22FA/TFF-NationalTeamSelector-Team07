@@ -18,7 +18,6 @@ const createPlayer = async (playerData, token) => {
 
 // get user teams
 const getPlayers = async (token) => {
-    console.log("playerService: line 21")
     const config = {
         headers: {
             Authorization: `admin ${token}`
@@ -26,7 +25,7 @@ const getPlayers = async (token) => {
     }
 
     const response = await axios.get('/api/players/')
-    console.log("playerService: line 29: " + response.data)
+    console.log(response.data)
 
     return response.data
 }

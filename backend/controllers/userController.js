@@ -134,7 +134,7 @@ const loginAdmin = asyncHandler(async (req,res) => {
 // // @route PUT /api/teams/:id
 // // @access Private
 const updateUser = asyncHandler(async (req, res) => {
-    const {name, email, verification} = req.body
+    const {name, email} = req.body
 
     // get user using the id and jwt
     const user = await User.findById(req.params.id)
@@ -144,7 +144,7 @@ const updateUser = asyncHandler(async (req, res) => {
         throw new Error('User not found')
     }
 
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, {name: name, email: email, verification: verification}, {new: true})
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, {name: name, email: email}, {new: true})
 
     res.status(200).json(updatedUser)
 })
@@ -171,24 +171,15 @@ const deleteUser = asyncHandler(async (req, res) => {
 // @route   /api/users/me
 // @access  Private
 
-const getUser = asyncHandler(async (req,res) => {
-
-    User.findById(req.params.id, (error, data) => {
-        if (error) {
-          throw new Error('User not found')
-        } else {
-          res.status(200).json(data)
-        }
-      })
+const getMe = asyncHandler(async (req,res) => {
+const user = {
+    id: req.user._id,
+    email: req.user.email,
+    name: req.user.name,
+    verification: req.user.verification
+}
+    res.status(200).json(user)
 })
-
-const getUsers = asyncHandler(async (req, res) => {
-    
-    const users = await User.find()
-    res.status(200).json(users)
-    //console.log('user controller ' + users)
-  
-  })
 
 
 //generate token -> take token to see payload from jwt website.
@@ -210,8 +201,6 @@ module.exports = {
     loginAdmin,
     updateUser,
     deleteUser,
-
-    getUser,
-
+    getMe,
     getUsers
 }
