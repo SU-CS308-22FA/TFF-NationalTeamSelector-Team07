@@ -51,19 +51,24 @@ const createPlayer = asyncHandler(async (req, res) => {
     // })
     // res.status(201).json(player)
     //-----
-    const {fullName, team, position, raiting} = req.body
+    const {pid, fullName, team, position, raiting, DateOfBirth, PreferedFoot, Age, PlaceOfBirth} = req.body
   
-    if(!fullName || !team || !position || !raiting) {
+    if(!fullName || !team || !position || !raiting || !DateOfBirth || !PreferedFoot || !Age || !PlaceOfBirth) {
         res.status(400)
         throw new Error('Please fill all spaces'),
-        console.log(fullName, team, position, raiting)
+        console.log(pid, fullName, team, position, raiting, DateOfBirth, PreferedFoot, Age, PlaceOfBirth)
     }
     
     const Player = await player.create({
+        pid,
         fullName,
         team,
         position,
-        raiting
+        raiting,
+        DateOfBirth,
+        PreferedFoot,
+        Age,
+        PlaceOfBirth
     })
 
     res.status(201).json(Player)
