@@ -8,6 +8,7 @@ const User = JSON.parse(localStorage.getItem('user'))
 
 const initialState = {
     user: User ? User : null,
+    singleUser: [],
     isLoading: false,
     users: []
 }
@@ -134,7 +135,7 @@ export const getUsers = createAsyncThunk(
   
       try{
         const token = thunkAPI.getState().auth.user.token
-        console.log("authSlice: line 138")
+        //console.log("authSlice: line 138")
         return await authService.getUsers(token)
       }catch (error){
         console.log("authSlice: line 140")
@@ -218,6 +219,16 @@ export const authSlice = createSlice({
             state.isLoading = false
           })
           .addCase(deleteUser.rejected, (state) => {
+            state.isLoading = false
+          })
+          .addCase(getUsers.pending, (state) => {
+            state.isLoading = false
+          })
+          .addCase(getUsers.fulfilled, (state, action) => {
+            state.user = action.payload
+            state.isLoading = false
+          })
+          .addCase(getUsers.rejected, (state) => {
             state.isLoading = false
           })
     }

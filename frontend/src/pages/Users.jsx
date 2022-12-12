@@ -1,19 +1,23 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {getUsers} from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
 import UserItem from '../components/UserItem'
+import authService from '../features/auth/authService'
+
 
 
 function Users() {
-    const { user, isSuccess } = useSelector((state) => state.auth)
-   
+    const { users, isSuccess } = useSelector((state) => state.auth)
+    const [userList, setUserList] = useState([])
 
     const dispatch = useDispatch()
 
     useEffect(() => {
-        return () => {
-            dispatch(getUsers())
+        return async () => {
+            
+            setUserList(await authService.getUsers())
+            
         }
     }, [dispatch, isSuccess])
 
@@ -25,16 +29,17 @@ function Users() {
             <div className="tickets">
                 <div className="ticket-headings">
                     
-                    <div>User ID</div>
+                   
                     <div>Username</div>
                     <div>Email</div>
                     <div>Is Admin</div>
                     <div>Verification Status</div>
+                   <div></div>
                     <div>Action</div>
                     
                 </div>
                 
-                {user.map((user) => (
+                {userList.map((user) => (
                     <UserItem key={user._id} user={user}/>
                 ))}
             </div>
