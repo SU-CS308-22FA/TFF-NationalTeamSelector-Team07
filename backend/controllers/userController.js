@@ -172,17 +172,18 @@ const deleteUser = asyncHandler(async (req, res) => {
 // @access  Private
 
 const getUser = asyncHandler(async (req,res) => {
-const user = {
-    id: req.user._id,
-    email: req.user.email,
-    name: req.user.name,
-    verification: req.user.verification
-}
-    res.status(200).json(user)
+
+    User.findById(req.params.id, (error, data) => {
+        if (error) {
+          throw new Error('User not found')
+        } else {
+          res.status(200).json(data)
+        }
+      })
 })
 
 const getUsers = asyncHandler(async (req, res) => {
-
+    console.log("userController: line 186")
     const users = await User.find()
     res.status(200).json(users)
     console.log('user controller ' + users)

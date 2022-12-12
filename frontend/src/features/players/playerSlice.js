@@ -43,9 +43,10 @@ const initialState = {
  export const getPlayers = createAsyncThunk(
     'players/getPlayers', 
     async (_, thunkAPI) => {
-     
+        console.log("playerSlice: line 76")
         try{
             const token = thunkAPI.getState().auth.user.token
+            console.log("playerSlice: line 49")
             return await playerService.getPlayers(token)
         }catch (error){
             const message = 

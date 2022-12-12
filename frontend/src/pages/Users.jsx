@@ -6,8 +6,8 @@ import UserItem from '../components/UserItem'
 
 
 function Users() {
-    const { users } = useSelector((state) => state.auth)
-
+    const { user, isSuccess } = useSelector((state) => state.auth)
+   
 
     const dispatch = useDispatch()
 
@@ -15,10 +15,9 @@ function Users() {
         return () => {
             dispatch(getUsers())
         }
-    }, [dispatch])
+    }, [dispatch, isSuccess])
 
-    
-    console.log(users)
+ 
 
     return (
         <>
@@ -35,8 +34,8 @@ function Users() {
                     
                 </div>
                 
-                {users.map((user) => (
-                    <UserItem key={user._id.toString()} user={user}/>
+                {user.map((user) => (
+                    <UserItem key={user._id} user={user}/>
                 ))}
             </div>
         </>

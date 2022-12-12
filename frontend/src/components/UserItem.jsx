@@ -10,7 +10,7 @@ function UserItem({user}) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     // const {user} = useSelector( (state) => state.auth)
-
+    console.log("userItem: line 13: " + user)
     const [userID] = useState(user._id)
     const [username] = useState(user.name)
     const [email] = useState(user.email)

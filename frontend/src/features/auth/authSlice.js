@@ -1,12 +1,13 @@
 import {createSlice, createAsyncThunk, createAction} from '@reduxjs/toolkit'
+import playerService from '../players/playerService'
 import authService from './authService'
 
 // get user from localStorage
 
-const user = JSON.parse(localStorage.getItem('user'))
+const User = JSON.parse(localStorage.getItem('user'))
 
 const initialState = {
-    user: user ? user : null,
+    user: User ? User : null,
     isLoading: false,
     users: []
 }
@@ -108,11 +109,11 @@ export const deleteUser = createAsyncThunk(
 }) 
 export const getUser = createAsyncThunk(
   'auth/getUser', 
-  async (userId, thunkAPI) => {
+  async (user, thunkAPI) => {
    
       try{
           const token = thunkAPI.getState().auth.user.token
-          return await authService.getUser(userId, token)
+          return await authService.getUser(user, token)
       }catch (error){
           const message = 
           (error.response && 
@@ -127,14 +128,16 @@ export const getUser = createAsyncThunk(
 })
 
 export const getUsers = createAsyncThunk(
-  'auth/getUsers', 
+  'auth/getUsers',
   async (_, thunkAPI) => {
+    console.log("authSlice: line 134")
   
       try{
-        const USERS = await authService.getUsers()
-        console.log('authSlice: ' + USERS)
-        return await authService.getUsers()
+        const token = thunkAPI.getState().auth.user.token
+        console.log("authSlice: line 138")
+        return await authService.getUsers(token)
       }catch (error){
+        console.log("authSlice: line 140")
           const message = 
           (error.response && 
               error.response.data && 
@@ -142,8 +145,10 @@ export const getUsers = createAsyncThunk(
               error.message || 
               error.toString()
 
-          return thunkAPI.rejectWithValue(message)
+              
+              return thunkAPI.rejectWithValue(message)
       }
+      
 
 })
 
