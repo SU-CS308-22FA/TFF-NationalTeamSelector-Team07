@@ -11,8 +11,9 @@ const User = require('../models/userModel')
 const getTeams = asyncHandler(async (req, res) => {
     
     //console.log(req.team.user)
-    const teams = await Team.find({user: '6377c48740692e6b896cb99f'})
-    
+    //const teams = await Team.find({user: '6377c48740692e6b896cb99f'})
+    const teams = await Team.find()
+
     res.status(200).json(teams)
 })
 
@@ -34,6 +35,23 @@ const getTeam = asyncHandler(async (req, res) => {
     if(team.user.toString() !== req.user._id) {
         res.status(401)
         throw new Error('Not authorize')
+    }
+    res.status(200).json(team)
+})
+
+// @desc Get user team
+// @route GET /api/teams/:id
+// @access Private
+const getMyTeams = asyncHandler(async (req, res) => {
+    const {user_id} = req.body
+    console.log(user_id)
+    
+    const team = await Team.find({user: user_id})
+
+    
+    if(!team) {
+        res.status(404)
+        throw new Error('Team not found')
     }
     res.status(200).json(team)
 })
@@ -65,6 +83,7 @@ const createTeam = asyncHandler(async (req, res) => {
         player11,
         teamName,
         user: user._id,
+        likes: [],
     })
 
     res.status(201).json(team)
@@ -91,29 +110,36 @@ const deleteTeam = asyncHandler(async (req, res) => {
 // @route PUT /api/teams/:id
 // @access Private
 const updateTeam = asyncHandler(async (req, res) => {
+    const {team_id, user_id, isliked} = req.body
 
-
-    const team = await Team.findById(req.params._id)
-
+    const team = await Team.find({_id: team_id})
     
     if(!team) {
         res.status(404)
         throw new Error('Team not found')
     }
 
-    if(team.user.toString() !== req.user._id) {
-        res.status(401)
-        throw new Error('Not authorize')
+    if(isliked == "no")
+    {
+        const updatedTeam = await Team.findByIdAndUpdate(team_id, {
+            $push:{likes:user_id}
+        }, {new: true})
+        res.status(200).json(updatedTeam)
     }
-
-    const updatedTeam = await team.findByIdAndUpdate(req.params._id, req.body, {new: true})
-
-    res.status(200).json(updatedTeam)
+    else {
+        const updatedTeam = await Team.findByIdAndUpdate(team_id, {
+            $pull:{likes:user_id}
+        }, {new: true})
+        res.status(200).json(updatedTeam)
+    }
+   
 })
+
 
 module.exports = {
     getTeams,
     getTeam,
+    getMyTeams,
     createTeam,
     deleteTeam,
     updateTeam,
