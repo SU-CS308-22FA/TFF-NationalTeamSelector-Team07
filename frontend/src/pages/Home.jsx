@@ -12,6 +12,11 @@ import authService from '../features/auth/authService'
 import {getTeams, reset} from '../features/teams/teamSlice'
 import TeamItemHomePage from '../components/TeamItemHomePage'
 
+/**
+ * Frontend of the homepage based on the user type and components related to homepage.
+ * @author @mustafaataonbas
+ * @returns {void}
+ */
 
  function Home() {
 
