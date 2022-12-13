@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-//const API_URL = '/api/players/'
+//historicService has been created
 
 // create new player
 const createHistoric = async (historicData, token) => {

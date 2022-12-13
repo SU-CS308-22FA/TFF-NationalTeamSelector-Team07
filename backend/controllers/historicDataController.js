@@ -4,9 +4,7 @@ const asyncHandler = require('express-async-handler')
 const historic = require('../models/historicDataModel')
 
 
-// @desc Get user team
-// @route GET /api/teams
-// @access Private
+
 const getHistorics = asyncHandler(async (req, res) => {
 
   const historics = await Historic.find()
@@ -14,9 +12,7 @@ const getHistorics = asyncHandler(async (req, res) => {
 
 })
 
-// @desc Get user team
-// @route GET /api/teams/:id
-// @access Private
+
 const getHistoric = asyncHandler(async (req, res) => {
 
     Historic.findById(req.params.pid, (error, data) => {
@@ -28,9 +24,7 @@ const getHistoric = asyncHandler(async (req, res) => {
       })
 })
 
-// @desc create a new team
-// @route POST /api/teams
-// @access Private
+
 const createHistoric = asyncHandler(async (req, res) => {
   console.log("historicDataController: line 35")
     const {pid, pos, monthlyGame, gk_saveRatio, gk_cleanSheets, gk_RunsOut, def_tackle, def_interception, def_clearence, mid_accPassRatio, mid_assists, mid_keyPasses, att_numOfGoals, att_expectedGoalsRatio, att_shootsOnTargetRatio} = req.body

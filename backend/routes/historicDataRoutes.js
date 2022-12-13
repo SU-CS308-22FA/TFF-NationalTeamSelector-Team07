@@ -10,7 +10,7 @@ const {protect} = require('../middleware/authMiddleware')
 router.get('/', getHistorics)
 router.post('/', createHistoric)
 
-
+//routes for the pid search
 router.route('/:id')
 .get(getHistoric)
 

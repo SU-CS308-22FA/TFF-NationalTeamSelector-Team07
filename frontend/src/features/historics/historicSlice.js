@@ -1,4 +1,4 @@
-
+//historicSlice has been created
 
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import historicService from './historicService'
