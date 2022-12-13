@@ -1,4 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: NewPlayer.jsx</title>
 
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: NewPlayer.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -116,7 +144,7 @@ function NewPlayer() {
 
     const onSubmitDB = (e) => {
         e.preventDefault()
-        for(let k=0; k < Object.entries(array).length; k++){
+        for(let k=0; k &lt; Object.entries(array).length; k++){
             
            
             const fullName=Object.values(array)[k].Name
@@ -130,7 +158,7 @@ function NewPlayer() {
     }
 
     if(isLoading) {
-        return <Spinner />
+        return &lt;Spinner />
     }
 
     ///////////////////////////////////////
@@ -140,105 +168,127 @@ function NewPlayer() {
 
     
     return (
-        <>
-            <section className="heading">
+        &lt;>
+            &lt;section className="heading">
 
-                <h1>Create New Player</h1>
-                <p>Please Fill Out the Form Below</p>
-            </section>
-            <form onSubmit={onSubmit}>
-            <section className="form">
-                <div className="form-group">
-                    <label htmlFor="fullName">Player Name</label>
-                    <input type="text" 
+                &lt;h1>Create New Player&lt;/h1>
+                &lt;p>Please Fill Out the Form Below&lt;/p>
+            &lt;/section>
+            &lt;form onSubmit={onSubmit}>
+            &lt;section className="form">
+                &lt;div className="form-group">
+                    &lt;label htmlFor="fullName">Player Name&lt;/label>
+                    &lt;input type="text" 
                     className="form-control"
                     placeholder={fullName}
                     value={fullName} onChange={(e) => setPlayerName(e.target.value)} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="team">team</label>
-                    <input type="text" 
+                &lt;/div>
+                &lt;div className="form-group">
+                    &lt;label htmlFor="team">team&lt;/label>
+                    &lt;input type="text" 
                     className="form-control"
                     placeholder={team}
                     value={team} onChange={(e) => setPlayerTeam(e.target.value)}/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="position">position</label>
-                    <input type="text" 
+                &lt;/div>
+                &lt;div className="form-group">
+                    &lt;label htmlFor="position">position&lt;/label>
+                    &lt;input type="text" 
                     className="form-control"
                     placeholder={position}
                     value={position} onChange={(e) => setPlayerPosition(e.target.value)}/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="raiting">rating</label>
-                    <input type="text" 
+                &lt;/div>
+                &lt;div className="form-group">
+                    &lt;label htmlFor="raiting">rating&lt;/label>
+                    &lt;input type="text" 
                     className="form-control"
                     placeholder={raiting}
                     value={raiting} onChange={(e) => setPlayerRaiting(e.target.value)}/>
-                </div>
-                    <div className="form-group">
-                        <button className="btn btn-block">
+                &lt;/div>
+                    &lt;div className="form-group">
+                        &lt;button className="btn btn-block">
                             Submit
-                        </button>
-                    </div>
+                        &lt;/button>
+                    &lt;/div>
 
-                    </section>
+                    &lt;/section>
 
-                </form>
-                <div style={{ textAlign: "center" }}>
-                <h1>REACTJS CSV IMPORT EXAMPLE </h1>
-                <form>
-                    <input
+                &lt;/form>
+                &lt;div style={{ textAlign: "center" }}>
+                &lt;h1>REACTJS CSV IMPORT EXAMPLE &lt;/h1>
+                &lt;form>
+                    &lt;input
                     type={"file"}
                     id={"csvFileInput"}
                     accept={".csv"}
                     onChange={handleOnChangeCSV}
                     />
 
-                    <button
+                    &lt;button
                     onClick={(e) => {
                         handleOnSubmitCSV(e);
                     }}
                     >
                     IMPORT CSV
-                    </button>
-                </form>
-                <form onSubmit={onSubmitDB}>
-                    <div className="form-group">
-                        <button className="btn btn-block">
+                    &lt;/button>
+                &lt;/form>
+                &lt;form onSubmit={onSubmitDB}>
+                    &lt;div className="form-group">
+                        &lt;button className="btn btn-block">
                             Submit to Database
-                        </button>
-                    </div>
-                </form>
+                        &lt;/button>
+                    &lt;/div>
+                &lt;/form>
                 
 
-                <br />
+                &lt;br />
 
-                <table>
-                    <thead>
-                    <tr key={"header"}>
+                &lt;table>
+                    &lt;thead>
+                    &lt;tr key={"header"}>
                         {headerKeys.map((key) => (
-                        <th>{key}</th>
+                        &lt;th>{key}&lt;/th>
                         ))}
-                    </tr>
-                    </thead>
+                    &lt;/tr>
+                    &lt;/thead>
 
-                    <tbody>
+                    &lt;tbody>
                     {array.map((item) => (
-                        <tr key={item.id}>
+                        &lt;tr key={item.id}>
                         {Object.values(item).map((val) => (
-                            <td>{val}</td>
+                            &lt;td>{val}&lt;/td>
                         ))}
-                        </tr>
+                        &lt;/tr>
                     ))}
-                    </tbody>
-                </table>
-                </div>
+                    &lt;/tbody>
+                &lt;/table>
+                &lt;/div>
             
 
-        </>
+        &lt;/>
     )
 
 }
 
-export default NewPlayer
+export default NewPlayer</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#NewPlayer">NewPlayer</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Tue Dec 13 2022 20:28:33 GMT+0300 (GMT+03:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
