@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import {FaUser} from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, useLocation} from 'react-router-dom'
 import {FaQuestionCircle, FaTicketAlt} from 'react-icons/fa'
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -27,13 +27,15 @@ import {
   } from 'mdb-react-ui-kit';
 
 function VisitedProfile() {
-    
+
     const { user } = useSelector((state) => state.auth)
     const [username] = useState(user.name)
     const [vrf] = useState(user.verification)
     const dispatch = useDispatch()
     const {teams} = useSelector((state) => state.teams)
     const {isLoading, isSuccess} = useSelector((state) => state.teams)
+    const location = useLocation()
+
     useEffect(() => {
         return () => {
             dispatch(getTeams())
@@ -53,17 +55,7 @@ function VisitedProfile() {
                  <MDBCol lg="4">
                     <MDBCard className="mb-4">
                     <MDBCardBody className="text-center">
-                        <MDBCardText className="heading">{username}</MDBCardText>
-                        <Link to='/new-team' className='btn btn-block'>
-                         <FaTicketAlt /> Create New Team
-                        </Link>
-
-                        <Link to='/teams' className='btn btn-block'>
-                            <FaTicketAlt /> View All Teams
-                        </Link>
-                        <Link to='/profilesettings' className='btn btn-block'>
-                            <FaTicketAlt /> Profile Settings
-                        </Link>
+                        <MDBCardText className="heading">{location.state.name}</MDBCardText>
                         </MDBCardBody>
                     </MDBCard>
                     <MDBCard className="mb-4 mb-lg-0">
@@ -71,7 +63,7 @@ function VisitedProfile() {
                             <MDBListGroup flush className="rounded-3">
                                 <MDBListGroupItem className="list-group-item d-flex justify-content-center align-items-center">
                                 <MDBIcon className="fas fa-user-alt"></MDBIcon>
-                                    <MDBCardText > {"\u00a0\u00a0"} verified user: {vrf.toString()}</MDBCardText>
+                                    <MDBCardText > {"\u00a0\u00a0"} verified user: {location.state.verification.toString()}</MDBCardText>
                                 </MDBListGroupItem>
                             </MDBListGroup>
                         </MDBCardBody>
@@ -89,7 +81,7 @@ function VisitedProfile() {
                                     <MDBCardText>USERNAME:</MDBCardText>
                                 </MDBCol>
                                 <MDBCol sm="9">
-                                    <MDBCardText className="text-muted">{username}</MDBCardText>
+                                    <MDBCardText className="text-muted">{location.state.name}</MDBCardText>
                                 </MDBCol>
                             </MDBRow>
                             <MDBRow>
@@ -97,7 +89,7 @@ function VisitedProfile() {
                                     <MDBCardText>E-MAIL:</MDBCardText>
                                 </MDBCol>
                                 <MDBCol sm="9">
-                                    <MDBCardText className="text-muted">{user.email}</MDBCardText>
+                                    <MDBCardText className="text-muted">{location.state.email}</MDBCardText>
                                 </MDBCol>
                             </MDBRow>
                         </MDBCardBody>
@@ -106,7 +98,7 @@ function VisitedProfile() {
                     <MDBCol md="15">
                     <MDBCard className="mb-4 mb-md-0">
                     <MDBCardBody>
-                    <MDBCardText className="mb-4 fw-bold">MOST LIKED TEAM OF <span className="text-uppercase fw-bold">{username}</span></MDBCardText>
+                    <MDBCardText className="mb-4 fw-bold">MOST LIKED TEAM OF <span className="text-uppercase fw-bold">{location.state.name}</span></MDBCardText>
                         <div className="tickets">
 
                             {strAscending.slice(0,1).map((team) => (

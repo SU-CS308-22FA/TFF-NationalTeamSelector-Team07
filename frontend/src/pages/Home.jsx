@@ -12,13 +12,13 @@ import authService from '../features/auth/authService'
 import {getTeams, reset} from '../features/teams/teamSlice'
 import TeamItemHomePage from '../components/TeamItemHomePage'
 
-
  function Home() {
 
     // let items = []
     const {user} = useSelector( (state) => state.auth)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [selectedUser] = useState({ name: "", email: "", isAdmin: "", verification: "" })
     
     const [userList, setUserList] =  useState([])
 
@@ -33,7 +33,6 @@ import TeamItemHomePage from '../components/TeamItemHomePage'
         return () => {
             dispatch(getPlayersHome())
             dispatch(getTeams())
-            
         }
     }, [dispatch, isSuccess])
 
@@ -74,10 +73,13 @@ import TeamItemHomePage from '../components/TeamItemHomePage'
       const handleOnSelect = (item) => {
         // the item selected
         console.log(item)
-        navigate('/visitedProfile')
-
+        selectedUser.email = item.email
+        selectedUser.name = item.name
+        selectedUser.verification = item.verification
+        selectedUser.isAdmin = item.isAdmin
+        navigate("/visitedProfile", {state:{name:selectedUser.name, email:selectedUser.email, isAdmin:selectedUser.isAdmin, verification:selectedUser.verification}})
       }
-    
+      
       const handleOnFocus = () => {
         console.log('Focused')
       }
@@ -156,5 +158,4 @@ import TeamItemHomePage from '../components/TeamItemHomePage'
         </div>
     )
 }
-
 export default Home
