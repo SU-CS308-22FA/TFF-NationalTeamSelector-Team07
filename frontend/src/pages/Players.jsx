@@ -6,7 +6,8 @@ import PlayerItem from '../components/PlayerItem'
 
 
 function Players() {
-    const {players, isLoading, isSuccess} = useSelector((state) => state.players)
+    const {players, isLoadingP, isSuccessP} = useSelector((state) => state.players)
+  
 
    
     
@@ -22,11 +23,11 @@ function Players() {
         return () => {
             dispatch(getPlayers())
         }
-    }, [dispatch, isSuccess])
+    }, [dispatch, isSuccessP])
 
     
 
-    if(isLoading) {
+    if(isLoadingP) {
         return <Spinner />
     }
 

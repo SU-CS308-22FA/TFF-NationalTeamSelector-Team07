@@ -54,7 +54,7 @@ const createPlayer = asyncHandler(async (req, res) => {
         Age,
         PlaceOfBirth
     })
-    
+    console.log("player controller:" + player.pid)
     res.status(201).json(Player)
 })
 

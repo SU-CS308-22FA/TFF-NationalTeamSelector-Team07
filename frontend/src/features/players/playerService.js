@@ -15,6 +15,7 @@ const createPlayer = async (playerData, token) => {
 
     const response = await axios.post('/api/players/', playerData)
     console.log("playerService: line 15" + JSON.stringify(playerData))
+    console.log("historicService: line 18 @@@" + response.data)
     return response.data
 }
 

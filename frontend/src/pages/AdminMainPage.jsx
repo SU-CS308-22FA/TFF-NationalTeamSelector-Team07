@@ -16,11 +16,7 @@ function AdminProfilePage() {
         navigate('/players')
         //window.location.reload()
     }
-    const handleSubmitHistoric = (e) => {
-        e.preventDefault()
-        navigate('/historic-add')
-        //window.location.reload()
-    }
+
     const handleSubmitCreatePlayer = (e) => {
         e.preventDefault()
         navigate('/new-player')
@@ -62,11 +58,7 @@ function AdminProfilePage() {
                     View all players
                 </button>
             </form>
-            <form onSubmit={handleSubmitHistoric} className='btn btn-block' >
-                <button>
-                    Add historic
-                </button>
-            </form>
+           
             <form onSubmit={handleSubmitProfile}className='btn btn-block'>
                <button>
                     Profile

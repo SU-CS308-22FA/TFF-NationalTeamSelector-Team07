@@ -3,6 +3,8 @@ import {useState} from 'react'
 import { useDispatch } from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 
+
+
 function MainPagePlayerItem({player}) {
     
     const [FullName] = useState(player.fullName)
@@ -30,7 +32,7 @@ function MainPagePlayerItem({player}) {
     }
 
     
-
+  
     const handleViewPlayerInfo = (e) => {
         e.preventDefault()
         //console.log(player_id)

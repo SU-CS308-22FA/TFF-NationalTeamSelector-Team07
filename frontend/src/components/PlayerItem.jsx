@@ -4,12 +4,19 @@ import { useDispatch } from 'react-redux'
 import { deletePlayer } from '../features/players/playerSlice'
 import {useNavigate} from 'react-router-dom'
 
+
+
+   /**
+     * This function takes player object from the MainPagePlayerItem in order to destruct ıbject and take its inside parameters
+     * @param {object} player that needs to be destructed to display its parameters.
+     */
 function PlayerItem({player, navigation}) {
 
     
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
+    
+    const [pid] = useState(player.pid)
     const [FullName] = useState(player.fullName)
     const [Team] = useState(player.team)
     const [player_id] = useState(player._id)
@@ -30,7 +37,7 @@ function PlayerItem({player, navigation}) {
     }
     const handleEdit = (e) => {
         e.preventDefault()
-        navigate('/editPlayer', {state:{playerId: player_id,playerName: FullName, playerTeam: Team, playerRating: Rating, playerPosition: Position}});
+        navigate('/editPlayer', {state:{playerId: player_id, playerName: FullName, playerTeam: Team, playerRating: Rating, playerPosition: Position}});
     }
 
     const playerData = {
@@ -51,7 +58,7 @@ function PlayerItem({player, navigation}) {
         e.preventDefault()
         //console.log(player_id)
         //console.log("24 line: " + DateOfBirth)
-        navigate('/player-profile', {state: {pid: player_id, name: FullName, 
+        navigate('/player-profile', {state: {pid: pid, playerID: player_id, name: FullName, 
             team: Team, pos: Position, Rating: Rating, dob: DateOfBirth, 
             foot: PreferedFoot, age: Age, pob: PlaceOfBirth} })
         //window.location.reload()

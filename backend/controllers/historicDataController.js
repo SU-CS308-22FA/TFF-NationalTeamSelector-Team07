@@ -1,7 +1,7 @@
 const asyncHandler = require('express-async-handler')
 
 
-const Historic = require('../models/historicDataModel')
+const historic = require('../models/historicDataModel')
 
 
 // @desc Get user team
@@ -33,16 +33,10 @@ const getHistoric = asyncHandler(async (req, res) => {
 // @access Private
 const createHistoric = asyncHandler(async (req, res) => {
   console.log("historicDataController: line 35")
-    const {pid, pos, monthlyGame, gk_saveRatio, gk_cleanSheets, gk_RunsOut, def_tackle, def_interception, def_clearence, mid_accPassRatio, mid_assists, mid_keyPasses, att_numOfGoals, att_expectedGoalsRatio, att_shootsOnTargetRatio } = req.body
+    const {pid, pos, monthlyGame, gk_saveRatio, gk_cleanSheets, gk_RunsOut, def_tackle, def_interception, def_clearence, mid_accPassRatio, mid_assists, mid_keyPasses, att_numOfGoals, att_expectedGoalsRatio, att_shootsOnTargetRatio} = req.body
   
-    if(!fullName || !team || !position || !raiting || !DateOfBirth || !PreferedFoot || !Age || !PlaceOfBirth) {
-        res.status(400)
-        console.log("historicDataController: line 40")
-        throw new Error('Please fill all spaces'),
-        console.log(pid, fullName, team, position, raiting, DateOfBirth, PreferedFoot, Age, PlaceOfBirth)
-    }
     
-    const historic = await Historic.create({
+    const Historic = await historic.create({
         pid, 
         pos, 
         monthlyGame,
@@ -60,7 +54,7 @@ const createHistoric = asyncHandler(async (req, res) => {
         att_shootsOnTargetRatio
     })
     console.log("historic controller:" + historic.pid)
-    res.status(201).json(historic)
+    res.status(201).json(Historic)
 })
 
 
