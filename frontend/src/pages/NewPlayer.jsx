@@ -8,6 +8,7 @@ import { createPlayer } from '../features/players/playerSlice'
 import { createHistoric, reset } from '../features/historics/historicSlice'
 import Spinner from '../components/Spinner'
 
+
 function NewPlayer() {
     const { user } = useSelector((state) => state.auth)
     //const { historic } = useSelector((state) => state.historic)
@@ -36,6 +37,8 @@ function NewPlayer() {
       setFile(e.target.files[0]);
     };
   
+
+
     const csvFileToArray = string => {
       const csvHeader = string.slice(0, string.indexOf("\n")).split(";");
       const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
@@ -133,16 +136,19 @@ function NewPlayer() {
             
             
             const playerid=Object.values(array)[k].pid
+            console.log("136: " + playerid)
             const pos=Object.values(array)[k].pos
             const monthlyGame= Object.values(array)[k].monthlyGame
             const gk_saveRatio=Object.values(array)[k].gk_saveRatio
             const gk_cleanSheets =Object.values(array)[k].gk_cleanSheets
             const gk_RunsOut=Object.values(array)[k].gk_RunsOut
+            console.log("142: " + gk_RunsOut)
             const def_tackle= Object.values(array)[k].def_tackle
             const def_interception=Object.values(array)[k].def_interception
             const def_clearence =Object.values(array)[k].def_clearence
             const mid_accPassRatio=Object.values(array)[k].mid_accPassRatio
             const mid_assists =Object.values(array)[k].mid_keyPasses
+            console.log("148: " + mid_assists)
             const mid_keyPasses=Object.values(array)[k].mid_keyPasses
             const att_expectedGoalsRatio= Object.values(array)[k].att_expectedGoalsRatio
             const att_numOfGoals=Object.values(array)[k].att_numOfGoals
