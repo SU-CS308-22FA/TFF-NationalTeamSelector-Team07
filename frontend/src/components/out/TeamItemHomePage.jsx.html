@@ -1,4 +1,32 @@
-import {useNavigate} from 'react-router-dom'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: TeamItemHomePage.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: TeamItemHomePage.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {useNavigate} from 'react-router-dom'
 import {useState} from 'react'
 import {FaThumbsUp} from 'react-icons/fa'
 import {toast} from 'react-toastify'
@@ -65,19 +93,19 @@ function TeamItem({team}) {
                 
                 
                
-                <form onSubmit={displayTeam}  >
-                    <button className="btn btn-reverse btn-sm">View Team</button>
-                </form>  
-                <div></div>
-                <button
+                &lt;form onSubmit={displayTeam}  >
+                    &lt;button className="btn btn-reverse btn-sm">View Team&lt;/button>
+                &lt;/form>  
+                &lt;div>&lt;/div>
+                &lt;button
                     className={"btn btn-reverse btn-sm like-button " + (team.likes.includes(user._id) ? "liked" : "")}
                     onClick = {incrementLike}
                 >
                     
                 like/unlike
-                </button>  
-                <div> <FaThumbsUp/>  {likes.length}</div>
-                <style>
+                &lt;/button>  
+                &lt;div> &lt;FaThumbsUp/>  {likes.length}&lt;/div>
+                &lt;style>
                     {`
                         .like-button {
                             font-size: 1rem;
@@ -89,7 +117,7 @@ function TeamItem({team}) {
                             color: #1565c0;
                         }
                     `}
-                </style>
+                &lt;/style>
      */
     
 
@@ -103,26 +131,26 @@ function TeamItem({team}) {
     }
 
     return (
-        <section className="w-auto p-1" style={{ backgroundColor: '#cdced1' }}>
-            <MDBContainer className="w-auto p-1">
-                <MDBRow className="justify-content-center align-items-center h-100">
-                <MDBCol lg="10" className="mb-4 mb-lg-4">
-                    <MDBCard className="mb-3" style={{ borderRadius: '.5rem' }}>
-                    <MDBRow className="g-5">
-                        <MDBCol md="4" className="gradient-custom text-center text-white " 
+        &lt;section className="w-auto p-1" style={{ backgroundColor: '#cdced1' }}>
+            &lt;MDBContainer className="w-auto p-1">
+                &lt;MDBRow className="justify-content-center align-items-center h-100">
+                &lt;MDBCol lg="10" className="mb-4 mb-lg-4">
+                    &lt;MDBCard className="mb-3" style={{ borderRadius: '.5rem' }}>
+                    &lt;MDBRow className="g-5">
+                        &lt;MDBCol md="4" className="gradient-custom text-center text-white " 
                         style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem', backgroundColor: '#B84949'}}>
                         
-                        <div className="d-flex align-items-center"></div>
-                        <MDBTypography  tag="h10">Team ID: {teamId}</MDBTypography>
+                        &lt;div className="d-flex align-items-center">&lt;/div>
+                        &lt;MDBTypography  tag="h10">Team ID: {teamId}&lt;/MDBTypography>
                         
-                        {/* <MDBIcon far icon="edit mb-5" /> */}
-                        </MDBCol>
-                        <MDBCol md="8">
-                        <MDBCardBody className="p-4">
-                            <MDBTypography style={{textAlign:'center'}} tag="h5">team name: {name}</MDBTypography>
-                            <hr className="mt-0 mb-4" />
-                            <MDBRow className="pt-1">
-                            <MDBCardImage src='https://news.virginia.edu/sites/default/files/Header_Soccer.jpg' fluid alt='...' 
+                        {/* &lt;MDBIcon far icon="edit mb-5" /> */}
+                        &lt;/MDBCol>
+                        &lt;MDBCol md="8">
+                        &lt;MDBCardBody className="p-4">
+                            &lt;MDBTypography style={{textAlign:'center'}} tag="h5">team name: {name}&lt;/MDBTypography>
+                            &lt;hr className="mt-0 mb-4" />
+                            &lt;MDBRow className="pt-1">
+                            &lt;MDBCardImage src='https://news.virginia.edu/sites/default/files/Header_Soccer.jpg' fluid alt='...' 
                                             style={{
                                             width: 350,
                                             height:200,
@@ -130,42 +158,42 @@ function TeamItem({team}) {
                                             verticalAlign: "center"
                                             }}
                                 />
-                                <a>
-                                <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
-                                </a>
+                                &lt;a>
+                                &lt;div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}>&lt;/div>
+                                &lt;/a>
                             
-                            <MDBCol size="10" className="mb-4">
-                            </MDBCol>
-                            </MDBRow>
-                            <MDBCol size="10" className="mb-4">
-                                <MDBTypography tag="h10">Posted at: {format(new Date(team.createdAt), "dd/MM/Y")}</MDBTypography>
-                            </MDBCol>
-                        </MDBCardBody>
-                        </MDBCol>
-                    </MDBRow>
-                    </MDBCard>
-                </MDBCol>
-                </MDBRow>
-                <MDBRow>
-                <div className="tickets">
-                <div className="ticket-headings">
-                    <div></div>
-                    <div></div>
-                    <form onSubmit={displayTeam}  >
-                        <button className="btn btn-reverse btn-sm">View Team</button>
-                    </form>
+                            &lt;MDBCol size="10" className="mb-4">
+                            &lt;/MDBCol>
+                            &lt;/MDBRow>
+                            &lt;MDBCol size="10" className="mb-4">
+                                &lt;MDBTypography tag="h10">Posted at: {format(new Date(team.createdAt), "dd/MM/Y")}&lt;/MDBTypography>
+                            &lt;/MDBCol>
+                        &lt;/MDBCardBody>
+                        &lt;/MDBCol>
+                    &lt;/MDBRow>
+                    &lt;/MDBCard>
+                &lt;/MDBCol>
+                &lt;/MDBRow>
+                &lt;MDBRow>
+                &lt;div className="tickets">
+                &lt;div className="ticket-headings">
+                    &lt;div>&lt;/div>
+                    &lt;div>&lt;/div>
+                    &lt;form onSubmit={displayTeam}  >
+                        &lt;button className="btn btn-reverse btn-sm">View Team&lt;/button>
+                    &lt;/form>
                     
-                    <div></div>
-                    <button
+                    &lt;div>&lt;/div>
+                    &lt;button
                         className={"btn btn-reverse btn-sm like-button " + (team.likes.includes(user._id) ? "liked" : "")}
                         onClick = {incrementLike}
                     >
                             
-                    <FaThumbsUp />  {likes.length}
-                    </button>
+                    &lt;FaThumbsUp />  {likes.length}
+                    &lt;/button>
                     
                     
-                    <style>
+                    &lt;style>
                         {`
                             .like-button {
                             font-size: 1rem;
@@ -177,16 +205,38 @@ function TeamItem({team}) {
                                 color: #1565c0;
                             }
                         `}
-                    </style>      
-                </div>
-            </div>
-                </MDBRow>
-            </MDBContainer>
+                    &lt;/style>      
+                &lt;/div>
+            &lt;/div>
+                &lt;/MDBRow>
+            &lt;/MDBContainer>
   
-    </section>
+    &lt;/section>
     
         
     )
 }
 
-export default TeamItem
+export default TeamItem</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#TeamItem">TeamItem</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Tue Dec 13 2022 20:09:43 GMT+0300 (GMT+03:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

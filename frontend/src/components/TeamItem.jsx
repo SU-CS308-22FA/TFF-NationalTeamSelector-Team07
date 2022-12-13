@@ -3,7 +3,13 @@ import {useNavigate} from 'react-router-dom'
 import {useState} from 'react'
 import {useDispatch} from 'react-redux'
 import { deleteTeam } from '../features/teams/teamSlice'
-
+/**
+ * In this function there are two importnt functionality
+ * A team can be deleted by clicking delete button
+ * The details of a team can be see by clicking view team button
+ * @param {object} team 
+ * @returns the list of team items inside a specific card template
+ */
 function TeamItem({team}) {
 
     const navigate = useNavigate()

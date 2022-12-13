@@ -4,12 +4,18 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { createTeam, reset } from '../features/teams/teamSlice'
 import Spinner from '../components/Spinner'
+import Dropdown from 'react-dropdown';
+import PlayerDropdownItem from '../components/PlayerDropdownItem'
 
 function NewTeam() {
     const { user } = useSelector((state) => state.auth)
+    const { players, player } = useSelector((state) => state.players)
+
     const {isLoading, isError, isSuccess, message} = useSelector(
         (state) => state.teams
     )
+    const [playerName] = useState(players.fullName)
+    const [playerPosition] = useState(players.position)
 
     const [player1, setPlayerName1] = useState()
     const [player2, setPlayerName2] = useState()
@@ -34,6 +40,10 @@ function NewTeam() {
         dispatch(createTeam({player1, player2, player3, player4, player5, player6, player7, player8, player9, player10, player11, teamName, email}))
     }
 
+    // const playerOptions = players.map((player) => (
+    //     <PlayerDropdownItem key={player._id} player={player}/>
+    // ))
+
     if(isLoading) {
         return <Spinner />
     }
@@ -55,6 +65,10 @@ function NewTeam() {
                 </div>
                 <div className="form-group">
                     <label htmlFor="player1">Player1 - Goalkeeper</label>
+                    {/* <form type="dropdown">
+                        <Dropdown options={playerOptions} value={player1} onChange={(e) => setPlayerName1(e.target.value)}  placeholder="Select a goalkeeper" />
+                    </form> */}
+                     
                     <input type="text" 
                     className="form-control"
                     placeholder={player1}
