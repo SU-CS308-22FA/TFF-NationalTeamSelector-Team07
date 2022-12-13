@@ -6,17 +6,18 @@ import {FaUser} from 'react-icons/fa'
 import {useSelector, useDispatch} from 'react-redux'
 import {register} from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
-
+import { MDBCheckbox } from 'mdb-react-ui-kit';
 function Register() {
 
     const [formData, setFromData] = useState({
         name: '',
         email: '',
         password: '',
-        password2: ''
+        password2: '',
+        verification: true
     })
-
-    const {name, email, password, password2} = formData
+    
+    const {name, email, password, password2, verification} = formData
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -48,6 +49,12 @@ state => state.auth)
         }))
     }
 
+    const handleChange = (e) => { 
+        setFromData({
+            verification: !verification
+          });
+    
+      } 
     const onSubmit = (e) => {
         e.preventDefault()
 
@@ -60,7 +67,8 @@ state => state.auth)
             const userData = {
                 name,
                 email,
-                password
+                password,
+                verification: false
             }
 
             dispatch(register(userData))
@@ -101,6 +109,15 @@ state => state.auth)
                         <input type="password" className='form-control'
                         id='pssword2' value={password2} name='password2' onChange={onChange} 
                         placeholder='Confirm password' required/>
+                    </div>
+                    <div className="d-flex flex-row mb-3">
+                    <div className="p-2 text-muted">regular user</div>
+                    <div className="p-2">
+                    <MDBCheckbox name='disabledCheck' disabled value={verification} id='verification' onChange={handleChange} defaultChecked/>
+                        {/* <input type="password" className='form-control'
+                        id='pssword' value={password} name='password' onChange={onChange} 
+                        placeholder='Enter your password' requred/> */}
+                        </div>
                     </div>
                     <div className="form-group">
                         <button className="btn btn-block">

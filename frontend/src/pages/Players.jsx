@@ -4,11 +4,20 @@ import {getPlayers} from '../features/players/playerSlice'
 import Spinner from '../components/Spinner'
 import PlayerItem from '../components/PlayerItem'
 
-
+/**
+ * Represents players list.
+ */
 function Players() {
     const {players, isLoading, isSuccess} = useSelector((state) => state.players)
 
+   
+    
+    const playerList={
+        name: players.fullName,
+        team: players.team
+    }
 
+    console.log(playerList)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -41,6 +50,7 @@ function Players() {
                 {players.map((player) => (
                     <PlayerItem key={player._id} player={player}/>
                 ))}
+               
             </div>
         </>
     )

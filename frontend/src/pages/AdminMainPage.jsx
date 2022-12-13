@@ -26,6 +26,11 @@ function AdminProfilePage() {
         navigate('/profileSettings')
         //window.location.reload()
     }
+    const handleSubmitSettings = (e) => {
+        e.preventDefault()
+        navigate('/users')
+        //window.location.reload()
+    }
 
     return (
         <>
@@ -55,6 +60,11 @@ function AdminProfilePage() {
             <form onSubmit={handleSubmitProfile}className='btn btn-block'>
                <button>
                     Profile
+               </button>
+            </form>
+            <form onSubmit={handleSubmitSettings}className='btn btn-block'>
+               <button>
+                    User Settings
                </button>
             </form>
         </div>
