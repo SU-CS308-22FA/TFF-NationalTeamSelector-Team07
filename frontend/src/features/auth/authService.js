@@ -5,21 +5,30 @@ import axios from 'axios'
 
 //get user
 const getUser = async (userID, token) => {
-    const config = {
-        headers: {
-            Authorization: `admin ${token}`
-        }
-    }
+    // const config = {
+    //     headers: {
+    //         Authorization: `user ${token}`
+    //     }
+    // }
 
     const response = await axios.get('/api/users/' + userID)
 
     return response.data
 }
 
-const getUsers = async () => {
+const getUsers = async (token) => {
+    
+    // const config = {
+    //     headers: {
+    //         Authorization: `admin ${token}`
+    //     }
+    // }
     const response = await axios.get('/api/users/')
     return response.data
 }
+
+
+
 
 // register user 
 const register = async (userData) => {
