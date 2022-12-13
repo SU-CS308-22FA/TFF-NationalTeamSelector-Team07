@@ -76,9 +76,9 @@ function VisitedProfile() {
                             </MDBListGroup>
                         </MDBCardBody>
                     </MDBCard>
-                    <MDBTextArea style={{marginTop:"20px"}} label='Message' id='textAreaExample' rows={4} />
+                    <MDBTextArea style={{marginTop:"20px"}} label='Comment to profile' id='textAreaExample' rows={4} />
                     <div style={{marginTop:"20px"}} class="btn-group">
-                        <button onClick={{}} >Comment</button>
+                        <button onClick={{}} >Submit</button>
                     </div>
                 </MDBCol>
                 <MDBCol lg="8">
