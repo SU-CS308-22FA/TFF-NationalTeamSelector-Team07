@@ -18,7 +18,8 @@ import TeamItemHomePage from '../components/TeamItemHomePage'
     // let items = []
     const {user} = useSelector( (state) => state.auth)
     const dispatch = useDispatch()
-
+    const navigate = useNavigate()
+    
     const [userList, setUserList] =  useState([])
 
     const {teams} = useSelector((state) => state.teams)
@@ -73,6 +74,8 @@ import TeamItemHomePage from '../components/TeamItemHomePage'
       const handleOnSelect = (item) => {
         // the item selected
         console.log(item)
+        navigate('/visitedProfile')
+
       }
     
       const handleOnFocus = () => {
