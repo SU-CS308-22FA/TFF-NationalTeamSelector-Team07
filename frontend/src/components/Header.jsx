@@ -4,6 +4,11 @@ import {Link, useNavigate} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import {logout} from '../features/auth/authSlice'
 
+/**
+ * Header component attributes and frontend for user based login.
+ * @author @mustafaataonbas
+ */
+
 function Header() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
