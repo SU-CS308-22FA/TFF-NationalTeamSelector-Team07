@@ -9,6 +9,9 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 
+/**
+ * from state (line 23) player object has been taken. Then, each paramter has been put to the relevant location from table.
+ */
 function PlayerProfile() {
  
     const {players, isLoading, isSuccess} = useSelector((state) => state.players)
