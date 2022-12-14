@@ -5,21 +5,17 @@ const historic = require('../models/historicDataModel')
 
 
 
-const getHistorics = asyncHandler(async (req, res) => {
-
-  const historics = await Historic.find()
-  res.status(200).json(historics)
-
-})
-
 
 const getHistoric = asyncHandler(async (req, res) => {
+  console.log("historicDataController, line10 " + req.params.personel)
 
-    Historic.findById(req.params.pid, (error, data) => {
+  historic.findOne({personel:1}, (error, data) => {
+        
         if (error) {
-          throw new Error('Player not found')
+          throw new Error('ljdkjsd')
         } else {
-          res.status(200).json(data)
+          console.log('duxde @@@@@' + data)
+          res.status(201).json(data)
         }
       })
 })
@@ -27,11 +23,11 @@ const getHistoric = asyncHandler(async (req, res) => {
 
 const createHistoric = asyncHandler(async (req, res) => {
   console.log("historicDataController: line 35")
-    const {pid, pos, monthlyGame, gk_saveRatio, gk_cleanSheets, gk_RunsOut, def_tackle, def_interception, def_clearence, mid_accPassRatio, mid_assists, mid_keyPasses, att_numOfGoals, att_expectedGoalsRatio, att_shootsOnTargetRatio} = req.body
+    const {personel, pos, monthlyGame, gk_saveRatio, gk_cleanSheets, gk_RunsOut, def_tackle, def_interception, def_clearence, mid_accPassRatio, mid_assists, mid_keyPasses, att_numOfGoals, att_expectedGoalsRatio, att_shootsOnTargetRatio} = req.body
   
     
     const Historic = await historic.create({
-        pid, 
+        personel, 
         pos, 
         monthlyGame,
         gk_saveRatio, 
@@ -47,13 +43,12 @@ const createHistoric = asyncHandler(async (req, res) => {
         att_expectedGoalsRatio, 
         att_shootsOnTargetRatio
     })
-    console.log("historic controller:" + historic.pid)
+    console.log("historic controller:" + historic.personel)
     res.status(201).json(Historic)
 })
 
 
 module.exports = {
-    getHistorics,
     getHistoric,
     createHistoric,
 }

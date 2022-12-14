@@ -3,31 +3,80 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import Spinner from '../components/Spinner'
 import {useNavigate} from 'react-router-dom'
+import { useEffect, useState} from 'react'
+
+import historicService from '../features/historics/historicService'
 
 import { useLocation } from 'react-router-dom';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
+import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography } from 'mdb-react-ui-kit';
 
 /**
  * from state (line 23) player object has been taken. Then, each paramter has been put to the relevant location from table.
  */
 function PlayerProfile() {
  
-    const {players, isLoading, isSuccess} = useSelector((state) => state.players)
+    const {players, isLoading, isSuccess} = useSelector((state) => state.players || {})
+
+    
+    
     const dispatch = useDispatch()
-    const navigate = useNavigate()
-    
+
+    const[storage, getStorage] = useState({})
+
     const {state} = useLocation();
-    const {pid, name, team, pos, Rating, dob, foot, age, pob } = state; // Read values passed on state
+    const {personel, name, team, pos, Rating, dob, foot, age, pob } = state; // Read values passed on state
 
-    
+    useEffect(() => {
+        return async () => {
+            getStorage( await historicService.getHistoric(personel))
+        }
+    }, [dispatch, isSuccess])
 
+    console.log('|||| ' + storage)
    
     
     if(isLoading){
         return <Spinner />
     }
+
+
+    function playerGk(props) {
+        return <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">DATE</th>
+            <th scope="col">Save Ratio (%)</th>
+            <th scope="col">Clean Sheets</th>
+            <th scope="col">Runs Out</th>
+            <th scope="col">Monthly Games</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <th scope="row">12.12.2022</th>
+            <td>{storage.gk_SaveRatio}</td>
+            <td>{storage.CleanSheets}</td>
+            <td>{storage.gk_SaveRatio}</td>
+            <td>{Rating}</td>
+            </tr>
+        </tbody>
+        </table>;
+      }
+      
+    function playerDef(props) {
+        return <h1>Please sign up.</h1>;
+      }
+    function playerMid(props) {
+        return <h1>Welcome back!</h1>;
+      }
+      
+    function playerAtt(props) {
+        return <h1>Please sign up.</h1>;
+      }
+
+
     return (
         <>
             
@@ -81,7 +130,7 @@ function PlayerProfile() {
             <hr className="solid" />
 
             <h2>PLAYERS RECENT HISTORY</h2>
-            <h2>{pid}</h2>
+            
             <table class="table">
             <thead>
                 <tr>

@@ -13,7 +13,7 @@ const initialState = {
  export const createHistoric = createAsyncThunk(
     'historics/createHistoric', 
     async (historicData, thunkAPI) => {
-        console.log("historicSlice: line 16" )
+        console.log("@@@@" + JSON.stringify(historicData))
         try{
             //const token = thunkAPI.getState().auth.user.token
             return await historicService.createHistoric(historicData)
@@ -30,38 +30,17 @@ const initialState = {
 
 })
 
- // Get user teams
- export const getHistorics = createAsyncThunk(
-    'historics/getHistorics', 
-    async (_, thunkAPI) => {
-     
-        try{
-            const token = thunkAPI.getState().auth.user.token
-            return await historicService.getHistorics(token)
-        }catch (error){
-            const message = 
-            (error.response && 
-                error.response.data && 
-                error.response.data.message) || 
-                error.message || 
-                error.toString()
-
-            return thunkAPI.rejectWithValue(message)
-        }
-
-})
 
 
 // Get user team
-export const getSpecificHistoric = createAsyncThunk(
+export const getHistoric = createAsyncThunk(
     'historics/getHistoric', 
-    async (pid, thunkAPI) => {
-     
+    async (personel, thunkAPI) => {   
         try{
-            const token = thunkAPI.getState().auth.user.token
-            //hata var
-            return await historicService.getHistoric(pid, token)
+            console.log("HISTORICSLICE, LINE 40 " + personel)
+            return await historicService.getHistoric(personel)
         }catch (error){
+            console.log('lıne 43: ERROR ON THE HISTORICSLICE')
             const message = 
             (error.response && 
                 error.response.data && 
@@ -93,28 +72,15 @@ export const historicSlice = createSlice({
             state.isError = true
             state.message = action.payload
         })
-        .addCase(getHistorics.pending, (state) => {
+        .addCase(getHistoric.pending, (state) => {
             state.isLoading = true
         })
-        .addCase(getHistorics.fulfilled, (state, action) => {
+        .addCase(getHistoric.fulfilled, (state, action) => {
             state.isLoading = false
             state.isSuccess = true
             state.historics = action.payload
         })
-        .addCase(getHistorics.rejected, (state, action) => {
-            state.isLoading = false
-            state.isError = true
-            state.message = action.payload
-        })
-        .addCase(getSpecificHistoric.pending, (state) => {
-            state.isLoading = true
-        })
-        .addCase(getSpecificHistoric.fulfilled, (state, action) => {
-            state.isLoading = false
-            state.isSuccess = true
-            state.historics = action.payload
-        })
-        .addCase(getSpecificHistoric.rejected, (state, action) => {
+        .addCase(getHistoric.rejected, (state, action) => {
             state.isLoading = false
             state.isError = true
             state.message = action.payload

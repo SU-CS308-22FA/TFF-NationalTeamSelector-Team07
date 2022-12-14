@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 //here historic model has been created to Database
 const historicSchema = mongoose.Schema({
-    pid: {
+    personel: {
         type: String,
        
     },

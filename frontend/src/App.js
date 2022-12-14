@@ -54,7 +54,7 @@ function App() {
 
             <Route path='/new-player' element={<NewPlayer />}/>
 
-            <Route path='/player-profile' element={<PlayerProfilePage />}/>
+            <Route path='/player-profile/:personel' element={<PlayerProfilePage />}/>
             
 
             <Route path='/teams' element={<PrivateRoute />}>

@@ -37,7 +37,7 @@ function MainPagePlayerItem({player}) {
         e.preventDefault()
         //console.log(player_id)
         console.log("24 line: " + DateOfBirth)
-        navigate('/player-profile', {state: {pid: player_id, name: FullName, 
+        navigate('/player-profile', {state: {personel: player_id, name: FullName, 
             team: Team, pos: Position, Rating: Rating, dob: DateOfBirth, 
             foot: PreferedFoot, age: Age, pob: PlaceOfBirth} })
         //window.location.reload()

@@ -19,31 +19,18 @@ const createHistoric = async (historicData, token) => {
     return response1.data
 }
 
-// get user teams
-const getHistorics = async (token) => {
-    const config = {
-        headers: {
-            Authorization: `admin ${token}`
-        }
-    }
-
-    const response = await axios.get('/api/historics/')
-    console.log(response.data)
-
-    return response.data
-}
-
 
 
 // get user team
-const getSpecificHistoric = async (pid, token) => {
+const getHistoric = async (personel, token) => {
     const config = {
         headers: {
             Authorization: `admin ${token}`
         }
     }
+   
 
-    const response = await axios.get('/api/historics/' + pid)
+    const response = await axios.get('/api/historics/:' + personel)
 
     return response.data
 }
@@ -52,8 +39,7 @@ const getSpecificHistoric = async (pid, token) => {
 
 const historicService = {
     createHistoric,
-    getHistorics,
-    getSpecificHistoric,
+    getHistoric,
    
     
 }

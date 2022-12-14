@@ -88,7 +88,7 @@ function NewPlayer() {
     const onSubmitHistoricDB = (e) => {
         e.preventDefault()
         for(let k=0; k < Object.entries(array).length; k++){
-            const playerid=Object.values(array)[k].pid
+            const playerid=Object.values(array)[k].personel
             const pos=Object.values(array)[k].pos
             const monthlyGame= Object.values(array)[k].monthlyGame
             const gk_saveRatio=Object.values(array)[k].gk_saveRatio
