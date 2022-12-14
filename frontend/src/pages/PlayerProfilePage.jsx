@@ -31,6 +31,7 @@ function PlayerProfile() {
     useEffect(() => {
         return async () => {
             getStorage( await historicService.getHistoric(personel))
+            //minor changes
         }
     }, [dispatch, isSuccess])
 
