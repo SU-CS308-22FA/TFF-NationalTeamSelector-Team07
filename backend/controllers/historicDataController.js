@@ -7,6 +7,7 @@ const historic = require('../models/historicDataModel')
 
 
 const getHistoric = asyncHandler(async (req, res) => {
+
   console.log("historicDataController, line10 " +JSON.stringify(req.params) )
   const lele = req.params.personel
   pid = lele.substring(1)
