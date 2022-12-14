@@ -97,6 +97,8 @@ function PlayerProfile() {
             <hr className="solid" />
 
             <h2>PLAYERS RECENT HISTORY</h2>
+
+            
             <table class="table">
             <thead>
                 <tr>
