@@ -5,10 +5,13 @@ import { deletePlayer } from '../features/players/playerSlice'
 import {useNavigate} from 'react-router-dom'
 
 function PlayerDropdownItem({player}) {
-
+    console.log(player)
+    const dispatch = useDispatch()
+    const [FullName] = useState(player.fullName)
+    const [Position] = useState(player.position)
     return (
         <div>
-            {player.position} - {player.fullName}
+            {player.fullName}
         </div>
     )
 }

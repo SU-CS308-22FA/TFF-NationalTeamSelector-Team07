@@ -32,6 +32,7 @@
     "jsonwebtoken": "^8.5.1",
     "loader-utils": "^3.2.1",
     "mongoose": "^6.7.1",
+    "react-bootstrap-dropdown": "^0.3.0",
     "react-cookie": "^4.1.1",
     "react-icons": "^4.6.0",
     "react-modal": "^3.16.1",
