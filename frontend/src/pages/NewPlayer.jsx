@@ -4,15 +4,19 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
-import { createPlayer, reset } from '../features/players/playerSlice'
+import { createPlayer } from '../features/players/playerSlice'
+import { createHistoric, reset } from '../features/historics/historicSlice'
 import Spinner from '../components/Spinner'
+
 
 function NewPlayer() {
     const { user } = useSelector((state) => state.auth)
+    //const { historic } = useSelector((state) => state.historic)
+    
     const {isLoading, isError, isSuccess, message} = useSelector(
         (state) => state.players
     )
-    //////////////////////////////////////////////////////////////////
+   
     
     
     
@@ -33,6 +37,8 @@ function NewPlayer() {
       setFile(e.target.files[0]);
     };
   
+
+
     const csvFileToArray = string => {
       const csvHeader = string.slice(0, string.indexOf("\n")).split(";");
       const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
@@ -48,18 +54,13 @@ function NewPlayer() {
          
           return object;
         }, {});
-        //console.log("196: " ,obj)
+        console.log("57: " ,obj)
         return obj;
       });
       
       setArray(array);
     };
 
-    function arrayToDb(){
-
-
-
-    }
   
     const handleOnSubmitCSV = (e) => {
       e.preventDefault();
@@ -75,7 +76,7 @@ function NewPlayer() {
     };
   
     const headerKeys = Object.keys(Object.assign({}, ...array));
-    //console.log("211: " + headerKeys)
+    console.log("79: " + headerKeys)
   
 
 
@@ -115,7 +116,7 @@ function NewPlayer() {
         e.preventDefault()
         for(let k=0; k < Object.entries(array).length; k++){
             
-            const pid=Object.values(array)[k].pid
+            const personel=Object.values(array)[k].personel
             const fullName=Object.values(array)[k].Name
             const position= Object.values(array)[k].Position
             const team=Object.values(array)[k].Team
@@ -124,10 +125,40 @@ function NewPlayer() {
             const PreferedFoot= Object.values(array)[k].PreferedFoot
             const Age=Object.values(array)[k].Age
             const PlaceOfBirth =Object.values(array)[k].PlaceOfBirth
-            dispatch(createPlayer({fullName, team, position, raiting, DateOfBirth, PreferedFoot, Age, PlaceOfBirth}))
+            dispatch(createPlayer({personel, fullName, team, position, raiting, DateOfBirth, PreferedFoot, Age, PlaceOfBirth}))
             
         }
+    }
 
+    const onSubmitHistoricDB = (e) => {
+        e.preventDefault()
+        for(let k=0; k < Object.entries(array).length; k++){
+            
+            
+            const personel=Object.values(array)[k].personel
+            const pos=Object.values(array)[k].pos
+            const monthlyGame= Object.values(array)[k].monthlyGame
+            const gk_saveRatio=Object.values(array)[k].gk_saveRatio
+            const gk_cleanSheets =Object.values(array)[k].gk_cleanSheets
+            const gk_RunsOut=Object.values(array)[k].gk_RunsOut
+            console.log("142: " + gk_RunsOut)
+            const def_tackle= Object.values(array)[k].def_tackle
+            const def_interception=Object.values(array)[k].def_interception
+            const def_clearence =Object.values(array)[k].def_clearence
+            const mid_accPassRatio=Object.values(array)[k].mid_accPassRatio
+            const mid_assists =Object.values(array)[k].mid_keyPasses
+            console.log("148: " + mid_assists)
+            const mid_keyPasses=Object.values(array)[k].mid_keyPasses
+            const att_expectedGoalsRatio= Object.values(array)[k].att_expectedGoalsRatio
+            const att_numOfGoals=Object.values(array)[k].att_numOfGoals
+            const att_shootsOnTargetRatio =Object.values(array)[k].att_shootsOnTargetRatio
+
+            dispatch(createHistoric({personel, pos, monthlyGame, gk_saveRatio, 
+                gk_cleanSheets, gk_RunsOut, def_tackle, 
+                def_interception, def_clearence, mid_accPassRatio, 
+                mid_assists, mid_keyPasses, att_expectedGoalsRatio, att_numOfGoals, att_shootsOnTargetRatio}))
+            
+        }
     }
 
     if(isLoading) {
@@ -184,10 +215,12 @@ function NewPlayer() {
                     </div>
 
                     </section>
-
                 </form>
+
                 <div style={{ textAlign: "center" }}>
-                <h1>REACTJS CSV IMPORT EXAMPLE </h1>
+
+                    
+                <h1>IMPORT PLAYERS INFO</h1>
                 <form>
                     <input
                     type={"file"}
@@ -204,6 +237,7 @@ function NewPlayer() {
                     IMPORT CSV
                     </button>
                 </form>
+                <br />
                 <form onSubmit={onSubmitDB}>
                     <div className="form-group" style={{margin: "40x 20px"}}>
                         <button className="btn btn-block">
@@ -211,8 +245,33 @@ function NewPlayer() {
                         </button>
                     </div>
                 </form>
-                
+                <br />
 
+                <h1>IMPORT PLAYERS HISTORIC</h1>
+                <form>
+                    <input
+                    type={"file"}
+                    id={"csvFileInput"}
+                    accept={".csv"}
+                    onChange={handleOnChangeCSV}
+                    />
+
+                    <button
+                    onClick={(e) => {
+                        handleOnSubmitCSV(e);
+                    }}
+                    >
+                    IMPORT CSV
+                    </button>
+                </form>
+                <br />
+                <form onSubmit={onSubmitHistoricDB}>
+                    <div className="form-group" style={{margin: "40x 20px"}}>
+                        <button className="btn btn-block">
+                            Submit to Database
+                        </button>
+                    </div>
+                </form>
                 <br />
 
                 <hr className="solid" />

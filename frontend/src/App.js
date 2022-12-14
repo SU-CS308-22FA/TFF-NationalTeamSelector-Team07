@@ -24,6 +24,7 @@ import User from './pages/User'
 import Users from './pages/Users'
 import PlayerProfilePage from './pages/PlayerProfilePage'
 
+
 import TopFiveTeams from './pages/top5teams'
 import VisitedProfile from './pages/VisitedProfile'
 
@@ -58,7 +59,8 @@ function App() {
 
             <Route path='/new-player' element={<NewPlayer />}/>
 
-            <Route path='/player-profile' element={<PlayerProfilePage />}/>
+            <Route path='/player-profile/:personel' element={<PlayerProfilePage />}/>
+            
 
             <Route path='/teams' element={<PrivateRoute />}>
             <Route path='/teams' element={<Teams />}/>
