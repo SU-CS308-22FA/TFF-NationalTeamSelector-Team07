@@ -4,7 +4,9 @@ import {getPlayers} from '../features/players/playerSlice'
 import Spinner from '../components/Spinner'
 import PlayerItem from '../components/PlayerItem'
 
-
+/**
+ * Represents players list.
+ */
 function Players() {
     const {players, isLoadingP, isSuccessP} = useSelector((state) => state.players)
   

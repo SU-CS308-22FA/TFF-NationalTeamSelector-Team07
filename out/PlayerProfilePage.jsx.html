@@ -47,7 +47,7 @@ function PlayerProfile() {
     const navigate = useNavigate()
     
     const {state} = useLocation();
-    const {pid, name, team, pos, Rating, dob, foot, age, pob } = state; // Read values passed on state
+    const {personel, name, team, pos, Rating, dob, foot, age, pob } = state; // Read values passed on state
 
     
 
@@ -109,7 +109,7 @@ function PlayerProfile() {
             &lt;hr className="solid" />
 
             &lt;h2>PLAYERS RECENT HISTORY&lt;/h2>
-            &lt;h2>{pid}&lt;/h2>
+            &lt;h2>{personel}&lt;/h2>
             &lt;table class="table">
             &lt;thead>
                 &lt;tr>

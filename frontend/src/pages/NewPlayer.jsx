@@ -54,7 +54,7 @@ function NewPlayer() {
          
           return object;
         }, {});
-        //console.log("196: " ,obj)
+        console.log("57: " ,obj)
         return obj;
       });
       
@@ -76,7 +76,7 @@ function NewPlayer() {
     };
   
     const headerKeys = Object.keys(Object.assign({}, ...array));
-    //console.log("211: " + headerKeys)
+    console.log("79: " + headerKeys)
   
 
 
@@ -116,7 +116,7 @@ function NewPlayer() {
         e.preventDefault()
         for(let k=0; k < Object.entries(array).length; k++){
             
-            const pid=Object.values(array)[k].pid
+            const personel=Object.values(array)[k].personel
             const fullName=Object.values(array)[k].Name
             const position= Object.values(array)[k].Position
             const team=Object.values(array)[k].Team
@@ -125,7 +125,7 @@ function NewPlayer() {
             const PreferedFoot= Object.values(array)[k].PreferedFoot
             const Age=Object.values(array)[k].Age
             const PlaceOfBirth =Object.values(array)[k].PlaceOfBirth
-            dispatch(createPlayer({pid, fullName, team, position, raiting, DateOfBirth, PreferedFoot, Age, PlaceOfBirth}))
+            dispatch(createPlayer({personel, fullName, team, position, raiting, DateOfBirth, PreferedFoot, Age, PlaceOfBirth}))
             
         }
     }
@@ -135,8 +135,7 @@ function NewPlayer() {
         for(let k=0; k < Object.entries(array).length; k++){
             
             
-            const playerid=Object.values(array)[k].pid
-            console.log("136: " + playerid)
+            const personel=Object.values(array)[k].personel
             const pos=Object.values(array)[k].pos
             const monthlyGame= Object.values(array)[k].monthlyGame
             const gk_saveRatio=Object.values(array)[k].gk_saveRatio
@@ -154,7 +153,7 @@ function NewPlayer() {
             const att_numOfGoals=Object.values(array)[k].att_numOfGoals
             const att_shootsOnTargetRatio =Object.values(array)[k].att_shootsOnTargetRatio
 
-            dispatch(createHistoric({playerid, pos, monthlyGame, gk_saveRatio, 
+            dispatch(createHistoric({personel, pos, monthlyGame, gk_saveRatio, 
                 gk_cleanSheets, gk_RunsOut, def_tackle, 
                 def_interception, def_clearence, mid_accPassRatio, 
                 mid_assists, mid_keyPasses, att_expectedGoalsRatio, att_numOfGoals, att_shootsOnTargetRatio}))
