@@ -14,6 +14,7 @@ const getHistorics = asyncHandler(async (req, res) => {
 
 
 const getHistoric = asyncHandler(async (req, res) => {
+  //final updates
 
     Historic.findById(req.params.pid, (error, data) => {
         if (error) {
