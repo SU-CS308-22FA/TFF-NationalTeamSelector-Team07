@@ -117,6 +117,7 @@ function NewPlayer() {
         for(let k=0; k < Object.entries(array).length; k++){
             
             const personel=Object.values(array)[k].personel
+
             const fullName=Object.values(array)[k].Name
             const position= Object.values(array)[k].Position
             const team=Object.values(array)[k].Team
