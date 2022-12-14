@@ -34,47 +34,14 @@ function PlayerProfile() {
         }
     }, [dispatch, isSuccess])
 
-    console.log('|||| ' + storage)
-   
+    console.log('line 37, '+ JSON.stringify(storage))
+    console.log('line 37, '+ JSON.stringify(storage.gk_SaveRatio))
+    
     
     if(isLoading){
         return <Spinner />
     }
-
-
-    function playerGk(props) {
-        return <table class="table">
-        <thead>
-            <tr>
-            <th scope="col">DATE</th>
-            <th scope="col">Save Ratio (%)</th>
-            <th scope="col">Clean Sheets</th>
-            <th scope="col">Runs Out</th>
-            <th scope="col">Monthly Games</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-            <th scope="row">12.12.2022</th>
-            <td>{storage.gk_SaveRatio}</td>
-            <td>{storage.CleanSheets}</td>
-            <td>{storage.gk_SaveRatio}</td>
-            <td>{Rating}</td>
-            </tr>
-        </tbody>
-        </table>;
-      }
-      
-    function playerDef(props) {
-        return <h1>Please sign up.</h1>;
-      }
-    function playerMid(props) {
-        return <h1>Welcome back!</h1>;
-      }
-      
-    function playerAtt(props) {
-        return <h1>Please sign up.</h1>;
-      }
+   
 
 
     return (
@@ -90,7 +57,7 @@ function PlayerProfile() {
                                     <MDBCardImage src="https://media.istockphoto.com/id/1300845620/tr/vekt%C3%B6r/kullan%C4%B1c%C4%B1-simgesi-d%C3%BCz-beyaz-arka-plan-%C3%BCzerinde-izole-kullan%C4%B1c%C4%B1-sembol%C3%BC-vekt%C3%B6r-ill%C3%BCstrasyonu.jpg?s=612x612&w=0&k=20&c=BapxTLg8R3jjWnvaSXeHqgtou_-FcyBKmAkUsgwQzxU="
                                         alt="Avatar" className="my-5" style={{ width: '80px' }} fluid />
                                     <MDBTypography tag="h5">{name}</MDBTypography>
-                                    <MDBCardText>{team}</MDBCardText>                               
+                                    <MDBCardText>{pos}</MDBCardText>                               
                                 </MDBCol>
                                 <MDBCol md="8">
                                     <MDBCardBody className="p-4">
@@ -130,33 +97,33 @@ function PlayerProfile() {
             <hr className="solid" />
 
             <h2>PLAYERS RECENT HISTORY</h2>
-            
             <table class="table">
             <thead>
                 <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Team</th>
-                <th scope="col">Position</th>
-                <th scope="col">Overall Rating</th>
+                <th scope="col">DATE</th>
+                <th scope="col">Save Ratio (%)</th>
+                <th scope="col">Clean Sheets</th>
+                <th scope="col">Runs Out</th>
+                <th scope="col">Monthly Games</th>
+                <th scope="col">Monthly Rating</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                <th scope="row">1</th>
-                <td>{name}</td>
-                <td>{team}</td>
-                <td>{pos}</td>
+                <th scope="row">12.12.2022</th>
+                <td>{storage.gk_saveRatio}</td>
+                <td>{storage.gk_cleanSheets}</td>
+                <td>{storage.gk_RunsOut}</td>
+                <td>{storage.monthlyGame}</td>
                 <td>{Rating}</td>
                 </tr>
             </tbody>
-            </table>
-            
-            
-
-
-            
+            </table>;
         </>
+
+            
+            
+        
     )
 }
 

@@ -9,7 +9,7 @@ const historic = require('../models/historicDataModel')
 const getHistoric = asyncHandler(async (req, res) => {
   console.log("historicDataController, line10 " + req.params.personel)
 
-  historic.findOne({personel:1}, (error, data) => {
+  historic.findOne({personel:2}, (error, data) => {
         
         if (error) {
           throw new Error('ljdkjsd')
