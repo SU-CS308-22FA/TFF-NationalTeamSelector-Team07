@@ -7,7 +7,13 @@ import { useDispatch,useSelector } from 'react-redux'
 import { format } from 'date-fns'
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 
-
+/**
+ * * This function involves incrementing and decrementing likes
+ * Each button press is being checked before incrementing or decrementing the like count
+ * so that each user can only like a team post one
+ * @param {object} team a team item with all features
+ * @returns the list of team items inside a specific card template
+ */
 function TeamItem({team}) {
 
     const navigate = useNavigate()

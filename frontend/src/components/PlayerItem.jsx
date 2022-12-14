@@ -7,11 +7,13 @@ import {useNavigate} from 'react-router-dom'
 import {getHistoric} from '../features/historics/historicSlice'
 import { useEffect } from 'react'
 
+
    /**
      * This function takes player object from the MainPagePlayerItem in order to destruct ıbject and take its inside parameters
      * @param {object} player that needs to be destructed to display its parameters.
      */
 function PlayerItem({player, navigation}) {
+
 
    
 
