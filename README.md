@@ -26,13 +26,13 @@ To report a bug related to website, click [issues](https://github.com/SU-CS308-2
 2. Search bar is not displaying on top of the items.
 
 
-## User Documentation
+## Developer Documentation
 
 ### How to obtain source code
-To obtain source code you need to clone repo.
+To obtain source code you need to clone the repo or you can manually download the "dev" branch to access all functionality of the app.
 
 ### The layout of the directory structure
-The project is composed of two main folders namely frontend and backend. 
+The project is composed of two main folders named frontend and backend. 
 1. Frontend
   - public: auto created, not much to think of
   - src
@@ -46,6 +46,9 @@ The project is composed of two main folders namely frontend and backend.
   - routes: frontend and backend are connected here
   
 ### How to build and deploy the software.
+After the clone operation the project can be builted by writing "npm run dev" command into terminal.
+At the same time, app is currently build by Heroku live deployment services.
+If you don't want to use the app from your local files, you can access the app by [live](https://tffnationalteamselector-v2.herokuapp.com/) deployed version.
 
 
 
