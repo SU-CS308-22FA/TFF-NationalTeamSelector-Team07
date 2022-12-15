@@ -45,7 +45,7 @@ The project is composed of two main folders named frontend and backend.
   - models: identify the table structure of the MongoDB collections individually
   - routes: frontend and backend are connected here
   
-### How to build and deploy the software.
+### How to build & deploy the software
 After the clone operation the project can be builted by writing "npm run dev" command into terminal.
 At the same time, app is currently build by Heroku live deployment services.
 If you don't want to use the app from your local files, you can access the app by [live](https://tffnationalteamselector-v2.herokuapp.com/) deployed version.
