@@ -18,22 +18,22 @@ function NewTeam() {
     //const [playerName] = useState(players.fullName)
     //const [playerPosition] = useState(players.position)
 
-    const [player1, setPlayerName1] = useState("")
-    const [player2, setPlayerName2] = useState("")
-    const [player3, setPlayerName3] = useState("")
-    const [player4, setPlayerName4] = useState("")
-    const [player5, setPlayerName5] = useState("")
-    const [player6, setPlayerName6] = useState("")
-    const [player7, setPlayerName7] = useState("")
-    const [player8, setPlayerName8] = useState("")
-    const [player9, setPlayerName9] = useState("")
-    const [player10, setPlayerName10] = useState("")
-    const [player11, setPlayerName11] = useState("")
-    const [name] = useState(user.name)
+    const [player1, setPlayerName1] = useState({player1:'',})
+    const [player2, setPlayerName2] = useState({player2:'',})
+    const [player3, setPlayerName3] = useState({player3:'',})
+    const [player4, setPlayerName4] = useState({player4:'',})
+    const [player5, setPlayerName5] = useState({player5:'',})
+    const [player6, setPlayerName6] = useState({player6:'',})
+    const [player7, setPlayerName7] = useState({player7:'',})
+    const [player8, setPlayerName8] = useState({player8:'',})
+    const [player9, setPlayerName9] = useState({player9:'',})
+    const [player10, setPlayerName10] = useState({player10:'',})
+    const [player11, setPlayerName11] = useState({player11:'',})
+
     const [email] = useState(user.email)
     const [teamName, setTeamName] = useState()
     const dispatch = useDispatch()
-    const navigate = useNavigate()
+
 
     useEffect(() => {
         return async () => {
@@ -55,14 +55,57 @@ function NewTeam() {
         }
     
     const playerOptions = playerList.map((player, index) => (
-    <PlayerDropdownItem key={index} player={player} >{player.fullName}</PlayerDropdownItem>
+    <PlayerDropdownItem key={index} player={player} value={player.fullName}>{player.fullName}</PlayerDropdownItem>
     ))
     
 
     if(isLoading) {
         return <Spinner />
     }
-
+    const set_p1 = event =>{
+        console.log(event.target.name, event.target.value)
+        setPlayerName1({...player1,[event.target.name]:event.target.value})
+    }
+    const set_p2 = event =>{
+        console.log(event.target.name, event.target.value)
+        setPlayerName2({...player2,[event.target.name]:event.target.value})
+      }
+      const set_p3 = event =>{
+        console.log(event.target.name, event.target.value)
+        setPlayerName3({...player3,[event.target.name]:event.target.value})
+      }
+      const set_p4 = event =>{
+        console.log(event.target.name, event.target.value)
+        setPlayerName4({...player4,[event.target.name]:event.target.value})
+      }
+      const set_p5 = event =>{
+        console.log(event.target.name, event.target.value)
+        setPlayerName5({...player5,[event.target.name]:event.target.value})
+      }
+      const set_p6 = event =>{
+        console.log(event.target.name, event.target.value)
+        setPlayerName6({...player6,[event.target.name]:event.target.value})
+      }
+      const set_p7 = event =>{
+        console.log(event.target.name, event.target.value)
+        setPlayerName7({...player7,[event.target.name]:event.target.value})
+      }
+      const set_p8 = event =>{
+        console.log(event.target.name, event.target.value)
+        setPlayerName8({...player8,[event.target.name]:event.target.value})
+      }
+      const set_p9 = event =>{
+        console.log(event.target.name, event.target.value)
+        setPlayerName9({...player9,[event.target.name]:event.target.value})
+      }
+      const set_p10 = event =>{
+        console.log(event.target.name, event.target.value)
+        setPlayerName10({...player10,[event.target.name]:event.target.value})
+      }
+      const set_p11 = event =>{
+        console.log(event.target.name, event.target.value)
+        setPlayerName11({...player11,[event.target.name]:event.target.value})
+      }
     
 
     return (
@@ -81,9 +124,9 @@ function NewTeam() {
                     value={teamName} onChange={(e) => setTeamName(e.target.value)}/>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="player1">Player1 - Goalkeeper: {player1}</label>
+                    <label htmlFor="player1">Player1 - Goalkeeper: {player1.fullName}</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player1} onChange={(e) => setPlayerName2(player1)} key={Math.random()}  placeholder="Select a Goalkeeper" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player1} onChange={(event) => set_p1(event)} key={Math.random()}  placeholder="Select a Goalkeeper" />
                     </form>
                      
                     {/* <input type="text" 
@@ -94,7 +137,7 @@ function NewTeam() {
                 <div className="form-group">
                     <label htmlFor="player2">Player2 - Defender</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player2} onChange={(e) => setPlayerName2(player2)} key={Math.random()} placeholder="Select a Defender" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player2} onChange={(event) => set_p2(event)} key={Math.random()} placeholder="Select a Defender" />
                     </form>
                    {/* <input type="text" 
                     className="form-control"
@@ -104,7 +147,7 @@ function NewTeam() {
                 <div className="form-group">
                     <label htmlFor="player3">Player3 - Defender</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player3} onChange={(e) => setPlayerName3(player3)} key={Math.random()} placeholder="Select a Defender" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player3} onChange={(event) => set_p3(event)} key={Math.random()} placeholder="Select a Defender" />
                     </form>
                    {/* <input type="text" 
                     className="form-control"
@@ -114,7 +157,7 @@ function NewTeam() {
                 <div className="form-group">
                     <label htmlFor="player4">Player4 - Defender</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player4} onChange={(e) => setPlayerName4(player4)} key={Math.random()} placeholder="Select a Defender" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player4} onChange={(event) => set_p4(event)} key={Math.random()} placeholder="Select a Defender" />
                     </form>
                     {/*<input type="text" 
                     className="form-control"
@@ -124,7 +167,7 @@ function NewTeam() {
                 <div className="form-group">
                     <label htmlFor="player5">Player5 - Defender</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player5} onChange={(e) => setPlayerName5(player5)} key={Math.random()} placeholder="Select a Defender" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player5} onChange={(event) => set_p5(event)} key={Math.random()} placeholder="Select a Defender" />
                     </form>
                     {/*<input type="text" 
                     className="form-control"
@@ -134,7 +177,7 @@ function NewTeam() {
                 <div className="form-group">
                     <label htmlFor="player">Player6 - Midfielder</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player6} onChange={(e) => setPlayerName6(player6)} key={Math.random()} placeholder="Select a Midfielder" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player6} onChange={(event) => set_p6(event)} key={Math.random()} placeholder="Select a Midfielder" />
                     </form>
                     {/*<input type="text" 
                     className="form-control"
@@ -144,7 +187,7 @@ function NewTeam() {
                 <div className="form-group">
                     <label htmlFor="player">Player7 - Midfielder</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player7} onChange={(e) => setPlayerName7(player7)} key={Math.random()} placeholder="Select a Midfielder" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player7} onChange={(event) => set_p7(event)} key={Math.random()} placeholder="Select a Midfielder" />
                     </form>
                     {/* <input type="text" 
                     className="form-control"
@@ -154,7 +197,7 @@ function NewTeam() {
                 <div className="form-group">
                     <label htmlFor="player">Player8 - Midfielder</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player8} onChange={(e) => setPlayerName8(player8)} key={Math.random()} placeholder="Select a Midfielder" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player8} onChange={(event) => set_p8(event)} key={Math.random()} placeholder="Select a Midfielder" />
                     </form>
                     {/* <input type="text" 
                     className="form-control"
@@ -164,7 +207,7 @@ function NewTeam() {
                 <div className="form-group">
                     <label htmlFor="player">Player9 - Midfielder</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player9} onChange={(e) => setPlayerName9(player9)} key={Math.random()} placeholder="Select a Midfielder" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player9} onChange={(event) => set_p9(event)} key={Math.random()} placeholder="Select a Midfielder" />
                     </form>
                     {/* <input type="text" 
                     className="form-control"
@@ -174,7 +217,7 @@ function NewTeam() {
                 <div className="form-group">
                     <label htmlFor="player">Player10 - Forward</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player10} onChange={(e) => setPlayerName10(player10)} key={Math.random()} placeholder="Select a Forward" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player10} onChange={(event) => set_p10(event)} key={Math.random()} placeholder="Select a Forward" />
                     </form>
                     {/* <input type="text" 
                     className="form-control"
@@ -184,7 +227,7 @@ function NewTeam() {
                 <div className="form-group">
                     <label htmlFor="player">Player11 - Forward</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player11} onChange={(e) => setPlayerName11(player11)} key={Math.random()} placeholder="Select a Forward" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player11} onChange={(event) => set_p11(event)} key={Math.random()} placeholder="Select a Forward" />
                     </form>
                     {/* <input type="text" 
                     className="form-control"
