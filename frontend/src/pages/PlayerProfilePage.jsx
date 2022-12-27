@@ -35,8 +35,8 @@ function PlayerProfile() {
         }
     }, [dispatch, isSuccess])
 
-    console.log('line 37, '+ JSON.stringify(storage))
-    console.log('line 37, '+ JSON.stringify(storage.gk_SaveRatio))
+    console.log('INCOMING POPULATED DATA '+ JSON.stringify(storage))
+    //console.log('line 37, '+ JSON.stringify(storage.gk_SaveRatio))
     
     
     if(isLoading){
