@@ -11,6 +11,8 @@ import { useLocation } from 'react-router-dom';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography } from 'mdb-react-ui-kit';
+import HistoricDataItem from '../components/HistoricDataItem'
+
 
 /**
  * from state (line 23) player object has been taken. Then, each paramter has been put to the relevant location from table.
@@ -23,7 +25,7 @@ function PlayerProfile() {
     
     const dispatch = useDispatch()
 
-    const[storage, getStorage] = useState({})
+    const[storage, getStorage] = useState([])
 
     const {state} = useLocation();
     const {personel, name, team, pos, Rating, dob, foot, age, pob } = state; // Read values passed on state
@@ -35,7 +37,7 @@ function PlayerProfile() {
         }
     }, [dispatch, isSuccess])
 
-    console.log('INCOMING POPULATED DATA '+ JSON.stringify(storage))
+    //console.log('INCOMING POPULATED DATA '+ JSON.stringify(storage))
     //console.log('line 37, '+ JSON.stringify(storage.gk_SaveRatio))
     
     
@@ -43,6 +45,7 @@ function PlayerProfile() {
         return <Spinner />
     }
    
+    console.log("LINE 28, WHAT OS THE TYO OF TEAMS: " + storage)
 
 
     return (
@@ -101,27 +104,37 @@ function PlayerProfile() {
 
             
             <table class="table">
-            <thead>
-                <tr>
-                <th scope="col">DATE</th>
-                <th scope="col">Save Ratio (%)</th>
-                <th scope="col">Clean Sheets</th>
-                <th scope="col">Runs Out</th>
-                <th scope="col">Monthly Games</th>
-                <th scope="col">Monthly Rating</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <th scope="row">12.12.2022</th>
-                <td>{storage.gk_saveRatio}</td>
-                <td>{storage.gk_cleanSheets}</td>
-                <td>{storage.gk_RunsOut}</td>
-                <td>{storage.monthlyGame}</td>
-                <td>{Rating}</td>
-                </tr>
-            </tbody>
-            </table>;
+                <thead>
+                    <tr>
+                    <th scope="col">DATE</th>
+                    <th scope="col">Save Ratio (%)</th>
+                    <th scope="col">Clean Sheets</th>
+                    <th scope="col">Runs Out</th>
+                    <th scope="col">Monthly Games</th>
+                    <th scope="col">Monthly Rating</th>
+                    </tr>
+                </thead>
+           
+
+                {storage.map((sto) => 
+                        (
+                            <tbody>
+                            <tr>
+                            <th scope="row">12.12.2022</th>
+                            <td>{sto.gk_saveRatio}</td>
+                            <td>{sto.gk_cleanSheets}</td>
+                            <td>{sto.gk_RunsOut}</td>
+                            <td>{sto.monthlyGame}</td> 
+                            </tr>
+                            </tbody> 
+                        )
+                        
+                    )
+                }
+            
+                
+            </table>
+    
         </>
 
             
