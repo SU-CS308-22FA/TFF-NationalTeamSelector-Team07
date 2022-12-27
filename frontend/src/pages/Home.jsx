@@ -97,9 +97,9 @@ import TeamItemHomePage from '../components/TeamItemHomePage'
             {user ? 
             (            
                 <>
-                <div className="search-box">
+                <div className="search-box" style={{zIndex:"2"}}>
                 <header className="search-box-header">
-                    <div style={{ width: 400, marginBottom:"20px" }}>
+                    <div style={{ width: 400, marginBottom:"20px", zIndex:"2" }}>
                     <ReactSearchAutocomplete
                         items={userList}
                         onSearch={handleOnSearch}
@@ -112,19 +112,27 @@ import TeamItemHomePage from '../components/TeamItemHomePage'
                     </div>
                 </header>
                 </div>
-                <div class="btn-group">
+                <div style={{zIndex:"1"}}>
+                <div class="btn-group" style={{marginRight:"20px"}}>
                     <Link to='/viewAllPlayers'>
                         <button >View all players</button>
                     </Link>
+                </div>
+                <div class="btn-group" style={{marginRight:"20px"}}>
                     <Link to='/new-team'>
                         <button >Create your team</button>
                     </Link>
+                </div>
+                <div class="btn-group" style={{marginRight:"20px"}}>
                     <Link to='/teams'>
                         <button >View your team</button>
                     </Link>
+                </div>
+                <div class="btn-group" style={{marginRight:"20px"}}>
                     <Link to='/topFiveTeams'>
                         <button >Top 5 teams</button>
                     </Link>
+                </div>
                 </div>
                 <hr class="solid" style={{marginTop:"20px"}}></hr>
                 <br/>
