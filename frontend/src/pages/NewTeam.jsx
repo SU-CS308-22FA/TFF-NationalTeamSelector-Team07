@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { createTeam, reset } from '../features/teams/teamSlice'
 import Spinner from '../components/Spinner'
-import Dropdown from 'react-dropdown';
-import PlayerDropdownItem from '../components/PlayerDropdownItem'
+//import Dropdown from 'react-dropdown';
+//import PlayerDropdownItem from '../components/PlayerDropdownItem'
 
 function NewTeam() {
     const { user } = useSelector((state) => state.auth)

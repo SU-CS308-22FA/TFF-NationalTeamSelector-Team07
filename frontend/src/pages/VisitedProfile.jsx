@@ -1,13 +1,14 @@
 import {useState, useEffect} from 'react'
-import {FaUser} from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
-import {Link, useLocation} from 'react-router-dom'
-import {FaQuestionCircle, FaTicketAlt} from 'react-icons/fa'
+import { useLocation} from 'react-router-dom'
+import {toast} from 'react-toastify'
+import {FaBiohazard} from 'react-icons/fa'
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import {getTeams} from '../features/teams/teamSlice'
 import TeamItemHomePage from '../components/TeamItemHomePage'
 import { MDBTextArea } from 'mdb-react-ui-kit';
+import { createReport } from '../features/reports/reportsSlice'
 import {
     MDBCol,
     MDBContainer,
@@ -15,12 +16,6 @@ import {
     MDBCard,
     MDBCardText,
     MDBCardBody,
-    MDBCardImage,
-    MDBBtn,
-    MDBBreadcrumb,
-    MDBBreadcrumbItem,
-    MDBProgress,
-    MDBProgressBar,
     MDBIcon,
     MDBListGroup,
     MDBListGroupItem
@@ -29,11 +24,10 @@ import {
 function VisitedProfile() {
 
     const { user } = useSelector((state) => state.auth)
-    const [username] = useState(user.name)
     const [vrf] = useState(user.verification)
     const dispatch = useDispatch()
     const {teams} = useSelector((state) => state.teams)
-    const {isLoading, isSuccess} = useSelector((state) => state.teams)
+    const {isSuccess} = useSelector((state) => state.teams)
     const location = useLocation()
 
     useEffect(() => {
@@ -42,6 +36,17 @@ function VisitedProfile() {
 
         }
     }, [dispatch, isSuccess])
+
+    const userData= {
+        email: location.state.email,
+        name: location.state.name
+    }
+
+    const reportUser = (e) => {
+        e.preventDefault()
+        toast.info('User reported')
+        dispatch(createReport(userData))
+    }
 
     const strAscending = [...teams].sort((a, b) =>
     a.likes.length > b.likes.length ? 1 : -1,
@@ -72,6 +77,36 @@ function VisitedProfile() {
                     <div style={{marginTop:"20px"}} class="btn-group">
                         <button onClick={{}} >Submit</button>
                     </div>
+                    <MDBRow>
+                        <MDBCol lg="12">
+                        <div className="tickets">
+                            <div className="ticket-headings">
+                               
+                                <form onSubmit={reportUser}  >
+                                    <button className="btn btn-reverse btn-sm"> <FaBiohazard></FaBiohazard> Report</button>
+                                </form>
+                    
+                    
+                    
+                                <style>
+                                    {`
+                                        .like-button {
+                                        font-size: 1rem;
+                                            padding: 9px 10px;
+                                            color:  #585858;
+                                        }
+                                        .liked {
+                                            font-weight: bold;
+                                            color: #1565c0;
+                                        }
+                                    `}
+                                </style>      
+                            </div>
+                        </div>
+                        </MDBCol>
+                        
+                    </MDBRow>
+                    
                 </MDBCol>
                 <MDBCol lg="8">
                     <MDBCard className="mb-4">
