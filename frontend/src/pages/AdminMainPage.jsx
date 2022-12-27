@@ -1,8 +1,6 @@
 import {useState} from 'react'
 import {FaUser} from 'react-icons/fa'
 import { useSelector } from 'react-redux'
-import {Link} from 'react-router-dom'
-import {FaQuestionCircle, FaTicketAlt} from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
 function AdminProfilePage() {
@@ -30,6 +28,11 @@ function AdminProfilePage() {
     const handleSubmitSettings = (e) => {
         e.preventDefault()
         navigate('/users')
+        //window.location.reload()
+    }
+    const handleSubmitReports = (e) => {
+        e.preventDefault()
+        navigate('/reportedUsers')
         //window.location.reload()
     }
 
@@ -67,6 +70,11 @@ function AdminProfilePage() {
             <form onSubmit={handleSubmitSettings}className='btn btn-block'>
                <button>
                     User Settings
+               </button>
+            </form>
+            <form onSubmit={handleSubmitReports}className='btn btn-block'>
+               <button>
+                    Reported User
                </button>
             </form>
         </div>

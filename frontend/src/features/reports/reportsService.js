@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-// register user 
+// create reported user 
 const createReport = async (userData) => {
     const response = await axios.post('/api/reportedusers/', userData)
 
@@ -11,6 +11,14 @@ const createReport = async (userData) => {
     return response.data
 }
 
+// get reported user
+const getrUser = async (ruser) => {
+    
+    const response = await axios.get('/api/reportedusers/' + ruser)
+    
+    return response.data
+}
+
 const getrUsers = async (token) => {
 
     const response = await axios.get('/api/reportedusers/')
@@ -18,7 +26,7 @@ const getrUsers = async (token) => {
 }
 
 
-// delete user
+// delete reported user
 const deleterUser = async (userData) => {
     
     console.log('authservice id delete ' + userData)
@@ -29,14 +37,13 @@ const deleterUser = async (userData) => {
     }
     
     return response.data
-    
-    
+     
 }
-
 
 const reportsService = {
     createReport,
     deleterUser,
+    getrUser,
     getrUsers
 }
 

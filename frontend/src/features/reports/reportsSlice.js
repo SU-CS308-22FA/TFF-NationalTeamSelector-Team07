@@ -47,6 +47,28 @@ export const deleterUser = createAsyncThunk(
 
 }) 
 
+// Get reported user
+export const getrUser = createAsyncThunk(
+  'report/getrUser', 
+  async (ruser, thunkAPI) => {
+      console.log('teamslice: ' + ruser)
+   
+      try{
+          
+          return await reportsService.getrUser(ruser)
+      }catch (error){
+          const message = 
+          (error.response && 
+              error.response.data && 
+              error.response.data.message) || 
+              error.message || 
+              error.toString()
+
+          return thunkAPI.rejectWithValue(message)
+      }
+
+})
+
 export const getrUsers = createAsyncThunk(
 
   'report/getrUsers',
@@ -79,16 +101,16 @@ export const reportsSlice = createSlice({
     
     extraReducers: (builder) => {
         builder
-        .addCase(createReport.pending, (state) => {
-          state.isLoading = false
-        })
-        .addCase(createReport.fulfilled, (state, action) => {
-          state.ruser = action.payload
-          state.isLoading = false
-        })
-        .addCase(createReport.rejected, (state) => {
-          state.isLoading = false
-        })
+          .addCase(createReport.pending, (state) => {
+            state.isLoading = false
+          })
+          .addCase(createReport.fulfilled, (state, action) => {
+            state.ruser = action.payload
+            state.isLoading = false
+          })
+          .addCase(createReport.rejected, (state) => {
+            state.isLoading = false
+          })
           .addCase(deleterUser.pending, (state) => {
             state.isLoading = false
           })
@@ -97,6 +119,16 @@ export const reportsSlice = createSlice({
             state.isLoading = false
           })
           .addCase(deleterUser.rejected, (state) => {
+            state.isLoading = false
+          })
+          .addCase(getrUser.pending, (state) => {
+            state.isLoading = false
+          })
+          .addCase(getrUser.fulfilled, (state, action) => {
+            state.ruser = action.payload
+            state.isLoading = false
+          })
+          .addCase(getrUser.rejected, (state) => {
             state.isLoading = false
           })
           .addCase(getrUsers.pending, (state) => {

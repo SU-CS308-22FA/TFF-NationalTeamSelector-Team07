@@ -81,13 +81,12 @@ function VisitedProfile() {
                         <MDBCol lg="12">
                         <div className="tickets">
                             <div className="ticket-headings">
-                               
+                               <div></div>
+                               <div></div>
+                               <div></div>
                                 <form onSubmit={reportUser}  >
                                     <button className="btn btn-reverse btn-sm"> <FaBiohazard></FaBiohazard> Report</button>
                                 </form>
-                    
-                    
-                    
                                 <style>
                                     {`
                                         .like-button {

@@ -1,21 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import { createTeam, reset } from '../features/teams/teamSlice'
+import { createTeam } from '../features/teams/teamSlice'
 import Spinner from '../components/Spinner'
 //import Dropdown from 'react-dropdown';
 //import PlayerDropdownItem from '../components/PlayerDropdownItem'
 
 function NewTeam() {
     const { user } = useSelector((state) => state.auth)
-    const { players, player } = useSelector((state) => state.players)
 
-    const {isLoading, isError, isSuccess, message} = useSelector(
+    const {isLoading} = useSelector(
         (state) => state.teams
     )
-    const [playerName] = useState(players.fullName)
-    const [playerPosition] = useState(players.position)
+
 
     const [player1, setPlayerName1] = useState()
     const [player2, setPlayerName2] = useState()
@@ -28,11 +24,9 @@ function NewTeam() {
     const [player9, setPlayerName9] = useState()
     const [player10, setPlayerName10] = useState()
     const [player11, setPlayerName11] = useState()
-    const [name] = useState(user.name)
     const [email] = useState(user.email)
     const [teamName, setTeamName] = useState()
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
 
     const onSubmit =(e) => {
