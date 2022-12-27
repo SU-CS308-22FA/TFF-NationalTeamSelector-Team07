@@ -22,6 +22,7 @@ app.use(express.urlencoded({ extended: false}))
 
 //routes
 app.use('/api/users', require('./routes/userRoutes'))
+app.use('/api/historics', require('./routes/historicDataRoutes'))
 app.use('/api/players', require('./routes/playerRoutes'))
 app.use('/api/teams', require('./routes/teamRoutes'))
 app.use(errorHandler)

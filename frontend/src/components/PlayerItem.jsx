@@ -1,15 +1,27 @@
 import {useState} from 'react'
 import {toast} from 'react-toastify'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+
 import { deletePlayer } from '../features/players/playerSlice'
 import {useNavigate} from 'react-router-dom'
+import {getHistoric} from '../features/historics/historicSlice'
+import { useEffect } from 'react'
 
+
+   /**
+     * This function takes player object from the MainPagePlayerItem in order to destruct ıbject and take its inside parameters
+     * @param {object} player that needs to be destructed to display its parameters.
+     */
 function PlayerItem({player, navigation}) {
 
-    
+
+   
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
+    
+    const [personel] = useState(player.personel)
+    
     const [FullName] = useState(player.fullName)
     const [Team] = useState(player.team)
     const [player_id] = useState(player._id)
@@ -30,7 +42,7 @@ function PlayerItem({player, navigation}) {
     }
     const handleEdit = (e) => {
         e.preventDefault()
-        navigate('/editPlayer', {state:{playerId: player_id,playerName: FullName, playerTeam: Team, playerRating: Rating, playerPosition: Position}});
+        navigate('/editPlayer', {state:{playerId: player_id, playerName: FullName, playerTeam: Team, playerRating: Rating, playerPosition: Position}});
     }
 
     const playerData = {
@@ -43,15 +55,20 @@ function PlayerItem({player, navigation}) {
         foot: PreferedFoot,
         age: Age,
         pob: PlaceOfBirth
-    }
 
+    }
+    useEffect(() => {
+        return () => {
+            dispatch(getHistoric(personel))
+        }
+    }, [dispatch])
     
 
     const handleViewPlayerInfo = (e) => {
         e.preventDefault()
         //console.log(player_id)
         //console.log("24 line: " + DateOfBirth)
-        navigate('/player-profile', {state: {pid: player_id, name: FullName, 
+        navigate('/player-profile/:personel', {state: {personel: personel, playerID: player_id, name: FullName, 
             team: Team, pos: Position, Rating: Rating, dob: DateOfBirth, 
             foot: PreferedFoot, age: Age, pob: PlaceOfBirth} })
         //window.location.reload()

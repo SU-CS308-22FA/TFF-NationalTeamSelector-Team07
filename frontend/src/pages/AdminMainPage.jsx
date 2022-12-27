@@ -16,6 +16,7 @@ function AdminProfilePage() {
         navigate('/players')
         //window.location.reload()
     }
+
     const handleSubmitCreatePlayer = (e) => {
         e.preventDefault()
         navigate('/new-player')
@@ -26,9 +27,9 @@ function AdminProfilePage() {
         navigate('/profileSettings')
         //window.location.reload()
     }
-    const handleSubmitVerify = (e) => {
+    const handleSubmitSettings = (e) => {
         e.preventDefault()
-        navigate('/profileSettings')
+        navigate('/users')
         //window.location.reload()
     }
 
@@ -57,14 +58,15 @@ function AdminProfilePage() {
                     View all players
                 </button>
             </form>
+           
             <form onSubmit={handleSubmitProfile}className='btn btn-block'>
                <button>
                     Profile
                </button>
             </form>
-            <form onSubmit={handleSubmitVerify}className='btn btn-block'>
+            <form onSubmit={handleSubmitSettings}className='btn btn-block'>
                <button>
-                    User Verification
+                    User Settings
                </button>
             </form>
         </div>

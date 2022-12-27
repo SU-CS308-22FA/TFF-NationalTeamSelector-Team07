@@ -27,6 +27,7 @@ const userSchema = mongoose.Schema({
         default: false
         // false= normal user
     }
+    
 },
 {
     timestamps: true,
