@@ -125,6 +125,7 @@ function PlayerProfile() {
                             <td>{sto.gk_cleanSheets}</td>
                             <td>{sto.gk_RunsOut}</td>
                             <td>{sto.monthlyGame}</td> 
+                            <td>{Rating}</td> 
                             </tr>
                             </tbody> 
                         )

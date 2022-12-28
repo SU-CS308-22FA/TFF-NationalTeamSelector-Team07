@@ -141,22 +141,22 @@ function NewPlayer() {
             const gk_saveRatio=Object.values(array)[k].gk_saveRatio
             const gk_cleanSheets =Object.values(array)[k].gk_cleanSheets
             const gk_RunsOut=Object.values(array)[k].gk_RunsOut
-            console.log("142: " + gk_RunsOut)
             const def_tackle= Object.values(array)[k].def_tackle
             const def_interception=Object.values(array)[k].def_interception
             const def_clearence =Object.values(array)[k].def_clearence
             const mid_accPassRatio=Object.values(array)[k].mid_accPassRatio
-            const mid_assists =Object.values(array)[k].mid_keyPasses
-            console.log("148: " + mid_assists)
+            const mid_assists =Object.values(array)[k].mid_keyPasses         
             const mid_keyPasses=Object.values(array)[k].mid_keyPasses
             const att_expectedGoalsRatio= Object.values(array)[k].att_expectedGoalsRatio
             const att_numOfGoals=Object.values(array)[k].att_numOfGoals
-            const att_shootsOnTargetRatio =Object.values(array)[k].att_shootsOnTargetRatio
+            const att_shootsOnTargetRatio =Object.values(array)[k].att_shootsOnTargetRatio            
+            const date =Object.values(array)[k].date
+
 
             dispatch(createHistoric({personel, pos, monthlyGame, gk_saveRatio, 
                 gk_cleanSheets, gk_RunsOut, def_tackle, 
                 def_interception, def_clearence, mid_accPassRatio, 
-                mid_assists, mid_keyPasses, att_expectedGoalsRatio, att_numOfGoals, att_shootsOnTargetRatio}))
+                mid_assists, mid_keyPasses, att_expectedGoalsRatio, att_numOfGoals, att_shootsOnTargetRatio,date}))
             
         }
     }
