@@ -451,7 +451,9 @@ hr.solid {
   border-top: 3px solid black;
 }
 hr.dotted {
-  border-top: 3px dotted black;
+  border-top: 1px dotted black;
+  width: 99.1%;
+  margin-left: 4px;
 }
 
 .gradient-custom {
