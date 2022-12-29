@@ -216,10 +216,10 @@ function NewPlayer() {
 
                     </section>
                 </form>
-
+                <br/>
+                <hr></hr>    
+                <br/>
                 <div style={{ textAlign: "center" }}>
-
-                    
                 <h1>IMPORT PLAYERS INFO</h1>
                 <form>
                     <input
@@ -240,7 +240,7 @@ function NewPlayer() {
                 <br />
                 <form onSubmit={onSubmitDB}>
                     <div className="form-group" style={{margin: "40x 20px"}}>
-                        <button className="btn btn-block">
+                        <button className="btn btn-block" style={{margin: "40x 20px", maxWidth:"50%", marginLeft:"25%"}}>
                             Submit to Database
                         </button>
                     </div>
@@ -266,7 +266,7 @@ function NewPlayer() {
                 </form>
                 <br />
                 <form onSubmit={onSubmitHistoricDB}>
-                    <div className="form-group" style={{margin: "40x 20px"}}>
+                    <div className="form-group" style={{margin: "40x 20px", maxWidth:"50%", marginLeft:"25%"}}>
                         <button className="btn btn-block">
                             Submit to Database
                         </button>

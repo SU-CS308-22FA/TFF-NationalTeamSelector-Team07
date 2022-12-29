@@ -50,30 +50,30 @@ function AdminProfilePage() {
                 <h1>What do you need help with?</h1>
                 <p>Please chose from an option below</p>
             </section>
-            <form onSubmit={handleSubmitCreatePlayer}className='btn btn-block'>
-               <button>
+            <form onSubmit={handleSubmitCreatePlayer}>
+               <button className='btn btn-block' style={{maxWidth:"50%", marginLeft:"25%"}}>
                     Create player
                </button>
             </form>
 
-            <form onSubmit={handleSubmitPlayers} className='btn btn-block' >
-                <button>
+            <form onSubmit={handleSubmitPlayers}>
+                <button className='btn btn-block' style={{maxWidth:"50%", marginLeft:"25%"}}>
                     View all players
                 </button>
             </form>
            
-            <form onSubmit={handleSubmitProfile}className='btn btn-block'>
-               <button>
+            <form onSubmit={handleSubmitProfile}>
+               <button className='btn btn-block' style={{maxWidth:"50%", marginLeft:"25%"}}>
                     Profile
                </button>
             </form>
-            <form onSubmit={handleSubmitSettings}className='btn btn-block'>
-               <button>
+            <form onSubmit={handleSubmitSettings}>
+               <button className='btn btn-block' style={{maxWidth:"50%", marginLeft:"25%"}}>
                     User Settings
                </button>
             </form>
-            <form onSubmit={handleSubmitReports}className='btn btn-block'>
-               <button>
+            <form onSubmit={handleSubmitReports}>
+               <button className='btn btn-block' style={{maxWidth:"50%", marginLeft:"25%"}}>
                     Reported User
                </button>
             </form>

@@ -58,8 +58,8 @@ function MainPagePlayerItem({player}) {
                 <div className="right-panel box">
                     {player.raiting}
                 </div>
-                <form onSubmit={handleViewPlayerInfo}className='btn btn-danger'>
-               <button>
+                <form onSubmit={handleViewPlayerInfo}>
+               <button className='btn btn-danger'>
                     view player
                </button>
             </form>
