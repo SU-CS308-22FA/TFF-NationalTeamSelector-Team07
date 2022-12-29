@@ -3,31 +3,25 @@ import { useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import MainPagePlayerItem from '../components/MainPagePlayerItem'
 import {getPlayersHome} from '../features/players/playerSlice'
-import {getUsers} from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
-
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 import authService from '../features/auth/authService'
-
-import {getTeams, reset} from '../features/teams/teamSlice'
+import {getTeams} from '../features/teams/teamSlice'
 import TeamItemHomePage from '../components/TeamItemHomePage'
 
  function Home() {
 
-    // let items = []
     const {user} = useSelector( (state) => state.auth)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [selectedUser] = useState({ name: "", email: "", isAdmin: "", verification: "" })
     
     const [userList, setUserList] =  useState([])
+    const [realUserList, setRealUserList] =  useState([])
 
     const {teams} = useSelector((state) => state.teams)
 
-
     const {players, isLoading, isSuccess} = useSelector((state) => state.players)
-
-    let items = []
 
     useEffect(() => {
         return () => {
@@ -36,18 +30,24 @@ import TeamItemHomePage from '../components/TeamItemHomePage'
         }
     }, [dispatch, isSuccess])
 
-//     useEffect(() => {
-//       return () => {
-//           dispatch(getUsers())
-//       } 
-//   },[dispatch])
-
-
   useEffect(() => {
     return async () => {
       setUserList(await authService.getUsers() || []);
+      removeCurrentUser(userList, "email", user.email)
     }
 },)
+
+var removeCurrentUser = function(userList, key, value){
+    var i = userList.length;
+    while(i--){
+       if( userList[i] 
+           && userList[i].hasOwnProperty(key) 
+           && (arguments.length > 2 && userList[i][key] === value ) ){ 
+           userList.splice(i,1);
+       }
+    }
+    return setRealUserList(userList)
+}
 
     // 👇️ sort by String property ASCENDING (A - Z)
     const strAscending = [...players].sort((a, b) =>
@@ -101,7 +101,7 @@ import TeamItemHomePage from '../components/TeamItemHomePage'
                 <header className="search-box-header">
                     <div style={{ width: 400, marginBottom:"20px", zIndex:"2" }}>
                     <ReactSearchAutocomplete
-                        items={userList}
+                        items={realUserList}
                         onSearch={handleOnSearch}
                         onHover={handleOnHover}
                         onSelect={handleOnSelect}
