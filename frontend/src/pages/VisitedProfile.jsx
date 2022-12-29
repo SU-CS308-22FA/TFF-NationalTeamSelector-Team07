@@ -1,10 +1,17 @@
 import {useState, useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {useLocation} from 'react-router-dom'
+
+import { useLocation} from 'react-router-dom'
+import {toast} from 'react-toastify'
+import {FaBiohazard} from 'react-icons/fa'
+
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import {getTeams} from '../features/teams/teamSlice'
 import TeamItemHomePage from '../components/TeamItemHomePage'
+import { MDBTextArea } from 'mdb-react-ui-kit';
+import { createReport } from '../features/reports/reportsSlice'
+
 import {
     MDBCol,
     MDBContainer,
@@ -34,6 +41,17 @@ function VisitedProfile() {
 
         }
     }, [dispatch, isSuccess])
+
+    const userData= {
+        email: location.state.email,
+        name: location.state.name
+    }
+
+    const reportUser = (e) => {
+        e.preventDefault()
+        toast.info('User reported')
+        dispatch(createReport(userData))
+    }
 
     const strAscending = [...teams].sort((a, b) =>
     a.likes.length > b.likes.length ? 1 : -1,
@@ -119,15 +137,34 @@ function VisitedProfile() {
                       />
                       <p className="small mb-0">2</p>
                     </div>
-                  </div>
-                </MDBCardBody>
-              </MDBCard>
-            </MDBCardBody>
-          </MDBCard>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
-    {/* //////////////////////////////////////////////////// */}
+                    <MDBRow>
+                        <MDBCol lg="12">
+                        <div className="tickets">
+                            <div className="ticket-headings">
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                                <form onSubmit={reportUser}  >
+                                    <button className="btn btn-reverse btn-sm"> <FaBiohazard></FaBiohazard> Report</button>
+                                </form>
+                                <style>
+                                    {`
+                                        .like-button {
+                                        font-size: 1rem;
+                                            padding: 9px 10px;
+                                            color:  #585858;
+                                        }
+                                        .liked {
+                                            font-weight: bold;
+                                            color: #1565c0;
+                                        }
+                                    `}
+                                </style>      
+                            </div>
+                        </div>
+                        </MDBCol>
+                        
+                    </MDBRow>
                 </MDBCol>
                 <MDBCol lg="8">
                     <MDBCard className="mb-4">
