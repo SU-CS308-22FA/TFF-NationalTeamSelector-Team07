@@ -11,14 +11,22 @@ const createReport = asyncHandler(async (req, res) => {
     const {email, name} = req.body
 
     const user = await User.findOne({email})
-    
-    const ruser = await rUser.create({
-        
-        user: user._id,
-        name: name,
-    })
 
-    res.status(201).json(ruser)
+    const rruser = await rUser.findOne({name})
+    if(!rruser) {
+        const ruser = await rUser.create({
+        
+            user: user._id,
+            name: name,
+        })
+        res.status(201).json(ruser)
+    }
+    else{
+        res.status(402)
+        throw new Error('User already reported')
+    }
+    
+    
 })
 
 // @desc Delete user
