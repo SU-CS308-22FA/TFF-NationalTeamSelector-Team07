@@ -87,7 +87,10 @@ function VisitedProfile() {
                             style={{ backgroundColor: 'white' }}
                         >
                             <MDBCardBody>
-                            <MDBInput wrapperClass="mb-4" placeholder="Type comment..." label={"Comment to " +location.state.name} />
+                            <form >
+                                <MDBInput wrapperClass="mb-4" placeholder="Type comment..." label={"Comment to " +location.state.name} />
+                                <button className='btn btn-reverse' style={{marginBottom:'30px', marginLeft:"36%"}}>Comment</button>
+                            </form>
                             <MDBCard className="mb-4">
                                 <MDBCardBody>
                                 <p>Type your note, and hit enter to add it</p>
@@ -103,13 +106,9 @@ function VisitedProfile() {
                                     <p className="small mb-0 ms-2">Martha</p>
                                     </div>
                                     <div className="d-flex flex-row align-items-center">
-                                    <p className="small text-muted mb-0">Upvote?</p>
-                                    <MDBIcon
-                                        far
-                                        icon="thumbs-up mx-2 fa-xs text-black"
-                                        style={{ marginTop: "-0.16rem" }}
-                                    />
-                                    <p className="small text-muted mb-0">3</p>
+                                    <div>
+                                        <FaBiohazard style={{marginLeft:"8px"}} onClick={reportUser}/>
+                                    </div>
                                     </div>
                                 </div>
                                 </MDBCardBody>
@@ -128,14 +127,8 @@ function VisitedProfile() {
                                     />
                                     <p className="small mb-0 ms-2">Mary Kate</p>
                                     </div>
-                                    <div className="d-flex flex-row align-items-center text-primary">
-                                    <p className="small mb-0">Upvoted</p>
-                                    <MDBIcon
-                                        fas
-                                        icon="thumbs-up mx-2 fa-xs"
-                                        style={{ marginTop: "-0.16rem" }}
-                                    />
-                                    <p className="small mb-0">2</p>
+                                    <div>
+                                        <FaBiohazard style={{marginLeft:"8px"}} onClick={reportUser}/>
                                     </div>
                                 </div>
                                 </MDBCardBody>
@@ -148,13 +141,12 @@ function VisitedProfile() {
     
                 <MDBRow>
                     <MDBCol lg="12">
-                    <div className="tickets">
-                        <div className="ticket-headings" style={{marginTop:"30px", backgroundColor:"white"}}>
+                    <div className="tickets" style={{marginTop:"30px", display:"flex", alignContent:"center", justifyContent:"center"}}>
                             <div/>
                             <div/>
                             <div/>
                             <form onSubmit={reportUser}>
-                                <button className="btn btn-reverse btn-sm" style={{}}><FaBiohazard/>Report</button>
+                                <button className="btn btn-reverse btn-sm"><FaBiohazard/>Report</button>
                             </form>
                             <style>
                                 {`
@@ -169,10 +161,8 @@ function VisitedProfile() {
                                     }
                                 `}
                             </style>      
-                        </div>
                     </div>
                     </MDBCol>
-                        
                 </MDBRow>
                 </MDBCol>
                 <MDBCol lg="8">
