@@ -145,7 +145,7 @@ const updateUser = asyncHandler(async (req, res) => {
     }
 
     const updatedUser = await User.findByIdAndUpdate(req.params.id, {name: name, email: email, verification: verification}, {new: true})
-
+    console.log(updatedUser)
     res.status(200).json(updatedUser)
 })
 

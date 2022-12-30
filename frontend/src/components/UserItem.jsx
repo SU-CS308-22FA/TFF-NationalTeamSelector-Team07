@@ -14,9 +14,10 @@ function UserItem({user}) {
     const [userID] = useState(user._id)
     const [username] = useState(user.name)
     const [email] = useState(user.email)
-    const [verif, setVerif] = useState(user.verification)
+    const [verif] = useState(user.verification)
     const [isAdmin] = useState(user.isAdmin)
-    
+    const [item, setItem] = useState(false)
+
     const handleDelete = (e) => {
         
         e.preventDefault()
@@ -29,15 +30,21 @@ function UserItem({user}) {
     
     
     const handleVerif = (e) => {
+        //e.preventDefault()
+        console.log("verif: " + e)
         const userData = {
             name: username,
             email: email,
             isAdmin: isAdmin,
-            verification: !verif
+            verification: e
         }
-        e.preventDefault()
+        
+        console.log("user:" + userData.verification.toString())
+        console.log("user:" + userData.name)
+
         toast.info('User verified')
         dispatch(update(userData))
+        console.log("user updated:" + userData.verification.toString())
         window.location.reload()
     }
     
@@ -59,11 +66,14 @@ function UserItem({user}) {
             <div className="right-panel box">
                 {user.verification.toString()}
             </div>
-            
-            {/* <form onClick={(e) => handleVerif(verif => !verif)}  >
+            <div></div>
+            {/* <form onClick={() => handleVerif(!item)}  >
                 <button className="btn btn-reverse btn-sm">Verify</button>
             </form> */}
-            <div></div>
+            <form>
+            <button className="btn btn-reverse btn-sm" onClick={() => {handleVerif(!verif);}}>Verify</button>
+            </form>
+            
             <form onClick={handleDelete}  >
                 <button className="btn btn-reverse btn-sm">Delete</button>
             </form>
