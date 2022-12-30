@@ -33,6 +33,7 @@ function NewTeam() {
     const [email] = useState(user.email)
     const [teamName, setTeamName] = useState()
     const dispatch = useDispatch()
+    
 
 
     useEffect(() => {
@@ -45,67 +46,71 @@ function NewTeam() {
 
     const onSubmit =(e) => {
         e.preventDefault()
+        const teamData = {
+            teamName, player1, player2, player3, player4, player5, player6, player7, player8, player9, player10, player11, email
+        }
         // if(player1!== player2!== player3!== player4!== player5!== player6!== player7!== player8!== player9!== player10!== player11){
         //     dispatch(createTeam({player1, player2, player3, player4, player5, player6, player7, player8, player9, player10, player11, teamName, email}))
         // }
         // else{
         //     toast.error('please select a different player')
         // }
-        dispatch(createTeam({player1, player2, player3, player4, player5, player6, player7, player8, player9, player10, player11, teamName, email}))
+        console.log('player1:' + {player1})
+        dispatch(createTeam(teamData))
         }
     
     const playerOptions = playerList.map((player, index) => (
-    <PlayerDropdownItem key={index} player={player} value={player.fullName}>{player.fullName}</PlayerDropdownItem>
+    <PlayerDropdownItem key={index} player={player} >{player.fullName}</PlayerDropdownItem>
     ))
     
 
     if(isLoading) {
         return <Spinner />
     }
-    const set_p1 = event =>{
-        console.log(event.target.name, event.target.value)
-        setPlayerName1({...player1,[event.target.name]:event.target.value})
-    }
-    const set_p2 = event =>{
-        console.log(event.target.name, event.target.value)
-        setPlayerName2({...player2,[event.target.name]:event.target.value})
-      }
-      const set_p3 = event =>{
-        console.log(event.target.name, event.target.value)
-        setPlayerName3({...player3,[event.target.name]:event.target.value})
-      }
-      const set_p4 = event =>{
-        console.log(event.target.name, event.target.value)
-        setPlayerName4({...player4,[event.target.name]:event.target.value})
-      }
-      const set_p5 = event =>{
-        console.log(event.target.name, event.target.value)
-        setPlayerName5({...player5,[event.target.name]:event.target.value})
-      }
-      const set_p6 = event =>{
-        console.log(event.target.name, event.target.value)
-        setPlayerName6({...player6,[event.target.name]:event.target.value})
-      }
-      const set_p7 = event =>{
-        console.log(event.target.name, event.target.value)
-        setPlayerName7({...player7,[event.target.name]:event.target.value})
-      }
-      const set_p8 = event =>{
-        console.log(event.target.name, event.target.value)
-        setPlayerName8({...player8,[event.target.name]:event.target.value})
-      }
-      const set_p9 = event =>{
-        console.log(event.target.name, event.target.value)
-        setPlayerName9({...player9,[event.target.name]:event.target.value})
-      }
-      const set_p10 = event =>{
-        console.log(event.target.name, event.target.value)
-        setPlayerName10({...player10,[event.target.name]:event.target.value})
-      }
-      const set_p11 = event =>{
-        console.log(event.target.name, event.target.value)
-        setPlayerName11({...player11,[event.target.name]:event.target.value})
-      }
+    // const set_p1 = event =>{
+    //     console.log(event.target.name, event.target.value)
+    //     setPlayerName1({...player1,[event.target.name]:event.target.value})
+    // }
+    // const set_p2 = event =>{
+    //     console.log(event.target.name, event.target.value)
+    //     setPlayerName2({...player2,[event.target.name]:event.target.value})
+    //   }
+    //   const set_p3 = event =>{
+    //     console.log(event.target.name, event.target.value)
+    //     setPlayerName3({...player3,[event.target.name]:event.target.value})
+    //   }
+    //   const set_p4 = event =>{
+    //     console.log(event.target.name, event.target.value)
+    //     setPlayerName4({...player4,[event.target.name]:event.target.value})
+    //   }
+    //   const set_p5 = event =>{
+    //     console.log(event.target.name, event.target.value)
+    //     setPlayerName5({...player5,[event.target.name]:event.target.value})
+    //   }
+    //   const set_p6 = event =>{
+    //     console.log(event.target.name, event.target.value)
+    //     setPlayerName6({...player6,[event.target.name]:event.target.value})
+    //   }
+    //   const set_p7 = event =>{
+    //     console.log(event.target.name, event.target.value)
+    //     setPlayerName7({...player7,[event.target.name]:event.target.value})
+    //   }
+    //   const set_p8 = event =>{
+    //     console.log(event.target.name, event.target.value)
+    //     setPlayerName8({...player8,[event.target.name]:event.target.value})
+    //   }
+    //   const set_p9 = event =>{
+    //     console.log(event.target.name, event.target.value)
+    //     setPlayerName9({...player9,[event.target.name]:event.target.value})
+    //   }
+    //   const set_p10 = event =>{
+    //     console.log(event.target.name, event.target.value)
+    //     setPlayerName10({...player10,[event.target.name]:event.target.value})
+    //   }
+    //   const set_p11 = event =>{
+    //     console.log(event.target.name, event.target.value)
+    //     setPlayerName11({...player11,[event.target.name]:event.target.value})
+    //   }
     
 
     return (
@@ -124,9 +129,9 @@ function NewTeam() {
                     value={teamName} onChange={(e) => setTeamName(e.target.value)}/>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="player1">Player1 - Goalkeeper: {player1.fullName}</label>
+                    <label htmlFor="player1">Player1 - Goalkeeper: </label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player1} onChange={(event) => set_p1(event)} key={Math.random()}  placeholder="Select a Goalkeeper" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player1} onChange={(event) => setPlayerName1(event.label.props.children)} key={Math.random()}  placeholder="Select a Goalkeeper" />
                     </form>
                      
                     {/* <input type="text" 
@@ -137,7 +142,7 @@ function NewTeam() {
                 <div className="form-group">
                     <label htmlFor="player2">Player2 - Defender</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player2} onChange={(event) => set_p2(event)} key={Math.random()} placeholder="Select a Defender" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player2} onChange={(event) => setPlayerName2(event.label.props.children)} key={Math.random()} placeholder="Select a Defender" />
                     </form>
                    {/* <input type="text" 
                     className="form-control"
@@ -147,7 +152,7 @@ function NewTeam() {
                 <div className="form-group">
                     <label htmlFor="player3">Player3 - Defender</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player3} onChange={(event) => set_p3(event)} key={Math.random()} placeholder="Select a Defender" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player3} onChange={(event) => setPlayerName3(event.label.props.children)} key={Math.random()} placeholder="Select a Defender" />
                     </form>
                    {/* <input type="text" 
                     className="form-control"
@@ -157,7 +162,7 @@ function NewTeam() {
                 <div className="form-group">
                     <label htmlFor="player4">Player4 - Defender</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player4} onChange={(event) => set_p4(event)} key={Math.random()} placeholder="Select a Defender" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player4} onChange={(event) => setPlayerName4(event.label.props.children)} key={Math.random()} placeholder="Select a Defender" />
                     </form>
                     {/*<input type="text" 
                     className="form-control"
@@ -167,7 +172,7 @@ function NewTeam() {
                 <div className="form-group">
                     <label htmlFor="player5">Player5 - Defender</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player5} onChange={(event) => set_p5(event)} key={Math.random()} placeholder="Select a Defender" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player5} onChange={(event) => setPlayerName5(event.label.props.children)} key={Math.random()} placeholder="Select a Defender" />
                     </form>
                     {/*<input type="text" 
                     className="form-control"
@@ -177,7 +182,7 @@ function NewTeam() {
                 <div className="form-group">
                     <label htmlFor="player">Player6 - Midfielder</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player6} onChange={(event) => set_p6(event)} key={Math.random()} placeholder="Select a Midfielder" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player6} onChange={(event) => setPlayerName6(event.label.props.children)} key={Math.random()} placeholder="Select a Midfielder" />
                     </form>
                     {/*<input type="text" 
                     className="form-control"
@@ -187,7 +192,7 @@ function NewTeam() {
                 <div className="form-group">
                     <label htmlFor="player">Player7 - Midfielder</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player7} onChange={(event) => set_p7(event)} key={Math.random()} placeholder="Select a Midfielder" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player7} onChange={(event) => setPlayerName7(event.label.props.children)} key={Math.random()} placeholder="Select a Midfielder" />
                     </form>
                     {/* <input type="text" 
                     className="form-control"
@@ -197,7 +202,7 @@ function NewTeam() {
                 <div className="form-group">
                     <label htmlFor="player">Player8 - Midfielder</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player8} onChange={(event) => set_p8(event)} key={Math.random()} placeholder="Select a Midfielder" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player8} onChange={(event) => setPlayerName8(event.label.props.children)} key={Math.random()} placeholder="Select a Midfielder" />
                     </form>
                     {/* <input type="text" 
                     className="form-control"
@@ -207,7 +212,7 @@ function NewTeam() {
                 <div className="form-group">
                     <label htmlFor="player">Player9 - Midfielder</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player9} onChange={(event) => set_p9(event)} key={Math.random()} placeholder="Select a Midfielder" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player9} onChange={(event) => setPlayerName9(event.label.props.children)} key={Math.random()} placeholder="Select a Midfielder" />
                     </form>
                     {/* <input type="text" 
                     className="form-control"
@@ -217,7 +222,7 @@ function NewTeam() {
                 <div className="form-group">
                     <label htmlFor="player">Player10 - Forward</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player10} onChange={(event) => set_p10(event)} key={Math.random()} placeholder="Select a Forward" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player10} onChange={(event) => setPlayerName10(event.label.props.children)} key={Math.random()} placeholder="Select a Forward" />
                     </form>
                     {/* <input type="text" 
                     className="form-control"
@@ -227,7 +232,7 @@ function NewTeam() {
                 <div className="form-group">
                     <label htmlFor="player">Player11 - Forward</label>
                     <form type="dropdown">
-                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player11} onChange={(event) => set_p11(event)} key={Math.random()} placeholder="Select a Forward" />
+                        <Dropdown required={true} id="dropdown-basic-button" options={playerOptions} value={player11} onChange={(event) => setPlayerName11(event.label.props.children)} key={Math.random()} placeholder="Select a Forward" />
                     </form>
                     {/* <input type="text" 
                     className="form-control"
