@@ -7,9 +7,9 @@ import {useNavigate} from 'react-router-dom'
 function PlayerDropdownItem({player}) {
 
     return (
-        <div>
-            {player.position} - {player.fullName}
-        </div>
+        <option>
+            {player.fullName}
+        </option>
     )
 }
 
