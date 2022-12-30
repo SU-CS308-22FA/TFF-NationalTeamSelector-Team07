@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const playerSchema = mongoose.Schema({
-    pid: {
+    personel: {
         type: String,
         required: [true, 'please add name and surname']
     },

@@ -1,8 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import { createTeam, reset } from '../features/teams/teamSlice'
+import { createTeam } from '../features/teams/teamSlice'
 import Spinner from '../components/Spinner'
 import Dropdown from 'react-dropdown';
 import PlayerDropdownItem from '../components/PlayerDropdownItem'
@@ -34,6 +32,7 @@ function NewTeam() {
     const [teamName, setTeamName] = useState()
     const dispatch = useDispatch()
     
+
 
 
     useEffect(() => {

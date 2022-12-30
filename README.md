@@ -1,76 +1,54 @@
 # TTF NATIONAL TEAM SELECTOR
 
-Server URL:
+## Server URL
 https://tffnationalteamselector-v2.herokuapp.com/
 
-##Project Descrition:
+## Project Description
+The motivation is to develop a website that ensures TFF chooses players who are at the peak of their performances. The goal is to sort Turkish football players in terms of their specific attributes and rank them with respect to certain parameters that will be included in the total rating. The app plans to solve the difficulties of choosing a suitable football player for the national team. The app will encapsulate the data of Turkish players into a database that we will create and rank them according to their statistics.Sorting Turkish football players in terms of their positions, showing overall ratings of all players, and recommending the best choices for the specific position. The selling points of the web app are to help TFF to create an almost statistically perfect national football team and give a reasoning for what parameters the head coach and their technical staff take into consideration while forming that year’s national football team. The interesting part of this project is keeping track of the players’ performances while observing their pros and cons, sorting, and filtering the players according to dedicated parameters.
+
+## User Documentation
+
+### How to install & run the software
+1. Clone the repository from github 
+2. To use full functionality checkout to dev branch
+3. Open the terminal
+  - Type "npm i" from the main directory
+  - Type "cd frontend"
+    - Type "npm i" again
+4. In order to run software you need to go to main directory by typing "cd .."
+5. In the main directory type "npm run dev" to start the app
+
+### How to report a bug
+To report a bug related to website, click [issues](https://github.com/SU-CS308-22FA/TFF-NationalTeamSelector-Team07/issues) from the github TFF-NationalTeamSelector-Team07 menu dock. 
+
+### Known bugs
+1. Navigation between pages is the first and most commmon bug of the app
+2. Search bar is not displaying on top of the items.
 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Developer Documentation
 
-## Available Scripts
+### How to obtain source code
+To obtain source code you need to clone the repo or you can manually download the "dev" branch to access all functionality of the app.
 
-In the project directory, you can run:
+### The layout of the directory structure
+The project is composed of two main folders named frontend and backend. 
+1. Frontend
+  - public: auto created, not much to think of
+  - src
+    - components: component based structure comes from this folder
+    - pages: all pages resides here. Some components based implementation comes from the components folder
+    - other folders: related to backend services.
+  
+2. Backend
+  - controllers: put,delete,get,create operations are handled
+  - models: identify the table structure of the MongoDB collections individually
+  - routes: frontend and backend are connected here
+  
+### How to build & deploy the software
+After the clone operation the project can be built by writing "npm run dev" command into terminal.
+At the same time, app is currently build by Heroku live deployment services.
+If you don't want to use the app from your local files, you can access the app by [live](https://tffnationalteamselector-v2.herokuapp.com/) deployed version.
 
-### `npm dev start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

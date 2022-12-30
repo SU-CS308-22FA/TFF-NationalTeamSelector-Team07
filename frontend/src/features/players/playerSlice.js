@@ -1,13 +1,4 @@
 
-// export const createPlayer =  createAction('auth/player', async (playerData) => {
-//     const response = await axios.post('/api/players/', playerData)
-  
-//       if(response.data) {
-//           localStorage.setItem('player', JSON.stringify(response.data))
-//       }
-  
-//       return response.data
-//   })
 
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import playerService from './playerService'
@@ -22,7 +13,7 @@ const initialState = {
  export const createPlayer = createAsyncThunk(
     'players/createPlayer', 
     async (playerData, thunkAPI) => {
-        //console.log("playereSlice: " + playerData._team)
+        console.log("playerSlice: line 16")
         try{
             //const token = thunkAPI.getState().auth.user.token
             return await playerService.createPlayer(playerData)

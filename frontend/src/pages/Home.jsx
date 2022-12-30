@@ -3,51 +3,51 @@ import { useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import MainPagePlayerItem from '../components/MainPagePlayerItem'
 import {getPlayersHome} from '../features/players/playerSlice'
-import {getUsers} from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
-
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 import authService from '../features/auth/authService'
-
-import {getTeams, reset} from '../features/teams/teamSlice'
+import {getTeams} from '../features/teams/teamSlice'
 import TeamItemHomePage from '../components/TeamItemHomePage'
-
 
  function Home() {
 
-    // let items = []
     const {user} = useSelector( (state) => state.auth)
     const dispatch = useDispatch()
-
+    const navigate = useNavigate()
+    const [selectedUser] = useState({ name: "", email: "", isAdmin: "", verification: "" })
+    
     const [userList, setUserList] =  useState([])
+    const [realUserList, setRealUserList] =  useState([])
 
     const {teams} = useSelector((state) => state.teams)
 
-
     const {players, isLoading, isSuccess} = useSelector((state) => state.players)
-
-    let items = []
 
     useEffect(() => {
         return () => {
             dispatch(getPlayersHome())
             dispatch(getTeams())
-            
         }
     }, [dispatch, isSuccess])
-
-//     useEffect(() => {
-//       return () => {
-//           dispatch(getUsers())
-//       } 
-//   },[dispatch])
-
 
   useEffect(() => {
     return async () => {
       setUserList(await authService.getUsers() || []);
+      removeCurrentUser(userList, "email", user.email)
     }
 },)
+
+var removeCurrentUser = function(userList, key, value){
+    var i = userList.length;
+    while(i--){
+       if( userList[i] 
+           && userList[i].hasOwnProperty(key) 
+           && (arguments.length > 2 && userList[i][key] === value ) ){ 
+           userList.splice(i,1);
+       }
+    }
+    return setRealUserList(userList)
+}
 
     // 👇️ sort by String property ASCENDING (A - Z)
     const strAscending = [...players].sort((a, b) =>
@@ -73,8 +73,13 @@ import TeamItemHomePage from '../components/TeamItemHomePage'
       const handleOnSelect = (item) => {
         // the item selected
         console.log(item)
+        selectedUser.email = item.email
+        selectedUser.name = item.name
+        selectedUser.verification = item.verification
+        selectedUser.isAdmin = item.isAdmin
+        navigate("/visitedProfile", {state:{name:selectedUser.name, email:selectedUser.email, isAdmin:selectedUser.isAdmin, verification:selectedUser.verification}})
       }
-    
+      
       const handleOnFocus = () => {
         console.log('Focused')
       }
@@ -92,11 +97,11 @@ import TeamItemHomePage from '../components/TeamItemHomePage'
             {user ? 
             (            
                 <>
-                <div className="search-box">
+                <div className="search-box" style={{zIndex:"2"}}>
                 <header className="search-box-header">
-                    <div style={{ width: 400, marginBottom:"20px" }}>
+                    <div style={{ width: 400, marginBottom:"20px", zIndex:"2" }}>
                     <ReactSearchAutocomplete
-                        items={userList}
+                        items={realUserList}
                         onSearch={handleOnSearch}
                         onHover={handleOnHover}
                         onSelect={handleOnSelect}
@@ -107,19 +112,27 @@ import TeamItemHomePage from '../components/TeamItemHomePage'
                     </div>
                 </header>
                 </div>
-                <div class="btn-group">
+                <div style={{zIndex:"1"}}>
+                <div class="btn-group" style={{marginRight:"20px"}}>
                     <Link to='/viewAllPlayers'>
                         <button >View all players</button>
                     </Link>
+                </div>
+                <div class="btn-group" style={{marginRight:"20px"}}>
                     <Link to='/new-team'>
                         <button >Create your team</button>
                     </Link>
+                </div>
+                <div class="btn-group" style={{marginRight:"20px"}}>
                     <Link to='/teams'>
                         <button >View your team</button>
                     </Link>
+                </div>
+                <div class="btn-group" style={{marginRight:"20px"}}>
                     <Link to='/topFiveTeams'>
                         <button >Top 5 teams</button>
                     </Link>
+                </div>
                 </div>
                 <hr class="solid" style={{marginTop:"20px"}}></hr>
                 <br/>
@@ -153,5 +166,4 @@ import TeamItemHomePage from '../components/TeamItemHomePage'
         </div>
     )
 }
-
 export default Home

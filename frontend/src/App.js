@@ -23,8 +23,10 @@ import DisplayTeam from './pages/DisplayUserTeams'
 import User from './pages/User'
 import Users from './pages/Users'
 import PlayerProfilePage from './pages/PlayerProfilePage'
-
+import ReportedUsers from './pages/reportedUsers'
+import ReportedUser from './pages/reportedUser'
 import TopFiveTeams from './pages/top5teams'
+import VisitedProfile from './pages/VisitedProfile'
 
 
 function App() {
@@ -50,12 +52,17 @@ function App() {
             <Route path='/displayTeam' element={<DisplayTeam/>} />
             <Route path='/users' element={<Users/>} />
             <Route path='/user/:userId' element={<User/>} />
+            <Route path='/reportedUsers' element={<ReportedUsers/>} />
+            <Route path='/reportedUser/:userId' element={<ReportedUser/>} />
+
+            <Route path='/visitedProfile' element={<VisitedProfile/>} />
            
             <Route path='/new-team' element={<NewTeam />}/>
 
             <Route path='/new-player' element={<NewPlayer />}/>
 
-            <Route path='/player-profile' element={<PlayerProfilePage />}/>
+            <Route path='/player-profile/:personel' element={<PlayerProfilePage />}/>
+            
 
             <Route path='/teams' element={<PrivateRoute />}>
             <Route path='/teams' element={<Teams />}/>
