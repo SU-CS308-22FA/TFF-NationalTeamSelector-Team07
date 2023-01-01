@@ -36,11 +36,6 @@ function ViewAllPlayers() {
     return (
         <>
             <h1>PLAYERS</h1>
-
-            <form onSubmit={handleFilterTopDown}  >
-                <button className="btn btn-reverse btn-sm">FILTER HIGH TO LOW </button>
-            </form>
-
             <div className="tickets">
                 <div className="ticket-headings">
                     <div>Name</div>
