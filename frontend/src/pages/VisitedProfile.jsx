@@ -1,13 +1,17 @@
 import {useState, useEffect} from 'react'
-import {FaUser} from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
-import {Link, useLocation} from 'react-router-dom'
-import {FaQuestionCircle, FaTicketAlt} from 'react-icons/fa'
+
+import { useLocation} from 'react-router-dom'
+import {toast} from 'react-toastify'
+import {FaBiohazard} from 'react-icons/fa'
+
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import {getTeams} from '../features/teams/teamSlice'
 import TeamItemHomePage from '../components/TeamItemHomePage'
 import { MDBTextArea } from 'mdb-react-ui-kit';
+import { createReport } from '../features/reports/reportsSlice'
+
 import {
     MDBCol,
     MDBContainer,
@@ -16,24 +20,19 @@ import {
     MDBCardText,
     MDBCardBody,
     MDBCardImage,
-    MDBBtn,
-    MDBBreadcrumb,
-    MDBBreadcrumbItem,
-    MDBProgress,
-    MDBProgressBar,
     MDBIcon,
     MDBListGroup,
-    MDBListGroupItem
+    MDBListGroupItem,
+    MDBInput
   } from 'mdb-react-ui-kit';
 
 function VisitedProfile() {
 
     const { user } = useSelector((state) => state.auth)
-    const [username] = useState(user.name)
     const [vrf] = useState(user.verification)
     const dispatch = useDispatch()
     const {teams} = useSelector((state) => state.teams)
-    const {isLoading, isSuccess} = useSelector((state) => state.teams)
+    const {isSuccess} = useSelector((state) => state.teams)
     const location = useLocation()
 
     useEffect(() => {
@@ -42,6 +41,17 @@ function VisitedProfile() {
 
         }
     }, [dispatch, isSuccess])
+
+    const userData= {
+        email: location.state.email,
+        name: location.state.name
+    }
+
+    const reportUser = (e) => {
+        e.preventDefault()
+        toast.info('User reported')
+        dispatch(createReport(userData))
+    }
 
     const strAscending = [...teams].sort((a, b) =>
     a.likes.length > b.likes.length ? 1 : -1,
@@ -68,10 +78,92 @@ function VisitedProfile() {
                             </MDBListGroup>
                         </MDBCardBody>
                     </MDBCard>
-                    <MDBTextArea style={{marginTop:"20px"}} label='Comment to profile' id='textAreaExample' rows={4} />
-                    <div style={{marginTop:"20px"}} class="btn-group">
-                        <button onClick={{}} >Submit</button>
+                {/* ///////////////////////////////////////////comment part */}
+                <MDBContainer className="card-body p-0" style={{marginTop:'30px'}}>
+                <MDBRow>
+                    <MDBCol style={{width:'100%'}}>
+                        <MDBCard
+                            className="shadow-0 border"
+                            style={{ backgroundColor: 'white' }}
+                        >
+                            <MDBCardBody>
+                            <form >
+                                <MDBInput wrapperClass="mb-4" placeholder="Type comment..." label={"Comment to " +location.state.name} />
+                                <button className='btn btn-reverse' style={{marginBottom:'30px', marginLeft:"36%"}}>Comment</button>
+                            </form>
+                            <MDBCard className="mb-4">
+                                <MDBCardBody>
+                                <p>Type your note, and hit enter to add it</p>
+
+                                <div className="d-flex justify-content-between">
+                                    <div className="d-flex flex-row align-items-center">
+                                    <MDBCardImage
+                                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(4).webp"
+                                        alt="avatar"
+                                        width="25"
+                                        height="25"
+                                    />
+                                    <p className="small mb-0 ms-2">Martha</p>
+                                    </div>
+                                    <div className="d-flex flex-row align-items-center">
+                                    <div>
+                                        <FaBiohazard style={{marginLeft:"8px"}} onClick={reportUser}/>
+                                    </div>
+                                    </div>
+                                </div>
+                                </MDBCardBody>
+                            </MDBCard>
+                            <MDBCard className="mb-4">
+                                <MDBCardBody>
+                                <p>Type your note, and hit enter to add it</p>
+
+                                <div className="d-flex justify-content-between">
+                                    <div className="d-flex flex-row align-items-center">
+                                    <MDBCardImage
+                                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(31).webp"
+                                        alt="avatar"
+                                        width="25"
+                                        height="25"
+                                    />
+                                    <p className="small mb-0 ms-2">Mary Kate</p>
+                                    </div>
+                                    <div>
+                                        <FaBiohazard style={{marginLeft:"8px"}} onClick={reportUser}/>
+                                    </div>
+                                </div>
+                                </MDBCardBody>
+                            </MDBCard>
+                            </MDBCardBody>
+                        </MDBCard>
+                    </MDBCol>
+                </MDBRow>
+                </MDBContainer>
+    
+                <MDBRow>
+                    <MDBCol lg="12">
+                    <div className="tickets" style={{marginTop:"30px", display:"flex", alignContent:"center", justifyContent:"center"}}>
+                            <div/>
+                            <div/>
+                            <div/>
+                            <form onSubmit={reportUser}>
+                                <button className="btn btn-reverse btn-sm"><FaBiohazard/>Report</button>
+                            </form>
+                            <style>
+                                {`
+                                    .like-button {
+                                    font-size: 1rem;
+                                        padding: 9px 10px;
+                                        color:  #585858;
+                                    }
+                                    .liked {
+                                        font-weight: bold;
+                                        color: #1565c0;
+                                    }
+                                `}
+                            </style>      
                     </div>
+                    </MDBCol>
+                </MDBRow>
                 </MDBCol>
                 <MDBCol lg="8">
                     <MDBCard className="mb-4">

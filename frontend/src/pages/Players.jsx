@@ -27,7 +27,8 @@ function Players() {
         }
     }, [dispatch, isSuccessP])
 
-    
+    console.log("LINE 28, WHAT OS THE TYO OF TEAMS: " + JSON.stringify(players))
+
 
     if(isLoadingP) {
         return <Spinner />

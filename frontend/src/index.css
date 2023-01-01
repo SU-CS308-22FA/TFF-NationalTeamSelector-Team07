@@ -39,7 +39,7 @@ h3 {
 
 .container {
   width: 100%;
-  max-width: 960px;
+  max-width: 1920px;
   margin: 0 auto;
   padding: 0 20px;
   text-align: center;
@@ -451,7 +451,9 @@ hr.solid {
   border-top: 3px solid black;
 }
 hr.dotted {
-  border-top: 3px dotted black;
+  border-top: 1px dotted black;
+  width: 99.1%;
+  margin-left: 4px;
 }
 
 .gradient-custom {

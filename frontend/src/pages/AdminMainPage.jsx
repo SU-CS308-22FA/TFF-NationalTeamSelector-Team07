@@ -1,8 +1,6 @@
 import {useState} from 'react'
 import {FaUser} from 'react-icons/fa'
 import { useSelector } from 'react-redux'
-import {Link} from 'react-router-dom'
-import {FaQuestionCircle, FaTicketAlt} from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
 function AdminProfilePage() {
@@ -32,6 +30,11 @@ function AdminProfilePage() {
         navigate('/users')
         //window.location.reload()
     }
+    const handleSubmitReports = (e) => {
+        e.preventDefault()
+        navigate('/reportedUsers')
+        //window.location.reload()
+    }
 
     return (
         <>
@@ -47,26 +50,31 @@ function AdminProfilePage() {
                 <h1>What do you need help with?</h1>
                 <p>Please chose from an option below</p>
             </section>
-            <form onSubmit={handleSubmitCreatePlayer}className='btn btn-block'>
-               <button>
+            <form onSubmit={handleSubmitCreatePlayer}>
+               <button className='btn btn-block' style={{maxWidth:"50%", marginLeft:"25%"}}>
                     Create player
                </button>
             </form>
 
-            <form onSubmit={handleSubmitPlayers} className='btn btn-block' >
-                <button>
+            <form onSubmit={handleSubmitPlayers}>
+                <button className='btn btn-block' style={{maxWidth:"50%", marginLeft:"25%"}}>
                     View all players
                 </button>
             </form>
            
-            <form onSubmit={handleSubmitProfile}className='btn btn-block'>
-               <button>
+            <form onSubmit={handleSubmitProfile}>
+               <button className='btn btn-block' style={{maxWidth:"50%", marginLeft:"25%"}}>
                     Profile
                </button>
             </form>
-            <form onSubmit={handleSubmitSettings}className='btn btn-block'>
-               <button>
+            <form onSubmit={handleSubmitSettings}>
+               <button className='btn btn-block' style={{maxWidth:"50%", marginLeft:"25%"}}>
                     User Settings
+               </button>
+            </form>
+            <form onSubmit={handleSubmitReports}>
+               <button className='btn btn-block' style={{maxWidth:"50%", marginLeft:"25%"}}>
+                    Reported User
                </button>
             </form>
         </div>

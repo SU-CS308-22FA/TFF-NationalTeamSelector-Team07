@@ -180,6 +180,7 @@ function TeamItem({team}) {
                     </style>      
                 </div>
             </div>
+            <hr class="dotted"/>
                 </MDBRow>
             </MDBContainer>
   
