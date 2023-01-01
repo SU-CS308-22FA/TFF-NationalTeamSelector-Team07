@@ -37,7 +37,7 @@ export const getHistoric = createAsyncThunk(
     'historics/getHistoric', 
     async (personel, thunkAPI) => {   
         try{
-            console.log("HISTORICSLICE, LINE 40 " + personel)
+            //console.log("HISTORICSLICE, LINE 40 " + personel)
             return await historicService.getHistoric(personel)
         }catch (error){
             console.log('lıne 43: ERROR ON THE HISTORICSLICE')

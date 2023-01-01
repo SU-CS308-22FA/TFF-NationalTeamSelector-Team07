@@ -64,6 +64,10 @@ const historicSchema = mongoose.Schema({
     att_shootsOnTargetRatio: {
         type: String,
        
+    },
+    date: {
+        type: String,
+       
     }
 },
 {
