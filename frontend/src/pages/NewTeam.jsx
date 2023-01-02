@@ -120,6 +120,7 @@ function NewTeam() {
             </section>
             <form onSubmit={onSubmit}>
             <section className="form">
+                <div>verification status:</div>
             <div className="form-group">
                     <label htmlFor="teamName">Player Team</label>
                     <input type="text" 
