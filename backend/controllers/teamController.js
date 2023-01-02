@@ -61,7 +61,7 @@ const getMyTeams = asyncHandler(async (req, res) => {
 // @access Private
 const createTeam = asyncHandler(async (req, res) => {
 
-    const {player1, player2, player3, player4, player5, player6, player7, player8, player9, player10, player11, teamName, email} = req.body
+    const {player1, player2, player3, player4, player5, player6, player7, player8, player9, player10, player11, teamName, email, userVerif} = req.body
     const user = await User.findOne({email})
     //!player1 || !player2 || !player3 || !player4 || !player5 || !player6 || !player7 || !player8 || !player9 || !player10 || !player11 ||
     if( !teamName) {
@@ -82,6 +82,7 @@ const createTeam = asyncHandler(async (req, res) => {
         player10,
         player11,
         teamName,
+        userVerif: user.verification,
         user: user._id,
         likes: [],
     })
