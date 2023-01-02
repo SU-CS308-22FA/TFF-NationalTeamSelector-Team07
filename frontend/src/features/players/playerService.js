@@ -28,16 +28,16 @@ const getPlayers = async (token) => {
     }
 
     const response = await axios.get('/api/players/')
-    console.log(response.data)
+    //console.log(response.data)
 
     return response.data
 }
 
-// get players for homepage
+// get players for homepageimage.png
 const getPlayersHome = async () => {
 
     const response = await axios.get('/api/players/')
-    console.log(response.data)
+    //console.log(response.data)
 
     return response.data
 }
