@@ -79,6 +79,7 @@ function NewTeam() {
             </section>
             <form onSubmit={onSubmit}>
             <section className="form">
+
                 {/* <div>verification status: {user.verification.toString()}</div> */}
                 <div className="form-group">
                     <label htmlFor="userVerification">Verification Status</label>
@@ -89,6 +90,7 @@ function NewTeam() {
                     value={verif} />
                 </div>
                 <div className="form-group">
+
                     <label htmlFor="teamName">Player Team</label>
                     <input type="text" 
                     className="form-control"
