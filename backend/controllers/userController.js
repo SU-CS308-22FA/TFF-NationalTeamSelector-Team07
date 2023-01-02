@@ -134,18 +134,18 @@ const loginAdmin = asyncHandler(async (req,res) => {
 // // @route PUT /api/teams/:id
 // // @access Private
 const updateUser = asyncHandler(async (req, res) => {
-    const {name, email, verification} = req.body
-
+    const {username, email, verification} = req.body
+    
     // get user using the id and jwt
-    const user = await User.findById(req.params.id)
+    const user = await User.findById(req.params.id )
 
     if(!user) {
         res.status(401)
         throw new Error('User not found')
     }
-
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, {name: name, email: email, verification: verification}, {new: true})
-    console.log(updatedUser)
+    
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, {name: username, email: email, verification: verification}, {new: true})
+    
     res.status(200).json(updatedUser)
 })
 
