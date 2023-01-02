@@ -29,10 +29,6 @@ function DisplayTeam() {
                 <div className="left-panel box">
                     {teamname}
                 </div>
-                <div className="left-panel box">
-                    
-                </div>
-                
                 <div className="right-panel box">
                     Team ID:
                 </div>

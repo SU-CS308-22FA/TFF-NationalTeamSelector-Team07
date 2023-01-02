@@ -53,6 +53,9 @@ function TeamItem({team}) {
                     {team._id}
                 </div>
                 <div className="middle-panel box">
+                {team.userVerif ? 'TFF Official' : null}
+                </div>
+                <div className="middle-panel box">
                     {team.teamName}
                 </div>
                 <div className="right-panel box">
