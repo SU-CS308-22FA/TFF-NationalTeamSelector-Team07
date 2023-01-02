@@ -21,11 +21,13 @@ function ProfileSettings() {
     const [user_id] = useState(user._id)
     const [username] = useState(user.name)
     const [mail] = useState(user.email)
+    const [verification] = useState(user.verification)
     
     const userData = {
-        name: firstName,
+        username: firstName,
         email: email,
-        id: user_id
+        id: user_id,
+        verification: verification
     }
 
     
