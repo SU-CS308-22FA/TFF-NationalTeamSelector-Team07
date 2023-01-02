@@ -32,7 +32,7 @@ function ReportedUsers() {
                     <div></div>
                     <div>reported at</div>
                    <div></div>
-                   <div></div>
+                   
                     <div>Action</div>
                     
                 </div>

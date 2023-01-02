@@ -11,7 +11,14 @@ function ReportedUserItem({ruser}) {
 
     const [userID] = useState(ruser._id)
 
-    
+    const handlereportDelete = (e) => {
+        
+        e.preventDefault()
+        toast.error('Account deleted')
+        dispatch(deleterUser(userID))
+
+        window.location.reload()
+    }
     const handleDelete = (e) => {
         
         e.preventDefault()
@@ -33,13 +40,16 @@ function ReportedUserItem({ruser}) {
             <div className="middle-panel box">
                 {ruser._id}
             </div>
+            <div></div>
             <div className="right-panel box">
                 {Date(ruser.createdat).toLocaleString('en-US')}
             </div>
 
+            
             <div></div>
-            <div></div>
-            <div></div>
+            <form onClick={handlereportDelete}  >
+                <button className="btn btn-reverse btn-sm">Delete report</button>
+            </form>
             <form onClick={handleDelete}  >
                 <button className="btn btn-reverse btn-sm">Delete User</button>
             </form>
