@@ -8,6 +8,8 @@ def test_cases_for_app():
 
     # Test successful registration
     driver.get('http://localhost:3000/register')
+    email_field = driver.find_element_by_name('name')
+    email_field.send_keys('testUser')
     email_field = driver.find_element_by_name('email')
     email_field.send_keys('test@mail.com')
     password_field = driver.find_element_by_name('password')
@@ -21,6 +23,8 @@ def test_cases_for_app():
 
     # Test error message for mismatched passwords
     driver.get('http://localhost:3000/register')
+    email_field = driver.find_element_by_name('name')
+    email_field.send_keys('testUser')
     email_field = driver.find_element_by_name('email')
     email_field.send_keys('test@mail.com')
     password_field = driver.find_element_by_name('password')
