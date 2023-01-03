@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-
 import { useLocation} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import {FaBiohazard} from 'react-icons/fa'
@@ -8,10 +7,8 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import {getTeams} from '../features/teams/teamSlice'
 import TeamItemHomePage from '../components/TeamItemHomePage'
-import { MDBTextArea } from 'mdb-react-ui-kit';
 import { createReport } from '../features/reports/reportsSlice'
 import {createComment} from '../features/comments/commentSlice'
-
 import {
     MDBCol,
     MDBContainer,
@@ -33,27 +30,28 @@ function VisitedProfile() {
     const {teams} = useSelector((state) => state.teams)
     const {isSuccess} = useSelector((state) => state.teams)
     const location = useLocation()
-    const [commentData] = useState({email:location.state.email, comment:""})
-    const commentField = ""
+
+    // const [commentFrom, setCommentFrom] = useState({commentFrom:''})
+    const [text, setText] = useState()
+
+    const onSubmit = (e) =>{
+        e.preventDefault()
+        const commentData = {
+            commentFrom:user._id, commentTo:location.state.email, text
+        }
+        console.log("commentData",commentData)
+        dispatch(createComment(commentData))
+    }
 
     useEffect(() => {
         return () => {
             dispatch(getTeams())
-
         }
     }, [dispatch, isSuccess])
 
     const userData= {
         email: location.state.email,
         name: location.state.name
-    }
-
-    const commentToUser = (e) =>
-    {
-        commentData.comment = commentField
-        console.log("comment that will be pushed",commentData.comment)
-        toast.info("Comment created")
-        dispatch(createComment(commentData))
     }
 
     const reportUser = (e) => {
@@ -96,8 +94,8 @@ function VisitedProfile() {
                             style={{ backgroundColor: 'white' }}
                         >
                             <MDBCardBody>
-                            <form onSubmit={commentToUser}>
-                                <MDBInput wrapperClass="mb-4" label={"Comment to " +location.state.name} type="text"/>
+                            <form onSubmit={onSubmit}>
+                                <MDBInput wrapperClass="mb-4" label={"Comment to " +location.state.name} type="text" value={text} onChange={(e) => setText(e.target.value)}/>
                                 <button className='btn btn-reverse' style={{marginBottom:'30px', marginLeft:"36%"}}>Comment</button>
                             </form>
                             <MDBCard className="mb-4">
