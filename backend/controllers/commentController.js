@@ -26,18 +26,18 @@ const getComment = asyncHandler(async (req, res) => {
 // @access Private
 const createComment = asyncHandler(async (req, res) => {
 
-    const {email, text} = req.body
+    const {commentTo, text} = req.body
     const user = await User.findById(req.params.id)
     if(!text){
         res.status(400)
         throw new Error('Please fill the comment field'),
-        console.log(email, text)
+        console.log(commentTo, text)
     }
 
     const comment = await Comment.create({
-        user:user._id,
-        commentTo:email,
-        text:text,
+        user: user._id,
+        commentTo: commentTo,
+        text: text,
     })
     console.log("comment Controller", comment)
     res.status(201).json(comment)   
@@ -45,5 +45,5 @@ const createComment = asyncHandler(async (req, res) => {
 module.exports = {
     createComment,
     getAllComments,
-    getComment
+    getComment,
 }

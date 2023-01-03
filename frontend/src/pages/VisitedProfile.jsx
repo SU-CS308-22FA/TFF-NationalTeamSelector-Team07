@@ -30,14 +30,12 @@ function VisitedProfile() {
     const {teams} = useSelector((state) => state.teams)
     const {isSuccess} = useSelector((state) => state.teams)
     const location = useLocation()
-
-    // const [commentFrom, setCommentFrom] = useState({commentFrom:''})
     const [text, setText] = useState()
 
     const onSubmit = (e) =>{
         e.preventDefault()
         const commentData = {
-            commentFrom:user._id, commentTo:location.state.email, text
+            user:user._id, commentTo:location.state.email, text
         }
         console.log("commentData",commentData)
         dispatch(createComment(commentData))

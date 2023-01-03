@@ -37,7 +37,7 @@ const getComments = async (getComment, token) => {
 const commentService = {
     createComment,
     getComments,
-    getAllComments
+    getAllComments,
 }
 
 export default commentService

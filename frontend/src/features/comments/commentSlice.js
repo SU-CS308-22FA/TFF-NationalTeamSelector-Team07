@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
-import commentsService from './commentService'
+import commentService from './commentService'
 
 export const createComment = createAsyncThunk(
     'comments/createComment', 
@@ -7,7 +7,7 @@ export const createComment = createAsyncThunk(
         try{
             console.log("commentData commentSlice",commentData)
             const token = thunkAPI.getState().auth.user.token
-            return await commentsService.createComment(commentData, token)
+            return await commentService.createComment(commentData, token)
         }catch (error){
             const message = 
             (error.response && 
@@ -24,7 +24,7 @@ export const createComment = createAsyncThunk(
     async (getComment, thunkAPI) => {
         try{
             const token = thunkAPI.getState().auth.user.token
-            return await commentsService.getComments(getComment, token)
+            return await commentService.getComments(getComment, token)
         }catch (error){
             const message = 
             (error.response && 
@@ -41,7 +41,7 @@ export const createComment = createAsyncThunk(
     async (_, thunkAPI) => {
         try{
             const token = thunkAPI.getState().auth.user.token
-            return await commentsService.getAllComments(token)
+            return await commentService.getAllComments(token)
         }catch (error){
             const message = 
             (error.response && 
