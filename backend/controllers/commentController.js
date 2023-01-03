@@ -27,7 +27,7 @@ const getComment = asyncHandler(async (req, res) => {
 const createComment = asyncHandler(async (req, res) => {
 
     const {email, text} = req.body
-    const user = await User.findOne({email})
+    const user = await User.findById(req.params.id)
     if(!text){
         res.status(400)
         throw new Error('Please fill the comment field'),
@@ -36,8 +36,8 @@ const createComment = asyncHandler(async (req, res) => {
 
     const comment = await Comment.create({
         user:user._id,
+        commentTo:email,
         text:text,
-        commentTo:email
     })
     console.log("comment Controller", comment)
     res.status(201).json(comment)   
