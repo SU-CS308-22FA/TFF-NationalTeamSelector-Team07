@@ -59,15 +59,15 @@ var removeCurrentUser = function(userList, key, value){
         return <Spinner />
     }
     
-      const handleOnSearch = (string, results) => {
+        const handleOnSearch = (string, results) => {
         // onSearch will have as the first callback parameter
         // the string searched and for the second the results.
-        console.log(string, results)
+        console.log("handle on search: " + string, results)
       }
     
       const handleOnHover = (result) => {
         // the item hovered
-        console.log(result)
+        console.log("handle on hover:  " + result)
       }
     
       const handleOnSelect = (item) => {
