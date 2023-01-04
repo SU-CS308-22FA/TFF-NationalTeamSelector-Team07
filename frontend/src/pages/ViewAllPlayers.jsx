@@ -17,6 +17,16 @@ function ViewAllPlayers() {
         }
     }, [dispatch, isSuccess])
 
+    const strAscending = [...players].sort((a, b) =>
+    a.raiting > b.raiting ? 1 : -1,
+    ).reverse();
+
+    const handleFilterTopDown = (e) => {
+        e.preventDefault()
+
+
+      
+    }
     
 
     if(isLoading) {
@@ -26,6 +36,11 @@ function ViewAllPlayers() {
     return (
         <>
             <h1>PLAYERS</h1>
+
+            <form onSubmit={handleFilterTopDown}  >
+                <button className="btn btn-reverse btn-sm">FILTER HIGH TO LOW </button>
+            </form>
+
             <div className="tickets">
                 <div className="ticket-headings">
                     <div>Name</div>
@@ -34,7 +49,10 @@ function ViewAllPlayers() {
                     <div>Rating</div>
                 </div>
                 
-                {players.map((player) => (
+                {/* {players.map((player) => (
+                    <MainPagePlayerItem key={player._id} player={player}/>
+                ))} */}
+                {strAscending.map((player) => (
                     <MainPagePlayerItem key={player._id} player={player}/>
                 ))}
             </div>

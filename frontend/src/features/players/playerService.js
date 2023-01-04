@@ -4,15 +4,18 @@ import axios from 'axios'
 
 // create new player
 const createPlayer = async (playerData, token) => {
-    //console.log("playerService: " + playerData)
+    console.log("playerService: line 7")
     const config = {
         headers: {
             Authorization: `admin ${token}`
         }
     }
-   
+    console.log("playerService: line 13")
+    console.log("playerService: line 14 " + playerData)
+
     const response = await axios.post('/api/players/', playerData)
-    console.log("playeService")
+    console.log("playerService: line 15" + JSON.stringify(playerData))
+    console.log("historicService: line 18 @@@" + response.data)
     return response.data
 }
 
