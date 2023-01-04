@@ -17,7 +17,7 @@ import TeamItemHomePage from '../components/TeamItemHomePage'
     const [selectedUser] = useState({ name: "", email: "", isAdmin: "", verification: "" })
     
     const [userList, setUserList] =  useState([])
-    const [realUserList, setRealUserList] =  useState([])
+    const [realUserList , setRealUserList] =  useState([])
 
     const {teams} = useSelector((state) => state.teams)
 
