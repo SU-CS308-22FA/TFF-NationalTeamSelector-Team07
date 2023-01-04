@@ -104,12 +104,12 @@ function UserItem({user}) {
                 <button className="btn btn-reverse btn-sm">Verify</button>
             </form> */}
             <form>
-            <button className="btn btn-reverse btn-sm" onClick={toggleTruthValue}>Verify</button>
+            <button className="btn btn-reverse btn-sm" type='verify' onClick={toggleTruthValue}>Verify</button>
             {/* <p>Truth Value: {formData.verification ? 'True' : 'False'}</p> */}
             </form>
             
             <form onClick={handleDelete}  >
-                <button className="btn btn-reverse btn-sm">Delete</button>
+                <button className="btn btn-reverse btn-sm" type='delete'>Delete</button>
             </form>
             
         </div>

@@ -62,7 +62,7 @@ function TeamItem({team}) {
                     {team.createdAt}
                 </div>
                 <div></div>
-                <div></div>
+                
                 <form onSubmit={displayTeam}  >
                     <button className="btn btn-reverse btn-sm">View Team</button>
                 </form>
