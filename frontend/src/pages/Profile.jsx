@@ -7,6 +7,7 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import {getTeams} from '../features/teams/teamSlice'
 import TeamItemHomePage from '../components/TeamItemHomePage'
+import { FaCheck } from 'react-icons/fa';
 import {
     MDBCol,
     MDBContainer,
@@ -70,8 +71,10 @@ function Profile() {
                             <MDBListGroup flush className="rounded-3">
                                 
                                 <MDBListGroupItem className="list-group-item d-flex justify-content-center align-items-center">
-                                <MDBIcon className="fas fa-user-alt"></MDBIcon>
-                                    <MDBCardText > {"\u00a0\u00a0"} verified user: {vrf.toString()}
+                                {/* <MDBIcon className="fas fa-user-alt"></MDBIcon> */}
+                                    <MDBCardText > {"\u00a0\u00a0"} {user.verification ? <FaCheck /> : <MDBIcon className="fas fa-user-alt"></MDBIcon>}
+                                    {"\u00a0\u00a0"} {user.verification ? 'verified user':'normal user' }
+                                    
                                     
                                     </MDBCardText>
                                     
