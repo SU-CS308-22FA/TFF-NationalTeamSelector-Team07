@@ -13,7 +13,9 @@ import playerService from '../features/players/playerService'
 function ViewAllPlayers() {
     //const {player, isLoading, isSuccess} = useSelector((state) => state.players)
     const {players,isLoading, isSuccess} = useSelector((state) => state.players)
-
+    const [searchTerm, setSearchTerm] = useState('');
+    const [results, setResults] = useState([]);
+    const [selectedItem, setSelectedItem] = useState(null);
     const [playerList, setPlayersList] =  useState([])
     const [selectedPlayer] = useState({
       personel: "",
@@ -39,7 +41,8 @@ function ViewAllPlayers() {
     useEffect(() => {
         return async () => {
 
-          setPlayersList(await playerService.getPlayers() || []);
+          setPlayersList(await playerService.getPlayersHome() || []);
+          //console.log(playerList)
 
         }
         
@@ -55,37 +58,42 @@ function ViewAllPlayers() {
         // onSearch will have as the first callback parameter
         // the string searched and for the second the results.
         console.log("handle on search" , string, results)
+        setSearchTerm(string);
+        setResults(results);
       }
     
-      const handleOnHover = (result) => {
+      const handleOnHover = (item) => {
         // the item hovered
-        console.log(result)
+        console.log(item)
+        setSelectedItem(item);
       }
     
       const handleOnSelect = (item) => {
         // the item selected
         //console.log("LINE 59" + item)
-        selectedPlayer.personel = item.personel
-        selectedPlayer.fullName = item.fullName
-        selectedPlayer.team = item.team
-        selectedPlayer.position = item.position
-        selectedPlayer.raiting = item.raiting
-        selectedPlayer.DateOfBirth = item.DateOfBirth
-        selectedPlayer.PreferedFoot = item.PreferedFoot
-        selectedPlayer.Age = item.Age
-        selectedPlayer.PlaceOfBirth = item.PlaceOfBirth
+        setSelectedItem(item);
 
-        navigate("/player-profile/:personel", {state:{
-          personel: selectedPlayer.personel, 
-          playerID: selectedPlayer.player_id, 
-          name: selectedPlayer.fullName, 
-          team: selectedPlayer.team, 
-          pos: selectedPlayer.position, 
-          Rating: selectedPlayer.raiting, 
-          dob: selectedPlayer.DateOfBirth, 
-          foot: selectedPlayer.PreferedFoot, 
-          age: selectedPlayer.Age, 
-          pob: selectedPlayer.PlaceOfBirth}})
+        // selectedPlayer.personel = item.personel
+        // selectedPlayer.fullName = item.fullName
+        // selectedPlayer.team = item.team
+        // selectedPlayer.position = item.position
+        // selectedPlayer.raiting = item.raiting
+        // selectedPlayer.DateOfBirth = item.DateOfBirth
+        // selectedPlayer.PreferedFoot = item.PreferedFoot
+        // selectedPlayer.Age = item.Age
+        // selectedPlayer.PlaceOfBirth = item.PlaceOfBirth
+
+        // navigate("/player-profile/:personel", {state:{
+        //   personel: selectedPlayer.personel, 
+        //   playerID: selectedPlayer.player_id, 
+        //   name: selectedPlayer.fullName, 
+        //   team: selectedPlayer.team, 
+        //   pos: selectedPlayer.position, 
+        //   Rating: selectedPlayer.raiting, 
+        //   dob: selectedPlayer.DateOfBirth, 
+        //   foot: selectedPlayer.PreferedFoot, 
+        //   age: selectedPlayer.Age, 
+        //   pob: selectedPlayer.PlaceOfBirth}})
       }
       
       const handleOnFocus = () => {
@@ -95,7 +103,7 @@ function ViewAllPlayers() {
       const formatResult = (item) => {
         return (
           <>
-            <span style={{ display: 'block', textAlign: 'left' }}>{item.fullName}</span>
+            <span style={{ display: 'block', textAlign: 'left' }}>{selectedItem.fullName}</span>
           </>
         )
       }
@@ -118,8 +126,15 @@ function ViewAllPlayers() {
                         onSelect={handleOnSelect}
                         onFocus={handleOnFocus}
                         autoFocus
-                        formatResult={formatResult}
+                        //formatResult={formatResult}
                     />
+                    {selectedItem && <p>Selected player: {selectedItem.fullName}</p>}
+                    {results.length > 0 && (
+                    <ul>
+                      {results.map(player => (
+                        <li key={player.id}>{player.fullName}</li>
+                      ))}</ul>
+                      )}
                     </div>
                 </header>
             </div>
