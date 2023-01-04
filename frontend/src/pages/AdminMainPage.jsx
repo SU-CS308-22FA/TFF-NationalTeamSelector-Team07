@@ -57,7 +57,7 @@ function AdminProfilePage() {
             </form>
 
             <form onSubmit={handleSubmitPlayers}>
-                <button className='btn btn-block' style={{maxWidth:"50%", marginLeft:"25%"}}>
+                <button type='allPlayers' className='btn btn-block' style={{maxWidth:"50%", marginLeft:"25%"}}>
                     View all players
                 </button>
             </form>

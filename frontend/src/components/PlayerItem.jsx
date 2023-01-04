@@ -99,7 +99,7 @@ function PlayerItem({player, navigation}) {
                     <button className="btn btn-reverse btn-sm">Delete</button>
                 </form>
                 <form onSubmit={handleViewPlayerInfo}  >
-                    <button className="btn btn-reverse btn-sm">Details</button>
+                    <button type='details' className="btn btn-reverse btn-sm">Details</button>
                 </form>
                 
             </div>

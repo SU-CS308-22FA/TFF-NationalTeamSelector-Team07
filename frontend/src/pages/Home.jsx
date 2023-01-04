@@ -130,7 +130,7 @@ var removeCurrentUser = function(userList, key, value){
                 </div>
                 <div class="btn-group" style={{marginRight:"20px"}}>
                     <Link to='/topFiveTeams'>
-                        <button >Top 5 teams</button>
+                        <button type='top5' >Top 5 teams</button>
                     </Link>
                 </div>
                 </div>

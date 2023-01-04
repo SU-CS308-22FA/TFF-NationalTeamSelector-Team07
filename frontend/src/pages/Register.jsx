@@ -120,7 +120,7 @@ state => state.auth)
                         </div>
                     </div>
                     <div className="form-group">
-                        <button className="btn btn-block">
+                        <button type='register' className="btn btn-block">
                             Submit
                         </button>
                     </div>
