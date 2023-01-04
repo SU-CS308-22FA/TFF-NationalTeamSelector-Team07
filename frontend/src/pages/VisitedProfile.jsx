@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useLocation} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import {FaBiohazard} from 'react-icons/fa'
-
+import { FaCheck } from 'react-icons/fa';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import {getTeams} from '../features/teams/teamSlice'
@@ -72,8 +72,9 @@ function VisitedProfile() {
                         <MDBCardBody className="p-0">
                             <MDBListGroup flush className="rounded-3">
                                 <MDBListGroupItem className="list-group-item d-flex justify-content-center align-items-center">
-                                <MDBIcon className="fas fa-user-alt"></MDBIcon>
-                                    <MDBCardText > {"\u00a0\u00a0"} verified user: {location.state.verification.toString()}</MDBCardText>
+                                {/* <MDBIcon className="fas fa-user-alt"></MDBIcon> */}
+                                <MDBCardText > {"\u00a0\u00a0"} {location.state.verification ? <FaCheck /> : <MDBIcon className="fas fa-user-alt"></MDBIcon>}
+                                    {"\u00a0\u00a0"} {location.state.verification ? 'verified user':'normal user' }</MDBCardText >
                                 </MDBListGroupItem>
                             </MDBListGroup>
                         </MDBCardBody>
