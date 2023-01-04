@@ -125,15 +125,19 @@ function TeamItem({team}) {
                         <MDBCardBody className="p-4">
                             <MDBTypography style={{textAlign:'center'}} tag="h5">team name: {name}</MDBTypography>
                             <div>{team.userVerif ? 'Upcoming Match Starting 11' : null}</div>
+                            <div>{team.userVerif ? 'Date of Match: ' : null}</div>
+                            <div>{team.userVerif ? format(new Date(team.createdAt), "dd/MM/Y") : null}</div>
+                            
                             <hr className="mt-0 mb-4" />
                             <MDBRow className="pt-1">
                             
-                            <MDBCardImage src='https://news.virginia.edu/sites/default/files/Header_Soccer.jpg' fluid alt='...' 
+                            <MDBCardImage src={team.userVerif ? 'https://www.tff.org/Resources/TFF/Images/0000000015/TFF/TFF-Logolar/tff06.jpg' : 'https://news.virginia.edu/sites/default/files/Header_Soccer.jpg'}  fluid alt='...' 
                                             style={{
                                             width: 350,
                                             height:200,
                                             backgroundColor: "red",
                                             verticalAlign: "center"
+                                            
                                             }}
                                 />
                                 <a>
