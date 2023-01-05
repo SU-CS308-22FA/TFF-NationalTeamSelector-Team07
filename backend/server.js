@@ -26,6 +26,7 @@ app.use('/api/historics', require('./routes/historicDataRoutes'))
 app.use('/api/players', require('./routes/playerRoutes'))
 app.use('/api/teams', require('./routes/teamRoutes'))
 app.use('/api/reportedusers', require('./routes/reportedRoutes'))
+app.use('/api/comments', require('./routes/commentRoutes'))
 app.use(errorHandler)
 
 // Serve Frontend

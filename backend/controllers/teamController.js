@@ -1,7 +1,5 @@
 const asyncHandler = require('express-async-handler')
-
 const Team = require('../models/teamModel')
-
 const User = require('../models/userModel')
 
 

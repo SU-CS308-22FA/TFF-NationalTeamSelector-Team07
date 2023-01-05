@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-
 import { useLocation} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import {FaBiohazard} from 'react-icons/fa'
@@ -9,9 +8,8 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import {getTeams} from '../features/teams/teamSlice'
 import TeamItemHomePage from '../components/TeamItemHomePage'
-import { MDBTextArea } from 'mdb-react-ui-kit';
 import { createReport } from '../features/reports/reportsSlice'
-
+import {createComment} from '../features/comments/commentSlice'
 import {
     MDBCol,
     MDBContainer,
@@ -19,7 +17,6 @@ import {
     MDBCard,
     MDBCardText,
     MDBCardBody,
-    MDBCardImage,
     MDBIcon,
     MDBListGroup,
     MDBListGroupItem,
@@ -34,11 +31,20 @@ function VisitedProfile() {
     const {teams} = useSelector((state) => state.teams)
     const {isSuccess} = useSelector((state) => state.teams)
     const location = useLocation()
+    const [text, setText] = useState()
+
+    const onSubmit = (e) =>{
+        e.preventDefault()
+        const commentData = {
+            user:user._id, commentTo:location.state.email, text
+        }
+        console.log("commentData",commentData)
+        dispatch(createComment(commentData))
+    }
 
     useEffect(() => {
         return () => {
             dispatch(getTeams())
-
         }
     }, [dispatch, isSuccess])
 
@@ -88,22 +94,15 @@ function VisitedProfile() {
                             style={{ backgroundColor: 'white' }}
                         >
                             <MDBCardBody>
-                            <form >
-                                <MDBInput wrapperClass="mb-4" placeholder="Type comment..." label={"Comment to " +location.state.name} />
+                            <form onSubmit={onSubmit}>
+                                <MDBInput wrapperClass="mb-4" label={"Comment to " +location.state.name} type="text" value={text} onChange={(e) => setText(e.target.value)}/>
                                 <button className='btn btn-reverse' style={{marginBottom:'30px', marginLeft:"36%"}}>Comment</button>
                             </form>
                             <MDBCard className="mb-4">
                                 <MDBCardBody>
                                 <p>Type your note, and hit enter to add it</p>
-
                                 <div className="d-flex justify-content-between">
                                     <div className="d-flex flex-row align-items-center">
-                                    <MDBCardImage
-                                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(4).webp"
-                                        alt="avatar"
-                                        width="25"
-                                        height="25"
-                                    />
                                     <p className="small mb-0 ms-2">Martha</p>
                                     </div>
                                     <div className="d-flex flex-row align-items-center">
@@ -117,15 +116,8 @@ function VisitedProfile() {
                             <MDBCard className="mb-4">
                                 <MDBCardBody>
                                 <p>Type your note, and hit enter to add it</p>
-
                                 <div className="d-flex justify-content-between">
                                     <div className="d-flex flex-row align-items-center">
-                                    <MDBCardImage
-                                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(31).webp"
-                                        alt="avatar"
-                                        width="25"
-                                        height="25"
-                                    />
                                     <p className="small mb-0 ms-2">Mary Kate</p>
                                     </div>
                                     <div>
