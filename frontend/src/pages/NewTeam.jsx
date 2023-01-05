@@ -27,7 +27,8 @@ function NewTeam() {
     const [player9, setPlayerName9] = useState({player9:'',})
     const [player10, setPlayerName10] = useState({player10:'',})
     const [player11, setPlayerName11] = useState({player11:'',})
-
+    
+    const [verif] = useState(user.userVerif)
     const [email] = useState(user.email)
     const [teamName, setTeamName] = useState()
     const dispatch = useDispatch()
@@ -45,8 +46,9 @@ function NewTeam() {
 
     const onSubmit =(e) => {
         e.preventDefault()
+        
         const teamData = {
-            teamName, player1, player2, player3, player4, player5, player6, player7, player8, player9, player10, player11, email
+            teamName, player1, player2, player3, player4, player5, player6, player7, player8, player9, player10, player11, email, verif:user.verification
         }
         // if(player1!== player2!== player3!== player4!== player5!== player6!== player7!== player8!== player9!== player10!== player11){
         //     dispatch(createTeam({player1, player2, player3, player4, player5, player6, player7, player8, player9, player10, player11, teamName, email}))
@@ -66,50 +68,7 @@ function NewTeam() {
     if(isLoading) {
         return <Spinner />
     }
-    // const set_p1 = event =>{
-    //     console.log(event.target.name, event.target.value)
-    //     setPlayerName1({...player1,[event.target.name]:event.target.value})
-    // }
-    // const set_p2 = event =>{
-    //     console.log(event.target.name, event.target.value)
-    //     setPlayerName2({...player2,[event.target.name]:event.target.value})
-    //   }
-    //   const set_p3 = event =>{
-    //     console.log(event.target.name, event.target.value)
-    //     setPlayerName3({...player3,[event.target.name]:event.target.value})
-    //   }
-    //   const set_p4 = event =>{
-    //     console.log(event.target.name, event.target.value)
-    //     setPlayerName4({...player4,[event.target.name]:event.target.value})
-    //   }
-    //   const set_p5 = event =>{
-    //     console.log(event.target.name, event.target.value)
-    //     setPlayerName5({...player5,[event.target.name]:event.target.value})
-    //   }
-    //   const set_p6 = event =>{
-    //     console.log(event.target.name, event.target.value)
-    //     setPlayerName6({...player6,[event.target.name]:event.target.value})
-    //   }
-    //   const set_p7 = event =>{
-    //     console.log(event.target.name, event.target.value)
-    //     setPlayerName7({...player7,[event.target.name]:event.target.value})
-    //   }
-    //   const set_p8 = event =>{
-    //     console.log(event.target.name, event.target.value)
-    //     setPlayerName8({...player8,[event.target.name]:event.target.value})
-    //   }
-    //   const set_p9 = event =>{
-    //     console.log(event.target.name, event.target.value)
-    //     setPlayerName9({...player9,[event.target.name]:event.target.value})
-    //   }
-    //   const set_p10 = event =>{
-    //     console.log(event.target.name, event.target.value)
-    //     setPlayerName10({...player10,[event.target.name]:event.target.value})
-    //   }
-    //   const set_p11 = event =>{
-    //     console.log(event.target.name, event.target.value)
-    //     setPlayerName11({...player11,[event.target.name]:event.target.value})
-    //   }
+    
     
 
     return (
@@ -120,7 +79,18 @@ function NewTeam() {
             </section>
             <form onSubmit={onSubmit}>
             <section className="form">
-            <div className="form-group">
+
+                {/* <div>verification status: {user.verification.toString()}</div> */}
+                <div className="form-group">
+                    <label htmlFor="userVerification">Verification Status</label>
+                    <input type="text" 
+                    className="form-control"
+                    placeholder= {user.verification.toString()}
+                    disabled
+                    value={verif} />
+                </div>
+                <div className="form-group">
+
                     <label htmlFor="teamName">Player Team</label>
                     <input type="text" 
                     className="form-control"

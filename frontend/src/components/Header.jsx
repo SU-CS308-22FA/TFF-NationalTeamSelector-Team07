@@ -27,7 +27,7 @@ function Header() {
                 {user ? 
                 (<>
                     <li>
-                        <Link to='/profile'>
+                        <Link to='/profile' type='profile'>
                             <FaUser /> Profile
                         </Link>
                     </li> 

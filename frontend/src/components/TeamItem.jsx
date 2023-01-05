@@ -53,13 +53,16 @@ function TeamItem({team}) {
                     {team._id}
                 </div>
                 <div className="middle-panel box">
+                {team.userVerif ? 'TFF Official' : null}
+                </div>
+                <div className="middle-panel box">
                     {team.teamName}
                 </div>
                 <div className="right-panel box">
                     {team.createdAt}
                 </div>
                 <div></div>
-                <div></div>
+                
                 <form onSubmit={displayTeam}  >
                     <button className="btn btn-reverse btn-sm">View Team</button>
                 </form>

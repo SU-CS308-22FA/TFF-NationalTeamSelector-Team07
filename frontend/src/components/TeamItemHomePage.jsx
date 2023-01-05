@@ -6,7 +6,7 @@ import { updateLike } from '../features/teams/teamSlice'
 import { useDispatch,useSelector } from 'react-redux'
 import { format } from 'date-fns'
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
-
+import { FaCheck } from 'react-icons/fa';
 /**
  * * This function involves incrementing and decrementing likes
  * Each button press is being checked before incrementing or decrementing the like count
@@ -22,6 +22,7 @@ function TeamItem({team}) {
 
     const [teamId] = useState(team._id)
     const [name] = useState(team.teamName)
+    const [verif] = useState(team.userVerif)
     const [player1] = useState(team.player1)
     const [player2] = useState(team.player2)
     const [player3] = useState(team.player3)
@@ -111,23 +112,32 @@ function TeamItem({team}) {
                     <MDBRow className="g-5">
                         <MDBCol md="4" className="gradient-custom text-center text-white " 
                         style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem', backgroundColor: '#B84949'}}>
-                        
                         <div className="d-flex align-items-center"></div>
                         <MDBTypography  tag="h10">Team ID: {teamId}</MDBTypography>
+                        <div>
                         
-                        {/* <MDBIcon far icon="edit mb-5" /> */}
+                        <span style={{ fontSize: 'larger' }}>
+                        {team.userVerif ? <FaCheck /> : null}
+                        {team.userVerif && 'verified user' }</span>
+                        </div>
                         </MDBCol>
                         <MDBCol md="8">
                         <MDBCardBody className="p-4">
                             <MDBTypography style={{textAlign:'center'}} tag="h5">team name: {name}</MDBTypography>
+                            <div>{team.userVerif ? 'Upcoming Match Starting 11' : null}</div>
+                            <div>{team.userVerif ? 'Date of Match: ' : null}</div>
+                            <div>{team.userVerif ? format(new Date(team.createdAt), "dd/MM/Y") : null}</div>
+                            
                             <hr className="mt-0 mb-4" />
                             <MDBRow className="pt-1">
-                            <MDBCardImage src='https://news.virginia.edu/sites/default/files/Header_Soccer.jpg' fluid alt='...' 
+                            
+                            <MDBCardImage src={team.userVerif ? 'https://www.tff.org/Resources/TFF/Images/0000000015/TFF/TFF-Logolar/tff06.jpg' : 'https://news.virginia.edu/sites/default/files/Header_Soccer.jpg'}  fluid alt='...' 
                                             style={{
                                             width: 350,
                                             height:200,
                                             backgroundColor: "red",
                                             verticalAlign: "center"
+                                            
                                             }}
                                 />
                                 <a>

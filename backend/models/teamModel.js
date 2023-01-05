@@ -55,6 +55,10 @@ const teamSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please name your team']
     },
+    userVerif: {
+        type: Boolean,
+        required: [true]
+    },
     likes: [
             {
             type: ObjectId,

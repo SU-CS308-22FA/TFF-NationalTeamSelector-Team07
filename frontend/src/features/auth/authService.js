@@ -65,13 +65,13 @@ const loginAdmin = async (userData) => {
 
 // update user
 const update = async (userData) => {
-    //console.log('authservice id ' + userData)
-    const response = await axios.put('/api/users/' + userData.id, {name: userData.name, email: userData.email, verification: userData.verification})
-
+    
+    const response = await axios.put('/api/users/' + userData.id, {username: userData.username, email: userData.email, verification: userData.verification})
+    
     if(response.data) {
         localStorage.setItem('user', JSON.stringify(response.data))
     }
-    console.log(response.data)
+    
     return response.data
 }
 
